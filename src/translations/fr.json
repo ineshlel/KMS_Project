@@ -1,0 +1,73 @@
+{    "Annuler" : "Annuler" ,
+    "Analyse" : "Analyse",
+    "Bienvenu" : "Bienvenu",
+    "Contribué" : "Contribué ",
+    "Client" :"Client" ,
+    "Cause" :"Cause ",
+       "Consequence": "Conséquence",
+       "Commentaire" :"Commentaire :",
+       "Desc": "description" ,
+       "Deconnecter" : "Déconnecter",
+       "Detecteur " : "Détecteur :",
+       "dateDet" :"Date détection  : " ,
+       "Email-id": "Email-id",
+       "Fournisseur" :"Fournisseur" ,
+       "Gestion" : "Gestion",
+      "hello": "Salut le Monde!",
+      "Heure" :"Heure :" ,
+      "Informe" : "Informé" ,
+      "Importance" :"Importance :",
+      "Login" : "Connexion",
+      "Modifier" : "Modifier",
+      "Need Help ?" :"Besoin d'aide ?",
+      "Not a member ?":"Pas un membre ?" ,
+      "Num CMD" : "Num CMD : " ,
+      "Num lots" : "Num lots :",
+      "Name" : "nom",
+  
+  
+  
+  
+  
+       "Password" : "Mot de passe" ,
+       
+       
+       
+       "Register" : "S'inscrire",
+       
+       "tel" : "Numéro de téléphone" ,
+       "Réclamations" : "Réclamations",
+       "Responsable" : "Responsable" ,
+       
+       
+       
+       "tNC" : "Type de non conformité :",
+       "reel" :"réel " ,
+       "Potentielle" : "Potentielle",
+       
+      
+       
+       "Perspective" :"Perspective :",
+       "Perspective choisie" :"Perspective choisie  :",
+       
+       "Valider" : "Valider",
+      
+      
+       
+       
+       "Statut" : "Statut :" ,
+      
+       "Refuse" :"Refusé ",
+       
+       
+       "poste" : "poste" ,
+       "Notification par mail" :"Notification par mail :",
+       "OK" :"OK" ,
+       
+       
+       "Type" :"Type",
+       "Tache" : "Tâche",
+       "Responsabilite" :"Responsabilité"
+       
+  
+    }

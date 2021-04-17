@@ -1,0 +1,69 @@
+{   "Annuler" :"cancel" ,
+    "Analyse" : "Analysis" ,
+    "Bienvenu" : "Welcome" ,
+     "Contribué" :"Contributed" ,
+      "Client" : "Customer" ,
+      "Cause" :"Cause",
+      "Consequence" :"Result",
+      "Commentaire" : "Comment:",
+      "Desc": "description" ,
+      "Deconnecter":"Disconnect" ,
+      "Detecteur ":"Detector:",
+      "dateDet" : "Detection date:" ,
+      "Email-id" : "Email-id",
+      "Fournisseur" : "Provider" ,
+      "Gestion" : "Management",
+      "hello": "Hello World!",
+      "Heure" : "Hour :",
+      "Informe" : "Informed" ,
+      "Importance" :"Importance:",
+      "Login": "Login" ,
+      "Modifier" :"Edit",
+      "Need Help ?" : "Need Help ? " ,
+      "Not a member ?" :"Not a member ?",
+      "Num CMD" :"Num CMD : ",
+      "Num lots" :"Num lots :" ,
+      "Name" :"Name",
+      "Notification par mail" : "Email notification:",
+      "OK" :"OK" ,
+      "Password" : "Password" ,
+      "Potentielle" : "Potential", 
+      "Perspective " : "Perspective:" ,
+      "Perspective choisie" : "Selected perspective:",
+      "poste" : "post" ,
+      "Register" : "Register",
+      "Réclamations" : "Complaints" ,
+      "Responsable" : "Responsible" ,
+      "reel " : "real" ,
+      "Refuse" :"reject" ,
+      "Responsabilite" : "responsibility",
+      "Statut" : "Status:",
+      "tel" : "Phone Number",
+      "tNC": "Type of non-compliance:",
+      "Type" :"Type",
+      "Tache" : "task",
+      "Valider" : "Validate" 
+      
+      
+     
+     
+      
+      
+      
+      
+      
+      
+     
+      
+      
+      
+      
+      
+      
+      
+     
+      
+      
+  
+  
+    }
