@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import AddWork from '../components/addWork';
 import App from '../components/checkBox';
+import { COLORS } from '../constants';
+
 import EvaluationScreen from './evaluationScreen';
 
 import InfoForm from "./InfoForm";
+import QCMScreen from './qcmScreen';
 import TwoHeaderTab from './TwoHeaderTab';
 
 
@@ -105,7 +107,7 @@ export default class ThreeTabSelector extends Component {
                                   this.setState({ active: 0 }, () =>
                                       this.handleSlide(xTab1)
                               )}>
-              <Text style={{color: active === 0? '#FFFFFF' : '#858FE8'}}>Information</Text>
+              <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple}}>Information</Text>
             </TouchableOpacity>
 
             {/* Tab 2 */}
@@ -116,7 +118,7 @@ export default class ThreeTabSelector extends Component {
                                       this.handleSlide(xTab2)
                               )}>
                               
-              <Text style={{color: (active === 1)? '#FFFFFF' : '#858FE8'}}>CMPV</Text>
+              <Text style={{color: (active === 1)? '#FFFFFF' :COLORS.purple}}>CMPV</Text>
             </TouchableOpacity>
 
             {/* Tab 3 */}
@@ -127,7 +129,7 @@ export default class ThreeTabSelector extends Component {
                                       this.handleSlide(xTab3)
                               )}>
                               
-              <Text style={{color: (active === 2)? '#FFFFFF' : '#858FE8'}}>Evaluation</Text>
+              <Text style={{color: (active === 2)? '#FFFFFF' : COLORS.purple}}>Evaluation</Text>
             </TouchableOpacity>
 
           </View>
@@ -145,8 +147,7 @@ export default class ThreeTabSelector extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-              <InfoForm/>
-                
+          <InfoForm/>
             </Animated.View>
 
             {/* Tab 2 Content */}
@@ -157,7 +158,7 @@ export default class ThreeTabSelector extends Component {
                 { translateY: -translateY}
               ]
             }}>
-            <TwoHeaderTab/>
+            <App/>
             </Animated.View>
 
             {/* Tab 3 Content */}
@@ -204,7 +205,7 @@ const styles = StyleSheet.create({
     height: '100%',
     top: 0,
     left: 0,
-    backgroundColor: '#858FE8',
+    backgroundColor:COLORS.blueClair,
     borderRadius: 4
   },
 

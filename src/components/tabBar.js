@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { View, StyleSheet, Dimensions, Animated } from 'react-native';
+import { COLORS } from '../constants';
 import { useTabBar } from '../contexts/tabBArProvider';
 import Tab from './tab';
 
@@ -12,7 +13,7 @@ const TabBar = ({ state, navigation }) => {
  
   const [selected, setSelected] = useState('Home');
   const { routes } = state;
-  const renderColor = currentTab => (currentTab === selected ? '#858FE8' : 'black');
+  const renderColor = currentTab => (currentTab === selected ? COLORS.blueClair : COLORS.purple);
 
   const { showTabBar } = useTabBar();
 

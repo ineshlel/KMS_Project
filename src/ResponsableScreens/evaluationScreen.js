@@ -2,19 +2,22 @@ import React ,{useState}from 'react';
 
 import {View,Text, StyleSheet ,TextInput,TouchableOpacity}from 'react-native';
 import { COLORS } from '../constants';
+import { useNavigation } from '@react-navigation/native';
 
-const EvaluationScreen=props=>{
+const EvaluationScreen=({props})=>{
+
+  const navigation = useNavigation();
 
      
     return (
         <View style={styles.container}>
-        <TouchableOpacity>
+        <TouchableOpacity   onPress={() => navigation.navigate('ListOfWorks')}>
        
        <View  style={styles.input}>
        <Text style={styles.textStyle}>Travaux</Text>
         </View>
         </TouchableOpacity>
-      <TouchableOpacity>
+      <TouchableOpacity  onPress={() => navigation.navigate('QCMScreen')}>
       <View  style={styles.input}>
       <Text style={styles.textStyle}>QCM</Text>
       </View>
@@ -27,27 +30,29 @@ const styles=StyleSheet.create({
     container:{
         flex:1,
         flexDirection:'column',
-        paddingTop:180,
+        paddingTop:200,
        paddingHorizontal:20,
 
 
     },
       input:{
-        width:'70%',borderColor:COLORS.green,borderWidth:2,
+        width:'70%',
+        //borderColor:COLORS.purple,borderWidth:2,
         height:100,
         marginLeft:30,
         borderRadius:15,
         marginTop:30,
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:COLORS.green,
-        
+        backgroundColor:COLORS.grey,
+        elevation:4,
         
         
       },
       textStyle:{
           fontSize:18,
           textAlign:'center',
+          color:COLORS.purple
          
       },
      

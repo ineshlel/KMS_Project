@@ -1,12 +1,13 @@
 import React ,{useState}from 'react';
 
 import {View,Text, StyleSheet ,TextInput,Button,Modal, TouchableOpacity}from 'react-native';
+import { COLORS } from '../constants';
 
-
+// onPress={props.onAdd()}
 const AddFixedButton=props=>{
     return (
   
-        <TouchableOpacity  onPress={props.onAdd()}>
+        <TouchableOpacity >
           <View style={styles.addButtonStyle}>
             <Text style={styles.textStyle}>+</Text>
           </View>
@@ -24,7 +25,7 @@ const styles=StyleSheet.create({
       
         bottom: 70,
        // resizeMode: 'contain',
-        backgroundColor:'#858FE8',
+        backgroundColor:COLORS.purple,
         borderRadius:33
       },
       textStyle:{

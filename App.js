@@ -1,8 +1,6 @@
 
 import React from 'react';
-import * as RNLocalize from 'react-native-localize';
-import i18n from 'i18n-js';
-import memoize from 'lodash.memoize';
+
 
 import { I18nManager, SafeAreaView, StyleSheet, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
@@ -13,18 +11,28 @@ import TabBarProvider from './src/contexts/tabBArProvider';
 import TabNavigator from './src/navigation/tabNavigator';
 
 import 'react-native-gesture-handler';
-import Test from './src/screens/test';
-import Login from './src/screens/login';
-import ForgotPassword from './src/screens/forgotPassw';
-import VerifPassword from './src/screens/verifPassw';
-import ProgramList from './src/screens/programList';
+
+import Login from './src/ResponsableScreens/login';
+import ForgotPassword from './src/ResponsableScreens/forgotPassw';
+import VerifPassword from './src/ResponsableScreens/verifPassw';
+import ProgramList from './src/ResponsableScreens/programList';
 import FlatListPC from './src/components/flatListPC';
-import ThreeTabSelector from './src/screens/headerTabs';
+import ThreeTabSelector from './src/ResponsableScreens/headerTabs';
 import ListOfWorks from './src/components/listOfWorks';
-import TwoHeaderTab from './src/screens/TwoHeaderTab';
+import TwoHeaderTab from './src/ResponsableScreens/TwoHeaderTab';
+import QCMScreen from './src/ResponsableScreens/qcmScreen';
+import RegistrationResponsable from './src/ResponsableScreens/registrationScree';
+import { COLORS } from './src/constants';
 
 
 const Stack = createStackNavigator();
+const myOptions={
+  title:'Travaux',
+  headerTintColor:'#fff',
+  headerStyle:{
+  backgroundColor:COLORS.purple
+  }
+}
 
 export default class App extends React.Component {
 
@@ -39,14 +47,19 @@ export default class App extends React.Component {
      // "TabNavigator"
     headerShown=' false'
   >
-      <Stack.Screen name="Login" options={{headerShown: false}} component={Login} />
+      <Stack.Screen name="Login" options= {{headerShown: false}} component={Login} />
       <Stack.Screen name="TabNavigator" component={TabNavigator} 
       options={{headerShown: false}} />
-      <Stack.Screen name="TwoHeaderTab" options={{headerShown: false}}  component={TwoHeaderTab} />
-      <Stack.Screen name="ForgotPassword" options={{headerShown: false}}  component={ForgotPassword} />
-      <Stack.Screen name="VerifPassword"  options={{headerShown: false}} component={VerifPassword} />
-      <Stack.Screen name="FlatListPC"  options={{headerShown: false}} component={FlatListPC}/>
-      <Stack.Screen name="ListOfWorks"  options={{headerShown: false}} component={ListOfWorks}/>
+      <Stack.Screen name="TwoHeaderTab" options={myOptions}    component={TwoHeaderTab} />
+      <Stack.Screen name="ForgotPassword"options={myOptions}   component={ForgotPassword} />
+      <Stack.Screen name="VerifPassword" options={myOptions}   component={VerifPassword} />
+      <Stack.Screen name="FlatListPC"  options={myOptions}     component={FlatListPC}/>
+      <Stack.Screen name="ListOfWorks"   component={ListOfWorks}
+       options={myOptions}
+       />
+      <Stack.Screen name="QCMScreen"  options={{...myOptions,title:'QCM'} }       component={QCMScreen}/>
+      <Stack.Screen name="Inscription" options={{...myOptions,title:'Inscription'} }      component={RegistrationResponsable}/>
+  
       </Stack.Navigator>
     </NavigationContainer>
       </TabBarProvider>

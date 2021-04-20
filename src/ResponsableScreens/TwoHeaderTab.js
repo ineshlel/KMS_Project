@@ -107,7 +107,7 @@ export default class TwoHeaderTab extends Component {
                                   this.setState({ active: 0 }, () =>
                                       this.handleSlide(xTab1)
                               )}>
-              <Text style={{color: active === 0? COLORS.purple : '#858FE8'}}>Consignes</Text>
+              <Text style={{color: active === 0? COLORS.purple : COLORS.purple}}>Consignes</Text>
             </TouchableOpacity>
 
             {/* Tab 2 */}
@@ -118,7 +118,7 @@ export default class TwoHeaderTab extends Component {
                                       this.handleSlide(xTab2)
                               )}>
                               
-              <Text style={{color: (active === 1)? COLORS.purple : '#858FE8'}}>Remises</Text>
+              <Text style={{color: (active === 1)? COLORS.purple : COLORS.purple}}>Remises</Text>
             </TouchableOpacity>
 
             {/* Tab 3 */}

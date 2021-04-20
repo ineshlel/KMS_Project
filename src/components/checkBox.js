@@ -7,58 +7,46 @@ import { xorBy } from 'lodash'
 
 const K_OPTIONS = [
   {
-    item: 'Juventus',
+    item: 'Comp 1',
     id: 'JUVE',
   },
   {
-    item: 'Real Madrid',
+    item: 'Comp 1',
     id: 'RM',
   },
   {
-    item: 'Barcelona',
+    item: 'Comp 1',
     id: 'BR',
   },
   {
-    item: 'PSG',
+    item: 'Comp 1',
     id: 'PSG',
   },
   {
-    item: 'FC Bayern Munich',
+    item: 'Comp 1',
     id: 'FBM',
   },
   {
-    item: 'Manchester United FC',
+    item: 'Comp 1',
     id: 'MUN',
   },
   {
-    item: 'Manchester City FC',
+    item: 'Comp 1',
     id: 'MCI',
   },
   {
-    item: 'Everton FC',
+    item: 'Comp 1',
     id: 'EVE',
   },
   {
-    item: 'Tottenham Hotspur FC',
+    item: 'Comp 1',
     id: 'TOT',
   },
   {
-    item: 'Chelsea FC',
+    item: 'Comp 1',
     id: 'CHE',
   },
-  {
-    item: 'Liverpool FC',
-    id: 'LIV',
-  },
-  {
-    item: 'Arsenal FC',
-    id: 'ARS',
-  },
 
-  {
-    item: 'Leicester City FC',
-    id: 'LEI',
-  },
 ]
 
 function App() {

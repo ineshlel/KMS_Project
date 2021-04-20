@@ -11,15 +11,15 @@ import { COLORS } from '../constants';
 
 
 
-
+  //<HeaderProgram/>
 const RegistrationResponsable=props=>{
    
     return (
      <View  style={styles.formContainer}>
-       <HeaderProgram/>
+     
       <View style={styles.input}>
     
-        <Text style={styles.textStyle}>Inscription</Text>
+        <Text style={styles.textStyle}>Liste des Foramateurs</Text>
             
       </View>
       <View>
@@ -41,14 +41,14 @@ const styles=StyleSheet.create({
     
       },
       input:{
-        width:'50%',borderColor:COLORS.green,borderWidth:1,
+        width:'50%',borderColor:COLORS.blueClair,borderWidth:1,
         height:40,
-        margin:10,
+        margin:15,
         borderRadius:14,
         borderWidth:2,
         alignItems:'center',
         justifyContent:'center',
-        backgroundColor:COLORS.green,
+        backgroundColor:COLORS.blueClair,
         marginLeft:25,
        
         

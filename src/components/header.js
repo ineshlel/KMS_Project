@@ -27,8 +27,7 @@ const styles=StyleSheet.create({
          //justifyContent:'center',
          height:50,
          marginBottom:10,
-         backgroundColor:COLORS.blue
-          
+         backgroundColor:COLORS.purple
       },
       headerTextstyle:{
           marginTop:30,

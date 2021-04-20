@@ -16,6 +16,7 @@ import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
+import { COLORS } from '../constants';
 //import ForgotPassword from './forgotPassw';
 //import I18n from "../I18n/i18n";
 //import Signin from '../Screens/Signin';
@@ -71,7 +72,7 @@ const Login = ({navigation}) => {
 
     return (
       <View style={styles.container}>
-          <StatusBar backgroundColor='#009387' barStyle="light-content"/>
+          <StatusBar backgroundColor= {COLORS.grey}barStyle="light-content"/>
         <View style={styles.header}>
             <Text style={styles.text_header}>Connexion</Text>
         </View>
@@ -157,7 +158,7 @@ const Login = ({navigation}) => {
                     onPress={() => navigation.navigate('TabNavigator')}
                 >
                 <LinearGradient
-                    colors={['#4B5AE1', '#858FE8']}
+                    colors={[COLORS.blueClair, '#57B8DF']}
                     style={styles.signIn}
                 >
                     <Text style={[styles.textSign, {
@@ -169,13 +170,13 @@ const Login = ({navigation}) => {
                 <TouchableOpacity
                  //  onPress={() => navigation.navigate('TabNavigator')}
                     style={[styles.signIn, {
-                        borderColor: '#4B5AE1',
+                        borderColor: COLORS.blueClair,
                         borderWidth: 1,
                         marginTop: 15
                     }]}
                 >
                     <Text style={[styles.textSign, {
-                        color: '#4B5AE1'
+                        color: COLORS.blueClair
                     }]}>Sign In</Text>
                 </TouchableOpacity>
             </View>
@@ -190,7 +191,7 @@ export default Login;
 const styles = StyleSheet.create({
     container: {
       flex: 1, 
-      backgroundColor: '#858FE8'
+      backgroundColor: COLORS.purple
     },
     header: {
         flex: 1,
@@ -258,11 +259,11 @@ const styles = StyleSheet.create({
     },
     Fpsswd:{
         fontSize:12,
-        color:'#858FE8',
+        color:COLORS.blueClair,
         marginStart:200,
         marginTop:10,
         borderBottomWidth: 1,
-        borderBottomColor: '#858FE8',
+        borderBottomColor: COLORS.blueClair,
 
     }
 

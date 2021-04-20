@@ -1,6 +1,7 @@
 import React ,{useState}from 'react';
 
 import {View,Text, StyleSheet ,TextInput,Button,Modal, ScrollView,Alert,FlatList}from 'react-native';
+import { COLORS } from '../constants';
 
 
 
@@ -11,7 +12,9 @@ import ItemAdded from './itemAdded';
 
 
 
-const ListOfWorks=({ navigation,props })=>{
+
+const ListOfWorks=()=>{
+ 
     const[addInputs,setaddInputs]=useState([]);
 
     const addInputHandler= (inputValue)=>{
@@ -74,8 +77,8 @@ const styles=StyleSheet.create({
 
       },
       textStyle:{
-        fontSize:18,
-        color:'grey',
+        fontSize:20,
+        color:COLORS.purple,
         justifyContent:'center',
         textAlign:'center',
         

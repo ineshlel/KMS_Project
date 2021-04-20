@@ -31,18 +31,18 @@ const styles=StyleSheet.create({
     
       },
       input:{
-        width:'90%',
+        width:'60%',
         height:40,
         marginTop:5,
         borderRadius:14,
         //borderWidth:1,
         elevation:2,
-  },
+         },
 
   inputFocus:{
     borderWidth:1,
     borderColor:COLORS.purple,
-    width:'90%',
+    width:'60%',
     height:40,
     marginTop:5,
     borderRadius:14,

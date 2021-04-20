@@ -31,7 +31,8 @@ const styles=StyleSheet.create({
         height:100,
         marginTop:5,
         borderRadius:14,
-        elevation:1
+        elevation:1,
+
          },
          input:{
           width:'90%',
@@ -40,6 +41,7 @@ const styles=StyleSheet.create({
           borderRadius:14,
           //borderWidth:1,
           elevation:2,
+        
     },
       textStyle:{
           fontSize:15,

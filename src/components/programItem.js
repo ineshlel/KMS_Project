@@ -3,20 +3,21 @@ import React ,{useState}from 'react';
 import {View,Text, StyleSheet ,TextInput}from 'react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
+import { COLORS } from '../constants';
 
 
 const ProgramItem=props=>{
 
     const[icon,setIcon]=useState(<FontAwesome5 
         name="chevron-down"
-        color='#858FE8'
+        color={COLORS.blueClair}
         size={22}
     />);
 
     const onOpenItemHandler=()=>{
         setIcon(currentIcon=>{return (<FontAwesome5 
             name="chevron-up"
-            color='#858FE8'
+            color={COLORS.blueClair}
             size={22}
         />);})
 
@@ -33,7 +34,7 @@ const ProgramItem=props=>{
         <View style={styles.downArrow}>
           <FontAwesome5 
                     name="chevron-down"
-                    color='#858FE8'
+                    color={COLORS.blueClair}
                     size={22}
                 />
         </View>
@@ -47,13 +48,13 @@ const styles=StyleSheet.create({
 
       itemContainer:{
           flexDirection:'row',
-          marginHorizontal:30,
+          marginHorizontal:20,
           marginVertical:5,
           borderRadius:10,
           borderColor:'#ddd',
           borderWidth:1,
           padding:10,
-          width:'82%',
+          width:'85%',
          backgroundColor:'white',
           shadowColor:'black',
           shadowOffset:{width:0,height:2},
