@@ -23,7 +23,7 @@ const styles=StyleSheet.create({
     inputContainer:{
         flexDirection:'column',
         justifyContent:'space-between',
-        marginBottom:10
+        marginTop:10
     
       },
       inputFocus:{
@@ -44,9 +44,8 @@ const styles=StyleSheet.create({
         
     },
       textStyle:{
-          fontSize:15,
-
-         
+        fontSize:18,
+        fontFamily:"Cairo-Regular",
       },
   
 });

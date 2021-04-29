@@ -8,8 +8,13 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-const ProgramActions=props=>{
+
+
+const ProgramActions=({props})=>{
   const navigation = useNavigation();
+  
+ // const route=props.program;
+  //const [route,setRoute]=useState('programme');
     return ( 
       <View  style={styles.actionsContainers}>
         <TouchableOpacity  onPress={() => navigation.navigate('Inscription')}>
@@ -20,12 +25,15 @@ const ProgramActions=props=>{
         <View style={styles.input}>
           <Text style={styles.textStyle}>Consultation</Text>
         </View>
-        <View style={styles.input}>
+       <TouchableOpacity  onPress={() => navigation.navigate('List des cours','Nom du programme')}>
+       <View style={styles.input}>
           <Text style={styles.textStyle}>Cours</Text>
         </View>
+      </TouchableOpacity> 
 
       </View>
  );
+ 
 };
 const styles=StyleSheet.create({
     actionsContainer:{

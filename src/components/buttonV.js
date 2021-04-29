@@ -29,8 +29,9 @@ const styles=StyleSheet.create({
         
     },
     textStyle:{
-        fontSize:15,
-        color:'#fff'
+        fontSize:18,
+        color:'#fff',
+        fontFamily:"Cairo-Bold",
         
 
     },

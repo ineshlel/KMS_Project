@@ -4,10 +4,6 @@ import AddFixedButton from './addFixedButton';
 import ExpandableListView from './expandableListView';
 import SearchBarProgram from './searchBarProgram';
 
-
-
-
-
 export default class MyList extends Component {
   
   constructor() {
@@ -20,44 +16,11 @@ export default class MyList extends Component {
    
     this.state = { 
       array:[],
+      filteredArray:[],
+      search:'',
+      
       }
   }
-
-    
-     
-    // create array to contain Expandable ListView items & create a State named as accordionData and store the array in this State
-   /* const array = [
-      {
-        expanded: false, category: "Mobiles", subCategory: [{ id: 1, name: 'Mi' }, { id: 2, name: 'RealMe' }, { id: 3, name: 'Samsung' },
-        { id: 4, name: 'Infinix' }, { id: 5, name: 'Oppo' }, { id: 6, name: 'Apple' }, { id: 7, name: 'Honor' }]
-      },
-      {
-        expanded: false, category: "Laptops", subCategory: [{ id: 8, name: 'Dell' }, { id: 9, name: 'MAC' }, { id: 10, name: 'HP' },
-        { id: 11, name: 'ASUS' }]
-      },
-      {
-        expanded: false, category: "Computer Accessories",
-         subCategory: [{ id: 12, name: 'Pendrive' }, { id: 13, name: 'Bag' },
-        { id: 14, name: 'Mouse' }, { id: 15, name: 'Keyboard' }]
-      },
-      {
-        expanded: false, category: "Home Entertainment", subCategory: [{ id: 16, name: 'Home Audio Speakers' },
-        { id: 17, name: 'Home Theatres' }, { id: 18, name: 'Bluetooth Speakers' }, { id: 19, name: 'DTH Set Top Box' }]
-      },
-      {
-        expanded: false, category: "TVs by brand",
-        subCategory: [
-          { id: 20, name: 'Mi' },
-          { id: 21, name: 'Thomson' },
-          { id: 22, name: 'LG' },
-          { id: 23, name: 'SONY' }
-      ]
-      },
-      {
-        expanded: false, category: "Kitchen Appliances", subCategory: [{ id: 24, name: 'Microwave Ovens' },
-        { id: 25, name: 'Oven Toaster Grills (OTG)' }, { id: 26, name: 'Juicer/Mixer/Grinder' }, { id: 27, name: 'Electric Kettle' }]
-      }
-    ];*/
   
     async componentDidMount(){
       let url='https://api.openbrewerydb.org/breweries';
@@ -85,20 +48,52 @@ export default class MyList extends Component {
       }
     });
   }
+ /*searchFilterFunction = (text) => {
+    // Check if searched text is not blank
+    if (text) {
+      // Inserted text is not blank
+      // Filter the masterDataSource
+      // Update FilteredDataSource
+      const newData = array.filter(
+        function (item) {
+          const itemData = item.title
+            ? item.name.toUpperCase()
+            : ''.toUpperCase();
+          const textData = text.toUpperCase();
+          return itemData.indexOf(textData) ;
+      });
+      this.setState({filteredArray:[newData]})
+      //setFilteredDataSource(newData);
+      this.setState({search:text})
+     // setSearch(text);
+    } else {
+      // Inserted text is blank
+      // Update FilteredDataSource with masterDataSource
+      this.setState({filteredArray:[array]})
+      //setFilteredDataSource(masterDataSource);
+      this.setState({search:text})
+      //setSearch(text);
+    }
+  }*/
 
   render() {
     return (
       <View style={styles.container}>
         <View  >
-        <SearchBarProgram/>
+        <SearchBarProgram 
+
+    
+          />
         </View>
         <ScrollView 
          
-         contentContainerStyle={{ paddingHorizontal: 10, paddingTop:40 }}>
+         contentContainerStyle
+         ={{ paddingHorizontal: 10,}}
+         >
           {
             this.state.array.map((item, key) =>
               (
-                <ExpandableListView 
+                <ExpandableListView  style={styles.myList}
                 key={item.name} 
                 onClickFunction={this.updateLayout.bind(this, key)} 
                 item={item} />
@@ -117,6 +112,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingTop: (Platform.OS === 'ios') ? 20 : 0,
     backgroundColor: '#F5FCFF',
+    flexDirection:'column',
+    
   },
   iconStyle: {
     width: 30,
@@ -146,5 +143,10 @@ const styles = StyleSheet.create({
   Btn: {
     padding: 10,
     backgroundColor: '#FF6F00'
+  },
+  myList:{
+    marginTop:40,
+    position:'relative',
+
   }
 });

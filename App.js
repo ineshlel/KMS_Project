@@ -23,6 +23,16 @@ import TwoHeaderTab from './src/ResponsableScreens/TwoHeaderTab';
 import QCMScreen from './src/ResponsableScreens/qcmScreen';
 import RegistrationResponsable from './src/ResponsableScreens/registrationScree';
 import { COLORS } from './src/constants';
+import InscriptionFormateur from './src/FormateurScreens/inscriptionFormateur';
+import ListCourses from './src/FormateurScreens/coursesList';
+import CoursePlanification from './src/FormateurScreens/coursePlanification';
+import ListOfWorksForma from './src/FormateurScreens/listOfWorksForma';
+import QCMForma from './src/FormateurScreens/qcmForma';
+import Playquiz from './src/MyQuiz/playQuiz';
+import CoursesFormaScreen from './src/FormateurScreens/CoursesFormaScreen';
+import AddNewCourse from './src/FormateurScreens/addNewCourse';
+import SignUp from './src/ResponsableScreens/signUp';
+import RequestInfo from './src/FormateurScreens/requestInfo';
 
 
 const Stack = createStackNavigator();
@@ -33,6 +43,12 @@ const myOptions={
   backgroundColor:COLORS.purple
   }
 }
+/* <Stack.Screen name="Planification"
+       options={({ route }) => ({ title: route.params , headerTintColor:'#fff',
+       headerStyle:{
+       backgroundColor:COLORS.purple
+       }})}    component={CoursePlanification}/>
+ */
 
 export default class App extends React.Component {
 
@@ -48,6 +64,8 @@ export default class App extends React.Component {
     headerShown=' false'
   >
       <Stack.Screen name="Login" options= {{headerShown: false}} component={Login} />
+      <Stack.Screen name="SignUp" options= {{headerShown: false}} component={SignUp} />
+      <Stack.Screen name="PLayQuiz" options={{...myOptions,title:'QCM'} }  component={Playquiz} />
       <Stack.Screen name="TabNavigator" component={TabNavigator} 
       options={{headerShown: false}} />
       <Stack.Screen name="TwoHeaderTab" options={myOptions}    component={TwoHeaderTab} />
@@ -57,11 +75,28 @@ export default class App extends React.Component {
       <Stack.Screen name="ListOfWorks"   component={ListOfWorks}
        options={myOptions}
        />
-      <Stack.Screen name="QCMScreen"  options={{...myOptions,title:'QCM'} }       component={QCMScreen}/>
+       <Stack.Screen name="ListOfWorksForma"   component={ListOfWorksForma}
+       options={myOptions}
+       />
+      <Stack.Screen name="QCMScreen"  options={{...myOptions,title:'QCM'} }   component={QCMScreen}/>
+      <Stack.Screen name="QCMForma"  options={{...myOptions,title:'QCM'} }   component={QCMForma}/>
       <Stack.Screen name="Inscription" options={{...myOptions,title:'Inscription'} }      component={RegistrationResponsable}/>
-  
+      <Stack.Screen name="InscriptionFormateur" options={{...myOptions,title:'Inscription'} } component={InscriptionFormateur}/>
+      <Stack.Screen name="RequestInfo" options={{...myOptions,title:'Détails'} } component={RequestInfo}/>
+      <Stack.Screen name="List des cours"
+       options={({ route }) => ({ title: route.params , headerTintColor:'#fff',
+       headerStyle:{
+       backgroundColor:COLORS.purple
+       }})}    component={CoursesFormaScreen}/>
+        <Stack.Screen name="Planification"   component={CoursePlanification}
+       options={{...myOptions,title:'Nom Programme'} } 
+       />
+       <Stack.Screen name="AddNewCourse"   component={AddNewCourse}
+       options={{...myOptions,title:'Nouveau Cours'} } 
+       />
+      
       </Stack.Navigator>
-    </NavigationContainer>
+     </NavigationContainer>
       </TabBarProvider>
     
 

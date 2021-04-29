@@ -33,7 +33,7 @@ const styles=StyleSheet.create({
         width:'90%',
         height:40,
         marginTop:5,
-        borderRadius:14,
+        borderRadius:10,
         //borderWidth:1,
         elevation:2,
   },
@@ -44,10 +44,11 @@ const styles=StyleSheet.create({
     width:'90%',
     height:40,
     marginTop:5,
-    borderRadius:14,
+    borderRadius:10,
   },
       textStyle:{
-          fontSize:15,
+          fontSize:18,
+          fontFamily:"Cairo-Regular",
          
       },
   

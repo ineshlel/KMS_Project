@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Animated, Dimensions, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { COLORS } from '../constants';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 
@@ -151,7 +151,6 @@ export default class ThreeTabRegistration extends Component {
 
           {/* CONTENT */}  
           <View>
-
             {/* Tab 1 Content */}
             <Animated.View 
               style={{ 
@@ -186,6 +185,7 @@ export default class ThreeTabRegistration extends Component {
             }}>
               <MemberList/>
             </Animated.View>
+
           </View>
 
         </View>

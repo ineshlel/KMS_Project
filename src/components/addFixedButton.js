@@ -2,23 +2,26 @@ import React ,{useState}from 'react';
 
 import {View,Text, StyleSheet ,TextInput,Button,Modal, TouchableOpacity}from 'react-native';
 import { COLORS } from '../constants';
+import { useNavigation } from '@react-navigation/native';
 
 // onPress={props.onAdd()}
 const AddFixedButton=props=>{
+  const navigation = useNavigation();
     return (
-  
-        <TouchableOpacity >
+        <TouchableOpacity  onPress={() =>navigation.navigate("Planification") }>
           <View style={styles.addButtonStyle}>
             <Text style={styles.textStyle}>+</Text>
           </View>
-        </TouchableOpacity>
+          </TouchableOpacity>
+      
+     
  );
 };
 const styles=StyleSheet.create({
     addButtonStyle: {
         position: 'absolute',
-        width: 50,
-        height: 50,
+        width: 60,
+        height: 60,
         alignItems: 'center',
         justifyContent: 'center',
         right: 40,

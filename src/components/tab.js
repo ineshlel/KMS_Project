@@ -7,7 +7,7 @@ const Tab = ({ color, tab, onPress, icon }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
       {icon && <AntDesign name={icon} size={20} color={color} />}
-      <Text style={{ color }}>{tab.name}</Text>
+      <Text style={{ color ,fontFamily:"Cairo-SemiBold"}}>{tab.name}</Text>
     </TouchableOpacity>
   );
 };

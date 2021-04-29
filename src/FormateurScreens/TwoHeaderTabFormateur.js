@@ -1,15 +1,26 @@
+import { toHumanSize } from 'i18n-js';
 import React, { Component } from 'react'
-import { Animated, Dimensions, StyleSheet, Text, TouchableOpacity, View,ScrollView } from 'react-native';
-import InfoForm from "../screens/InfoForm";
-import App from './checkBox';
-import EvaluationScreen from "../screens/evaluationScreen";
+import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+
+import App from '../components/checkBox';
+import { COLORS } from '../constants';
+
+import InscriptionFormateur from './inscriptionFormateur';
+import ThreeTabRegistrationForma from './threeTabsRegistrationForma';
+import ThreeTabRegistration from './threeTabsRegistrationForma';
+
+//import ConsignesScreen from './ConsignesScreen';
+
+//import InfoForm from "./InfoForm";
+
 
 const { width } = Dimensions.get('window');
 
 
-export default class TabHeader extends Component {
+export default class TwoHeaderTabFormateur extends Component {
   
   state = {
+
     active: 0,
     xTab1: 0,
     xTab2: 0,
@@ -17,12 +28,15 @@ export default class TabHeader extends Component {
     translateX: new Animated.Value(0),
     translateXTab1: new Animated.Value(0),
     translateXTab2: new Animated.Value(width),
-    translateXTab3: new Animated.Value(2 * width),
-    translateY: -1000
+   // translateXTab3: new Animated.Value(2 * width),
+    translateY: -1000,
+    
+  
   }
+  //navigation=this.state;
 
   handleSlide(xCordinate){
-    let { active, xTab1, xTab2, xTab3, translateX, translateXTab1, translateXTab2, translateXTab3, translateY } = this.state;
+    let { active, xTab1, xTab2, translateX, translateXTab1, translateXTab2, translateY } = this.state;
     
     // Tab Bar
     Animated.spring(translateX, {
@@ -36,27 +50,27 @@ export default class TabHeader extends Component {
       // Tab 1 -> 0
       // Tab 2 -> width
       // Tab 3 -> 2x width
-      this.handleContentSlide(0, width, 2 * width);
+      this.handleContentSlide(0, width);
     }
 
     else if (active === 1){
       // Tab 1 -> -width
       // Tab 2 -> 0
       // Tab 3 -> width
-      this.handleContentSlide(-width, 0, width);
+      this.handleContentSlide(-width, 0);
     }
 
     else {
       // Tab 1 -> -2x width
       // Tab 2 -> -width
       // Tab 3 -> 0
-      this.handleContentSlide(-2 * width, -width, 0);
+      this.handleContentSlide(-2 * width, -width);
     }
   }
 
   
-  handleContentSlide(tab1, tab2, tab3){
-    let {translateXTab1, translateXTab2, translateXTab3} = this.state;
+  handleContentSlide(tab1, tab2){
+    let {translateXTab1, translateXTab2} = this.state;
 
     Animated.parallel([
       Animated.spring(translateXTab1, {
@@ -71,18 +85,14 @@ export default class TabHeader extends Component {
         useNativeDriver: true,
       }).start(),
 
-      Animated.spring(translateXTab3, {
-        toValue: tab3,
-        duration: 100,
-        useNativeDriver: true,
-      }).start(),
+      
     ])
 
   }
 
   
   render() {
-    let { active, xTab1, xTab2, xTab3, translateX, translateXTab1, translateXTab2, translateXTab3, translateY} = this.state;
+    let { active, xTab1, xTab2, translateX, translateXTab1, translateXTab2, translateY} = this.state;
     return (
       <View style={{flex: 1}}>
         <View style={styles.container}>     
@@ -100,7 +110,7 @@ export default class TabHeader extends Component {
                                   this.setState({ active: 0 }, () =>
                                       this.handleSlide(xTab1)
                               )}>
-              <Text style={{color: active === 0? '#FFFFFF' : '#38c4e3'}}>Detaille</Text>
+              <Text style={{color: active === 0? COLORS.purple : COLORS.purple,fontSize:18}}>Inscription</Text>
             </TouchableOpacity>
 
             {/* Tab 2 */}
@@ -111,68 +121,48 @@ export default class TabHeader extends Component {
                                       this.handleSlide(xTab2)
                               )}>
                               
-              <Text style={{color: (active === 1)? '#FFFFFF' : '#38c4e3'}}>Gestion</Text>
+              <Text style={{color: (active === 1)? COLORS.purple : COLORS.purple,fontSize:18}}>Demandes</Text>
             </TouchableOpacity>
 
             {/* Tab 3 */}
-            <TouchableOpacity style={[styles.tab, styles.tab3]}
-                              onLayout={event => this.setState({xTab3: event.nativeEvent.layout.x})}
-                              onPress={() =>
-                                  this.setState({ active: 2 }, () =>
-                                      this.handleSlide(xTab3)
-                              )}>
-                              
-              <Text style={{color: (active === 2)? '#FFFFFF' : '#38c4e3'}}>Analyse</Text>
-            </TouchableOpacity>
+           
 
           </View>
 
           {/* CONTENT */}  
           <View>
-   <ScrollView>
+<ScrollView>
             {/* Tab 1 Content */}
             <Animated.View 
+
               style={{ 
-              
-                //justifyContent: 'center',
-                //alignItems: 'center',
+               
                 transform:[{
                   translateX: translateXTab1
                 }]
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-              <EvaluationScreen/> 
-                        
+              <InscriptionFormateur/>
+              
+                
             </Animated.View>
 
             {/* Tab 2 Content */}
             <Animated.View style={{ 
-            
-              justifyContent: 'center',
-              alignItems: 'center',
+             
               transform:[
                 { translateX: translateXTab2 },
                 { translateY: -translateY}
               ]
             }}>
-     <App/>
-  </Animated.View>
+            <ThreeTabRegistrationForma/>
+            </Animated.View>
 
-            {/* Tab 3 Content */}
-            <Animated.View style={{ 
           
-              //justifyContent: 'center',
-              //alignItems: 'center',
-              transform:[
-                { translateX: translateXTab3 },
-                { translateY: -2 * translateY}
-              ]
-            }}>
-<InfoForm/>                
-</Animated.View>
-</ScrollView>
+            </ScrollView>
           </View>
+        
 
         </View>
       </View>
@@ -193,57 +183,57 @@ const styles = StyleSheet.create({
     height: 36,
     marginTop: 10, 
     marginBottom: 10,
-    position: 'relative',
+    //position: 'relative',
+    
   },
 
   overlay:{
     position: 'absolute',
-    width: '33.33%',
+    width: '32.5%',
     height: '100%',
     top: 0,
-    left: 0,
-    backgroundColor: '#38c4e3',
-    borderRadius: 4
+    left: 27,
+    //backgroundColor:COLORS.purple,
+    //borderRadius:12,
+    borderBottomColor:COLORS.purple,
+    borderBottomWidth:2,
+    justifyContent: 'center',
+    alignItems: 'center',
+    
   },
 
   tab:{
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    borderWidth: 0.5,
-    borderColor: '#38c4e3',
+   // borderWidth: 1,
+ 
   },
 
   tab1:{
-    borderRightWidth:0.5,
-   // borderTopLeftRadius: 4,
-   // borderBottomLeftRadius: 4,
-   borderRadius:3
+    borderRightWidth: 0,
+    borderTopLeftRadius: 4,
+    borderBottomLeftRadius: 4,
   },
 
   tab2:{
     borderLeftWidth: 0,
-    borderRightWidth: 0.2,
-   // borderTopLeftRadius: 0,
-   // borderBottomLeftRadius: 0,
-   borderRadius:3
+    borderRightWidth: 0,
+    borderTopLeftRadius: 0,
+    borderBottomLeftRadius: 0,
+
   },
 
-  tab3:{
-    borderLeftWidth:0.5,
-    borderTopRightRadius: 4,
-    borderBottomRightRadius: 4,
-    borderRadius:3
-  },
 
   // Content Styles
   contentContainter:{
-    justifyContent: 'center',
-    alignItems: 'center'
+  //  justifyContent: 'center',
+   // alignItems: 'center'
   },
 
   contentText: {
     color: 'white',
-    fontSize: 25
+    fontSize: 25,
+
   } 
 });

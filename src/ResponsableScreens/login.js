@@ -145,17 +145,12 @@ const Login = ({navigation}) => {
                 
                 
                 </View>
-
-           
-                
-               
-           
-          
-            <View style={styles.button}>
+                <View style={styles.button}>
                 <TouchableOpacity
                     style={styles.signIn}
+                   // onPress={() => navigation.navigate('InscriptionFormateur')}
+                    onPress={() => navigation.navigate('SignUp')}
                     
-                    onPress={() => navigation.navigate('TabNavigator')}
                 >
                 <LinearGradient
                     colors={[COLORS.blueClair, '#57B8DF']}
@@ -168,7 +163,7 @@ const Login = ({navigation}) => {
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                 //  onPress={() => navigation.navigate('TabNavigator')}
+                  onPress={() => navigation.navigate('TabNavigator')}
                     style={[styles.signIn, {
                         borderColor: COLORS.blueClair,
                         borderWidth: 1,
@@ -198,7 +193,7 @@ const styles = StyleSheet.create({
         justifyContent: 'flex-end',
         paddingHorizontal: 20,
         paddingBottom: 50,
-        marginLeft:60,
+       marginLeft:60,
         
     },
     footer: {

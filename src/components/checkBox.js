@@ -55,8 +55,8 @@ function App() {
   return (
     <View >
       
-      <View style={{ height: 40}} />
-      <Text style={{ fontSize: 20, paddingBottom: 10 }}>Compétances</Text>
+      <View style={{ height: 40}} >
+      <Text style={{ fontSize: 20, paddingBottom: 10 }}>Compétances Techniques</Text>
       <SelectBox
         label="Choisir compétance"
         options={K_OPTIONS}
@@ -65,7 +65,10 @@ function App() {
         onTapClose={onMultiChange()}
         isMulti
       />
-    </View>
+     </View>
+     
+     </View>
+    
   )
 
   function onMultiChange() {

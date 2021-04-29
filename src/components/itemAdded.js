@@ -55,14 +55,16 @@ const styles=StyleSheet.create({
          
       },
       downArrow:{
+      
          justifyContent:'center',
          alignItems:'center',
         //marginLeft:'10%',
         // marginBottom:7,
-         position:'absolute',
-         marginLeft:60,
+         //position:'absolute',
+         marginRight:60,
         // paddingBottom:10,
-        marginBottom:10
+        marginBottom:10,
+       
 
      },
      

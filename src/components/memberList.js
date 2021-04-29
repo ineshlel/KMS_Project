@@ -3,9 +3,7 @@ import React ,{useState,useEffect}from 'react';
 import {View,Text, StyleSheet ,TextInput,TouchableWithoutFeedback,FlatList, ScrollView}from 'react-native';
 
 import MemberItem from './memberItem';
-import { NavigationContainer,useNavigation } from '@react-navigation/native';
-import AddFixedButton from './addFixedButton';
-import { COLORS } from '../constants';
+
 //import axios from 'axios';
 
 //const navigation = useNavigation();
@@ -85,8 +83,10 @@ export default class MemberList extends React.Component{
     return (
     
     <View style={styles.Container} >
-        <TouchableWithoutFeedback >
-        <FlatList style={{flexGrow: 1}}
+       
+        <FlatList
+         
+         style={{flexGrow: 0}}
             data={this.state.programs}
             keyExtractor={(item,index)=>index.toString()}
             renderItem={({item})=> 
@@ -98,7 +98,7 @@ export default class MemberList extends React.Component{
         }
         />
 
-        </TouchableWithoutFeedback>
+   
       
      
         
@@ -111,10 +111,11 @@ export default class MemberList extends React.Component{
 const styles=StyleSheet.create({
 
       Container:{
+         
           flexDirection:'column',
           backgroundColor:'white',
           height:400,
-          width:320,
+        width:320,
           padding:10,
          borderRadius:10,
           margin:10,

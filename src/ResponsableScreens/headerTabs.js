@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import App from '../components/checkBox';
-import { COLORS } from '../constants';
+import { COLORS, FONTS } from '../constants';
 
 import EvaluationScreen from './evaluationScreen';
 
@@ -107,7 +107,7 @@ export default class ThreeTabSelector extends Component {
                                   this.setState({ active: 0 }, () =>
                                       this.handleSlide(xTab1)
                               )}>
-              <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple}}>Information</Text>
+              <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontSize:18}}>Information</Text>
             </TouchableOpacity>
 
             {/* Tab 2 */}
@@ -118,7 +118,7 @@ export default class ThreeTabSelector extends Component {
                                       this.handleSlide(xTab2)
                               )}>
                               
-              <Text style={{color: (active === 1)? '#FFFFFF' :COLORS.purple}}>CMPV</Text>
+              <Text style={{color: (active === 1)? '#FFFFFF' :COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>CMPV</Text>
             </TouchableOpacity>
 
             {/* Tab 3 */}
@@ -129,7 +129,7 @@ export default class ThreeTabSelector extends Component {
                                       this.handleSlide(xTab3)
                               )}>
                               
-              <Text style={{color: (active === 2)? '#FFFFFF' : COLORS.purple}}>Evaluation</Text>
+              <Text style={{color: (active === 2)? '#FFFFFF' : COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Evaluation</Text>
             </TouchableOpacity>
 
           </View>

@@ -50,6 +50,8 @@ const styles=StyleSheet.create({
           flexDirection:'row',
           marginHorizontal:20,
           marginVertical:5,
+         // marginTop:40,
+         //marginBottom:5,
           borderRadius:10,
           borderColor:'#ddd',
           borderWidth:1,
@@ -72,7 +74,7 @@ const styles=StyleSheet.create({
           marginBottom:5,
       },
       textCountry:{
-          color:'gray'
+          color:COLORS.orange
       },
       downArrow:{
          // justifyContent:'center',

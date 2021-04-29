@@ -1,8 +1,8 @@
 import { Colors } from 'react-native/Libraries/NewAppScreen';
-import theme,{COLORS} from './theme';
+import theme,{COLORS,FONTS} from './theme';
 
 
-export {theme,COLORS};
+export {theme,COLORS,FONTS};
 
 
 

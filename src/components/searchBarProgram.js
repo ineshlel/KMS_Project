@@ -19,6 +19,34 @@ const{width,height}=Dimensions.get("window");
 
 
 const SearchBarProgram=props=>{
+    const [input, setInput] = useState('');
+   /* const [search, setSearch] = useState('');
+    const [filteredDataSource, setFilteredDataSource] = useState([]);
+   
+
+    const searchFilterFunction = (text) => {
+        // Check if searched text is not blank
+        if (text) {
+          // Inserted text is not blank
+          // Filter the masterDataSource
+          // Update FilteredDataSource
+          const newData = props.masterDataSource.filter(
+            function (item) {
+              const itemData = item.title
+                ? item.title.toUpperCase()
+                : ''.toUpperCase();
+              const textData = text.toUpperCase();
+              return itemData.indexOf(textData) ;
+          });
+          setFilteredDataSource(newData);
+          setSearch(text);
+        } else {
+          // Inserted text is blank
+          // Update FilteredDataSource with masterDataSource
+          setFilteredDataSource(props.masterDataSource);
+          setSearch(text);
+        }
+      };*/
 
      
     return (
@@ -27,8 +55,10 @@ const SearchBarProgram=props=>{
          // placeholder={translate('search.searchPlaceholderText')}
          placeholder='Chercher..'
           placeholderTextColor= 'rgba(151, 151, 151, 0.4)'
-         // onChangeText={this.updateSearch}
-          //value={this.state.input}
+          onChangeText={(value) => setInput(value)}
+          value={input}
+         // onChangeText={(search) => searchFilterFunction(search)}
+         // value={search}
           containerStyle={styles.searchStyle}
           inputStyle={styles.inputStyle}
           inputContainerStyle={styles.inputContainerStyle}
@@ -38,28 +68,6 @@ const SearchBarProgram=props=>{
  );
 };
 const styles=StyleSheet.create({
-
-      searchContainer:{
-          flexDirection:'row',
-          width:'100',
-          
-      },
- 
-      input:{
-        borderColor:'#ddd',
-        borderWidth:1,
-        borderRadius:5,
-        padding:7,
-        paddingLeft:30,
-        margin:15,
-        fontSize:16,
-        
-       },
-       search:{
-           position:'absolute',
-           left:22,
-           top:22,
-       },
        searchStyle: {
         backgroundColor: '#F5F5F5',
         alignSelf: 'center',
@@ -67,6 +75,7 @@ const styles=StyleSheet.create({
         borderTopWidth: 0,
         height: 30,
         width: width,
+        marginBottom:40,
         },
       inputContainerStyle: {
         backgroundColor: '#FFFFFF',

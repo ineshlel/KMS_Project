@@ -1,23 +1,33 @@
-import React ,{useState}from 'react';
+import React ,{useState,useCallback}from 'react';
 
-import {View,Text, StyleSheet ,TextInput,Button,Modal}from 'react-native';
+import {View,Text, StyleSheet ,TextInput,Button,Modal,Slider}from 'react-native';
 import ButtonKms from '../components/buttonV';
 import DescriptionInput from '../components/descriptionInput';
 import Input from '../components/Input';
-
+import RangeSlider from 'rn-range-slider';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { COLORS } from '../constants';
 
 
 
 
 
 const InfoForm=props=>{
+
+
+  const [time,setTime]=useState();
    
     return (
      <View  style={styles.formContainer}>
       <Input title='Titre :'/>
+      <Input title='Durée :'/>
       <DescriptionInput   title='Description: '/>
+      
+
+   
       <ButtonKms  title='Valider'/>
-       
+    
+    
       </View>
  );
 };
