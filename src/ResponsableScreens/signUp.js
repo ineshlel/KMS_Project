@@ -15,10 +15,9 @@ import * as Animatable from 'react-native-animatable';
 //import I18n from "../I18n/i18n";
 
 import LinearGradient from 'react-native-linear-gradient';
-import Icon from 'react-native-vector-icons/FontAwesome';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import Feather from 'react-native-vector-icons/Feather';
 import { COLORS } from '../constants';
+import MyComponent from '../components/radioButton';
 //import I18n from "../I18n/i18n";
 const SignUp = ({navigation}) => {
 
@@ -114,6 +113,31 @@ const SignUp = ({navigation}) => {
                     placeholder="Your Username"
                     style={styles.textInput}
                     autoCapitalize="none"
+                    onChangeText={(val) => textInputChange(val)}
+                />
+                {data.check_textInputChange ? 
+                <Animatable.View
+                    animation="bounceIn"
+                >
+                    <Feather 
+                        name="check-circle"
+                        color="green"
+                        size={20}
+                    />
+                </Animatable.View>
+                : null}
+            </View>
+            <Text style={[styles.text_footer, {
+                marginTop: 35
+            }]}>Email</Text>
+        <View style={styles.action}>
+            
+                <TextInput 
+                    placeholder="Your email"
+                    keyboardType='email-address'
+                    style={styles.textInput}
+                    autoCapitalize="none"
+                    
                     onChangeText={(val) => textInputChange(val)}
                 />
                 {data.check_textInputChange ? 
@@ -227,6 +251,7 @@ const SignUp = ({navigation}) => {
                     }
                 </TouchableOpacity>
             </View>
+            <MyComponent/>
             <View style={styles.button}>
                 <TouchableOpacity
                     style={styles.signIn}

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Alert, LayoutAnimation, StyleSheet, View, Text, ScrollView, UIManager, TouchableOpacity, Platform, Image } from 'react-native';
-import AddFixedButton from './addFixedButton';
+import { LayoutAnimation, StyleSheet, View, Text, ScrollView, UIManager, TouchableOpacity, Platform, Image } from 'react-native';
+
 import ExpandableListView from './expandableListView';
-import SearchBarProgram from './searchBarProgram';
+
 
 export default class MyList extends Component {
   
@@ -79,12 +79,7 @@ export default class MyList extends Component {
   render() {
     return (
       <View style={styles.container}>
-        <View  >
-        <SearchBarProgram 
-
-    
-          />
-        </View>
+       
         <ScrollView 
          
          contentContainerStyle
@@ -100,7 +95,7 @@ export default class MyList extends Component {
               ))
           }
         </ScrollView>
-        <AddFixedButton/>
+    
       </View>
     );
   }

@@ -4,8 +4,9 @@ import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, V
 
 import App from '../components/checkBox';
 import { COLORS } from '../constants';
-import Consignes from './consignes';
-import Remises from './remises';
+import FilePickerResp from './consignes';
+import FilePickerRespRemises from './remises';
+
 //import ConsignesScreen from './ConsignesScreen';
 
 //import InfoForm from "./InfoForm";
@@ -140,7 +141,7 @@ export default class TwoHeaderTab extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-               <Consignes/>
+             <FilePickerResp/>
               
                 
             </Animated.View>
@@ -153,7 +154,7 @@ export default class TwoHeaderTab extends Component {
                 { translateY: -translateY}
               ]
             }}>
-             <Remises/>
+            <FilePickerRespRemises/>
             </Animated.View>
 
           

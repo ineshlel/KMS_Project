@@ -13,14 +13,21 @@ const ProgramActionsAccepted=props=>{
     return ( 
       <View  style={styles.actionsContainers}>
         <TouchableOpacity  
-        onPress={() => navigation.navigate('Inscription')}
+        onPress={() => navigation.navigate('TwoHeaderTabFormateur')}
+        >
+        <View style={styles.input}>
+          <Text style={styles.textStyle}>Inscription</Text>
+        </View>
+        </TouchableOpacity>
+        <TouchableOpacity  
+        onPress={() => navigation.navigate('HeaderTabsForma')}
         >
         <View style={styles.input}>
           <Text style={styles.textStyle}>Consultation</Text>
         </View>
         </TouchableOpacity>
         <TouchableOpacity 
-        // onPress={() => navigation.navigate('Inscription')}
+         onPress={() => navigation.navigate('List des cours')}
          >
         <View style={styles.input}>
           <Text style={styles.textStyle}>Cours</Text>

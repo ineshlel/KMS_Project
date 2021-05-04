@@ -4,10 +4,12 @@ import {View,Text, StyleSheet ,TextInput,TouchableOpacity}from 'react-native';
 import { COLORS } from '../constants';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
+
 const AddFileButton=props=>{
+  
     return (
   
-        <TouchableOpacity >
+        
 						<View style={styles.addButton}>
                         <Ionicons
                         name="attach"
@@ -15,7 +17,7 @@ const AddFileButton=props=>{
                         size={20}
                       />
                      <Text>Ajouter</Text></View>
-	    </TouchableOpacity>
+
  );
 };
 const styles=StyleSheet.create({

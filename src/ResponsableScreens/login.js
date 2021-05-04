@@ -17,6 +17,7 @@ import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import { COLORS } from '../constants';
+import AuthContext from '../contexts/authContext';
 //import ForgotPassword from './forgotPassw';
 //import I18n from "../I18n/i18n";
 //import Signin from '../Screens/Signin';
@@ -29,29 +30,44 @@ const Login = ({navigation}) => {
         check_textInputChange: false,
         secureTextEntry: true,
         confirm_secureTextEntry: true,
+        isValidUser:true,
+        isValidPassword:true,
     });
 
+    const { signIn } = React.useContext(AuthContext);
+
     const textInputChange = (val) => {
-        if( val.length !== 0 ) {
+        if( val.trim().length >= 4  ) {
             setData({
                 ...data,
                 username: val,
-                check_textInputChange: true
+                check_textInputChange: true,
+                isValidUser: true
             });
         } else {
             setData({
                 ...data,
                 username: val,
-                check_textInputChange: false
+                check_textInputChange: false,
+                isValidUser: false
             });
         }
     }
 
     const handlePasswordChange = (val) => {
-        setData({
-            ...data,
-            password: val
-        });
+        if( val.trim().length >= 8 ) {
+            setData({
+                ...data,
+                password: val,
+                isValidPassword: true
+            });
+        } else {
+            setData({
+                ...data,
+                password: val,
+                isValidPassword: false
+            });
+        }
     }
 
    
@@ -68,6 +84,20 @@ const Login = ({navigation}) => {
             ...data,
             confirm_secureTextEntry: !data.confirm_secureTextEntry
         });
+    }
+
+    const handleValidUser = (val) => {
+        if( val.trim().length >= 4 ) {
+            setData({
+                ...data,
+                isValidUser: true
+            });
+        } else {
+            setData({
+                ...data,
+                isValidUser: false
+            });
+        }
     }
 
     return (
@@ -93,6 +123,7 @@ const Login = ({navigation}) => {
                     style={styles.textInput}
                     autoCapitalize="none"
                     onChangeText={(val) => textInputChange(val)}
+                    onEndEditing={(e)=>handleValidUser(e.nativeEvent.text)}
                 />
                 {data.check_textInputChange ? 
                 <Animatable.View
@@ -106,6 +137,11 @@ const Login = ({navigation}) => {
                 </Animatable.View>
                 : null}
             </View>
+            { data.isValidUser ? null : 
+            <Animatable.View animation="fadeInLeft" duration={500}>
+            <Text style={styles.errorMsg}>Username must be 4 characters long.</Text>
+            </Animatable.View>
+            }
 
             <Text style={[styles.text_footer, {
                 marginTop: 35
@@ -137,6 +173,11 @@ const Login = ({navigation}) => {
                     }
                 </TouchableOpacity>
             </View>
+            { data.isValidPassword ? null : 
+            <Animatable.View animation="fadeInLeft" duration={500}>
+            <Text style={styles.errorMsg}>Password must be 8 characters long.</Text>
+            </Animatable.View>
+            }
             
             <View>
            <TouchableOpacity   onPress={() => navigation.navigate('ForgotPassword')}>
@@ -149,7 +190,8 @@ const Login = ({navigation}) => {
                 <TouchableOpacity
                     style={styles.signIn}
                    // onPress={() => navigation.navigate('InscriptionFormateur')}
-                    onPress={() => navigation.navigate('SignUp')}
+                   onPress={() => navigation.navigate('TabNavigatorEmpl')}
+                  
                     
                 >
                 <LinearGradient
@@ -158,12 +200,15 @@ const Login = ({navigation}) => {
                 >
                     <Text style={[styles.textSign, {
                         color:'#fff'
-                    }]}>Register</Text>
+                    }]}>Sign In</Text>
                 </LinearGradient>
                 </TouchableOpacity>
 
                 <TouchableOpacity
-                  onPress={() => navigation.navigate('TabNavigator')}
+                
+                  //onPress={() => navigation.navigate('TabNavigator')}
+                 // onPress={() => navigation.navigate('TabNavigatorForma')}
+                 onPress={() => navigation.navigate('SignUp')}
                     style={[styles.signIn, {
                         borderColor: COLORS.blueClair,
                         borderWidth: 1,
@@ -172,7 +217,7 @@ const Login = ({navigation}) => {
                 >
                     <Text style={[styles.textSign, {
                         color: COLORS.blueClair
-                    }]}>Sign In</Text>
+                    }]}>Sign Up</Text>
                 </TouchableOpacity>
             </View>
             </ScrollView>
@@ -260,6 +305,10 @@ const styles = StyleSheet.create({
         borderBottomWidth: 1,
         borderBottomColor: COLORS.blueClair,
 
-    }
+    },
+    errorMsg: {
+        color: '#FF0000',
+        fontSize: 14,
+    },
 
   });

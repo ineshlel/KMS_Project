@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Alert, LayoutAnimation, StyleSheet, View, Text, ScrollView, UIManager, TouchableOpacity, Platform, Image } from 'react-native';
-import AddFixedButton from '../components/addFixedButton';
-import ExpandableListView from '../components/expandableListView';
+
+import ExpandableListViewAccepted from '../components/expandableListViewAccepted';
 import SearchBarProgram from '../components/searchBarProgram';
 
 
@@ -95,14 +95,14 @@ export default class MyListForma extends Component {
           {
             this.state.array.map((item, key) =>
               (
-                <ExpandableListView 
+                <ExpandableListViewAccepted 
                 key={item.name} 
                 onClickFunction={this.updateLayout.bind(this, key)} 
                 item={item} />
               ))
           }
         </ScrollView>
-        <AddFixedButton/>
+       
       </View>
     );
   }

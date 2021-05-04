@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { COLORS, FONTS } from '../constants';
+import EvaluationEmpl from './evaluationScreenEmpl';
+import InfoFormEmpl from './InfoFormEmpl';
 
 
 
@@ -144,7 +146,7 @@ export default class HeaderTabEmpl extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-            <Text>Info</Text>
+            <InfoFormEmpl/>
             </Animated.View>
 
             {/* Tab 2 Content */}
@@ -167,7 +169,7 @@ export default class HeaderTabEmpl extends Component {
                 { translateY: -2 * translateY}
               ]
             }}>
-              <Text>Evaluation</Text>
+              <EvaluationEmpl/>
              
             </Animated.View>
             </ScrollView>

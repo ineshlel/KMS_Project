@@ -20,7 +20,7 @@ const EvaluationForma=({props})=>{
         </View>
         </TouchableOpacity>
       <TouchableOpacity 
-       onPress={() => navigation.navigate("PLayQuiz")}
+       onPress={() => navigation.navigate("PLayQuizForma")}
        >
       <View  style={styles.input}>
       <Text style={styles.textStyle}>QCM</Text>

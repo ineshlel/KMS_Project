@@ -107,7 +107,10 @@ export default class ThreeTabSelector extends Component {
                                   this.setState({ active: 0 }, () =>
                                       this.handleSlide(xTab1)
                               )}>
-              <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontSize:18}}>Information</Text>
+              <Text 
+              style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontSize:18,fontFamily:"Cairo-Bold"}}>
+                Information
+                </Text>
             </TouchableOpacity>
 
             {/* Tab 2 */}
@@ -164,7 +167,7 @@ export default class ThreeTabSelector extends Component {
             {/* Tab 3 Content */}
             <Animated.View style={{ 
             
-             
+             marginTop:250,
               transform:[
                 { translateX: translateXTab3 },
                 { translateY: -2 * translateY}

@@ -16,6 +16,11 @@ import DoubleSlider from '../components/slider';
 import HeaderTabsForma from '../FormateurScreens/headerTabsForma';
 import Playquiz from '../MyQuiz/playQuiz';
 import MyComponent from '../components/radioButton';
+import ConsignesList from '../EmployeeScreens/consignesList';
+import TwoHeaderTabWork from '../EmployeeScreens/twoHeaderTabWork';
+import CurrentDate from '../components/currentDate';
+import App from '../components/checkBox';
+import ProgramList from '../ResponsableScreens/programList';
 
 
 //import ProfileNavigator from './ProfileNavigator';
@@ -27,19 +32,20 @@ const TabNavigator = ({navigation}) => {
     <Tab.Navigator tabBar={props => <TabBar {...props} />}>
       <Tab.Screen
         name='Home'
-        component={MyList}
+        component={ProgramList}
         initialParams={{ icon: 'home' }}
       />
       <Tab.Screen
         name='Create'
-        //component={ThreeTabSelector}
-        component={HeaderTabsForma}
+        component={ThreeTabSelector}
+        //component={HeaderTabsForma}
         initialParams={{ icon: 'plus' }}
         options={{headerShown: false}}  />
       <Tab.Screen
         name='Profile'
-     //component={MyComponent}
-       component={TwoHeaderTabFormateur}
+       //component={ConsignesList}
+       //component={TwoHeaderTabWork}
+       component={App}
         initialParams={{ icon: 'profile' }}
       />
       

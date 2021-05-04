@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Alert, LayoutAnimation, StyleSheet, View, Text, ScrollView, UIManager, TouchableOpacity, Platform, Image } from 'react-native';
 import CourseActions from './CourseActions';
 import CourseItem from './courseItem';
-import ProgramActions from './programActions';
-import ProgramItem from './programItem';
+
 
 
 

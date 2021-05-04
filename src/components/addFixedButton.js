@@ -5,10 +5,12 @@ import { COLORS } from '../constants';
 import { useNavigation } from '@react-navigation/native';
 
 // onPress={props.onAdd()}
+//() =>navigation.navigate("Planification")
 const AddFixedButton=props=>{
   const navigation = useNavigation();
     return (
-        <TouchableOpacity  onPress={() =>navigation.navigate("Planification") }>
+        <TouchableOpacity  onPress={ props.onAdd}>
+          
           <View style={styles.addButtonStyle}>
             <Text style={styles.textStyle}>+</Text>
           </View>

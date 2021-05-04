@@ -3,7 +3,7 @@ import React ,{useState,useCallback}from 'react';
 import {View,Text, StyleSheet ,}from 'react-native';
 import StaticInput from '../components/staticInput';
 
-const InfoForma=props=>{
+const InfoFormEmpl=props=>{
 
 
   const [time,setTime]=useState();
@@ -57,4 +57,4 @@ const styles=StyleSheet.create({
     
      
 });
-export default InfoForma;
+export default InfoFormEmpl;

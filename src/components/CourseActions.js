@@ -19,9 +19,13 @@ const CourseActions=props=>{
           <Text style={styles.textStyle}>Planification</Text>
         </View>
         </TouchableOpacity>
+        <TouchableOpacity
+           onPress={() => navigation.navigate('HeaderTabCourse')}>
         <View style={styles.input}>
           <Text style={styles.textStyle}>Consultation</Text>
+          
         </View>
+        </TouchableOpacity>
 
       </View>
  );

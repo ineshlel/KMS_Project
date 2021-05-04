@@ -8,25 +8,28 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-const ProgramActionsAccepted=props=>{
+const ProgramActionsAcceptedEmpl=props=>{
   const navigation = useNavigation();
     return ( 
       <View  style={styles.actionsContainers}>
         <TouchableOpacity  
-        onPress={() => navigation.navigate('Inscription')}
+        onPress={() => navigation.navigate('HeaderTabEmpl')}
         >
         <View style={styles.input}>
           <Text style={styles.textStyle}>Consultation</Text>
         </View>
         </TouchableOpacity>
-        <View style={styles.input}>
-          <Text style={styles.textStyle}>Inscription</Text>
-        </View>
-        <TouchableOpacity 
-        // onPress={() => navigation.navigate('Inscription')}
-         >
+        <TouchableOpacity
+        onPress={() => navigation.navigate('CoursesScreenEmpl',props.title)}>
         <View style={styles.input}>
           <Text style={styles.textStyle}>Cours</Text>
+        </View>
+        </TouchableOpacity>
+        <TouchableOpacity 
+        // onPress={() => navigation.navigate('CoursesScreenEmpl')}
+         >
+        <View style={styles.input}>
+          <Text style={styles.textStyle}>Inscription</Text>
         </View>
         </TouchableOpacity>
 
@@ -59,4 +62,4 @@ const styles=StyleSheet.create({
        
 });
 
-export default ProgramActionsAccepted;
+export default ProgramActionsAcceptedEmpl;

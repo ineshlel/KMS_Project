@@ -30,7 +30,7 @@ const ListOfWorks=()=>{
     <ScrollView>
     <View  style={styles.formContainer}>
     <View style={styles.titleStyle}>
-    <Text  style={styles.textStyle}>Travaux</Text>
+   
     </View>
     
     

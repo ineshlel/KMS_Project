@@ -17,14 +17,16 @@ const ProgramActionsLimitedEmpl=({props})=>{
   //const [route,setRoute]=useState('programme');
     return ( 
       <View  style={styles.actionsContainers}>
-        <TouchableOpacity  onPress={() => navigation.navigate('Inscription')}>
+        <TouchableOpacity  onPress={() => navigation.navigate('InfoFormEmpl')}>
         <View style={styles.input}>
           <Text style={styles.textStyle}>Consultation</Text>
         </View>
         </TouchableOpacity>
+       <TouchableOpacity  onPress={() => navigation.navigate('TwoHeaderTabEmployee')}>
         <View style={styles.input}>
           <Text style={styles.textStyle}>Inscription</Text>
         </View>
+        </TouchableOpacity>
 
       </View>
  );

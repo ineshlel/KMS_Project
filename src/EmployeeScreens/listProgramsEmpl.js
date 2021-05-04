@@ -9,7 +9,7 @@ import SearchBarProgram from '../components/searchBarProgram';
 
 
 
-export default class MyListForma extends Component {
+export default class MyListEmpl extends Component {
   
   constructor() {
     super();

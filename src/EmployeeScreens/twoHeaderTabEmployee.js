@@ -1,9 +1,10 @@
-import { toHumanSize } from 'i18n-js';
+
 import React, { Component } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 import { COLORS } from '../constants';
 import InscriptionEmployee from './inscriptionEmployee';
+import ThreeTabRegistrationEmpl from './threeTabsRegistrationEmpl';
 
 
 
@@ -15,7 +16,7 @@ import InscriptionEmployee from './inscriptionEmployee';
 const { width } = Dimensions.get('window');
 
 
-export default class TwoHeaderTabFormateur extends Component {
+export default class TwoHeaderTabEmployee extends Component {
   
   state = {
 
@@ -154,7 +155,7 @@ export default class TwoHeaderTabFormateur extends Component {
                 { translateY: -translateY}
               ]
             }}>
-            <ThreeTabRegistrationForma/>
+            <ThreeTabRegistrationEmpl/>
             </Animated.View>
 
           

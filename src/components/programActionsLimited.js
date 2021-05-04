@@ -17,9 +17,7 @@ const ProgramActionsLimited=props=>{
           <Text style={styles.textStyle}>Inscription</Text>
         </View>
         </TouchableOpacity>
-        <View style={styles.input}>
-          <Text style={styles.textStyle}>Cours</Text>
-        </View>
+      
 
       </View>
  );

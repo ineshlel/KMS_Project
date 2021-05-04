@@ -44,15 +44,18 @@ const MyComponent = () => {
 };
 const styles=StyleSheet.create({
     radioContainer:{
-        margin:10,
+       // margin:10,
+        paddingTop:15,
         //flexDirection:'row',
+        //paddingLeft:8,
     },
     radioElement:{
       flexDirection:'row',
       alignItems:'center'
     },
     textStyle:{
-      fontSize:16,
+      fontSize:18,
+      color:'#05375a',
 
     }
     

@@ -2,11 +2,12 @@ import React from 'react';
 import { View, StyleSheet, TouchableOpacity, Text } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+//import Ionicons from 'react-native-vector-icons/AntDesign';
 
 const Tab = ({ color, tab, onPress, icon }) => {
   return (
     <TouchableOpacity style={styles.container} onPress={onPress}>
-      {icon && <AntDesign name={icon} size={20} color={color} />}
+      {icon && <AntDesign name={icon} size={22} color={color} />}
       <Text style={{ color ,fontFamily:"Cairo-SemiBold"}}>{tab.name}</Text>
     </TouchableOpacity>
   );

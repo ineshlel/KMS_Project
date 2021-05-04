@@ -8,7 +8,8 @@ import { COLORS } from '../constants';
 
 //import Icon from 'react-native-vector-icons/Ionicons';
 import AddWork from '../components/addWork';
-import ItemAdded from '../components/itemAdded';
+import ItemAddedEmpl from '../components/itemAddedEmpl';
+
 
 
 
@@ -48,7 +49,7 @@ const ListOfWorksEmpl=()=>{
       keyExtractor={(item,index)=>item.id}
       data={works} 
       renderItem={itemData=> 
-      <ItemAdded 
+      <ItemAddedEmpl
       id ={itemData.item.id}
       value={itemData.item.value2}
       />

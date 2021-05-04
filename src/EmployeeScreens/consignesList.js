@@ -2,16 +2,16 @@ import React ,{useState,useEffect}from 'react';
 
 import {View,Text, StyleSheet ,TextInput,Button,FlatList}from 'react-native';
 
-import ProgramItem from './programItem';
 import { NavigationContainer,useNavigation } from '@react-navigation/native';
 import ConsigneItem from '../components/consigneItem';
+import { COLORS } from '../constants';
 
 //import axios from 'axios';
 
 //const navigation = useNavigation();
 
 //export default class FlatListPC extends React.Component{
-const FlatListPC= ({navigation,props}) =>{
+const ConsignesList= ({navigation,props}) =>{
 
  const[consignes,setConsignes]=useState([
    {
@@ -26,12 +26,27 @@ const FlatListPC= ({navigation,props}) =>{
     id:3,
     name:'consign 3'
   },
+  {
+    id:3,
+    name:'consign 3'
+  },
+  {
+    id:3,
+    name:'consign 3'
+  },
+  {
+    id:3,
+    name:'consign 3'
+  },
+  
+
+  
  ]);
 /* state={
    programs:[],
   
 }*/
-useEffect(() => {
+/*useEffect(() => {
   fetch('https://api.openbrewerydb.org/breweries')
     .then((response) => response.json())
     .then((responseJson) => {
@@ -41,7 +56,7 @@ useEffect(() => {
     .catch((error) => {
       console.error(error);
     });
-}, []);
+}, []);*/
 
  return (
   
@@ -65,12 +80,13 @@ useEffect(() => {
 const styles=StyleSheet.create({
 
       Container:{
-          flexDirection:'row',
-          backgroundColor:'#858FE8',
+         flex:1,
+         // backgroundColor:COLORS.purple,
+         
           
       },
      
  
 });
 
-export default FlatListPC;
+export default ConsignesList;

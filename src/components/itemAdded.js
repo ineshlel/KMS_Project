@@ -14,56 +14,66 @@ const ItemAdded= props=>{
     <TouchableOpacity onPress={() => navigation.navigate('TwoHeaderTab')}  >
        
         <View  style={styles.input}>
+        <View style={styles.textContainer}> 
         <Text>{props.value}</Text>
-         <View>
+        </View>
+        <View>
         <FontAwesome5
-         //style={styles.downArrow}
+         style={styles.downArrow}
                     name="chevron-right"
                     color={COLORS.purple}
                     size={20}
                 />
-         </View>
+        </View>
         </View>
     </TouchableOpacity>
  );
 };
 const styles=StyleSheet.create({
       input:{
-        width:'80%',borderColor:'grey',
+        width:'75%',borderColor:'grey',
         height:45,
         marginLeft:30,
-        borderRadius:12,
+        borderRadius:10,
         marginTop:30,
+
         alignItems:'center',
         justifyContent:'center',
         elevation:2,
-       // border:COLORS.purple,
-        //border
-        borderWidth:0,
+        borderColor:COLORS.purple,
+        backgroundColor:'white',
+
+        borderWidth:1,
         shadowOffset:{width:0,height:2},
         shadowRadius:6,
         shadowOpacity:0.26,
         marginBottom:5,
         flexDirection:'row',
-        
-        
-      },
+         },
       textStyle:{
           fontSize:18,
           textAlign:'center',
-        
-         
+         },
+      textContainer:{
+          //marginRight:40,
+          justifyContent:'center',
+          alignItems:'center',
       },
       downArrow:{
       
-         justifyContent:'center',
-         alignItems:'center',
-        //marginLeft:'10%',
-        // marginBottom:7,
-         //position:'absolute',
-         marginRight:60,
+        // justifyContent:'center',
+        // alignItems:'center',
+        
+       // marginTop:2,
+       // paddingBottom:10,
+      // marginVertical:8,
+         position:'absolute',
+         marginLeft:60,
         // paddingBottom:10,
-        marginBottom:10,
+       // marginBottom:10,
+      // marginLeft:'92%',
+      // marginVertical:10,
+      
        
 
      },

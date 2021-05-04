@@ -7,11 +7,11 @@ import { xorBy } from 'lodash'
 
 const K_OPTIONS = [
   {
-    item: 'Comp 1',
+    item: 'Adaptabilité',
     id: 'JUVE',
   },
   {
-    item: 'Comp 1',
+    item: 'Motivation',
     id: 'RM',
   },
   {

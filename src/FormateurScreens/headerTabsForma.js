@@ -10,7 +10,7 @@ import EvaluationForma from './evaluationForma';
 
 const { width } = Dimensions.get('window');
 
-export default class ThreeTabSelector extends Component {
+export default class HeaderTabsForma extends Component {
   
   state = {
 
@@ -150,7 +150,7 @@ export default class ThreeTabSelector extends Component {
 
             {/* Tab 2 Content */}
             <Animated.View style={{ 
-             
+              flex:1,
               transform:[
                 { translateX: translateXTab2 },
                 { translateY: -translateY}

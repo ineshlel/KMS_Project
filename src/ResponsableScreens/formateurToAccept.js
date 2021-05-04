@@ -1,29 +1,50 @@
 import React ,{useState,useCallback}from 'react';
-
-import {View,Text, StyleSheet ,TextInput,Button,Modal,Slider}from 'react-native';
-import ButtonKms from '../components/buttonV';
-import DescriptionInput from '../components/descriptionInput';
-import Input from '../components/Input';
+import {View,Text, StyleSheet}from 'react-native';
+import StaticInput from '../components/staticInput';
 
 
 
 
 
 
-const InfoForm=props=>{
-
-
-  const [time,setTime]=useState();
-   
-    return (
+const FormateurToAccept=props=>{
+   return (
      <View  style={styles.formContainer}>
-      <Input title='Titre :'/>
-      <Input title='Durée :'/>
-      <DescriptionInput   title='Description: '/>
+     <StaticInput 
+     name='Titre Programme'
+     value='Programme Hancho'
+     />
+     <StaticInput 
+     name='Période'
+     value='04/06/2021-04/06/2021'
+     />
+     <StaticInput 
+     name='Nom'
+     value='Formateur 1'
+     />
+     <StaticInput 
+     name='Prénom'
+     value='Formateur 1'
+     />
+     <StaticInput 
+     name='Date Demande'
+     value='04/06/2021'
+     />
+       <View style={styles.buttonContainer}>
+						<TouchableOpacity onPress={addFieldHandler} >
+						   <View style={styles.addButton}>
+                             <Text>Accepter</Text></View>
+	                    </TouchableOpacity>
+						<TouchableOpacity onPress={toggleModalVisibility} >
+						   <View style={styles.addButton}>
+                             <Text>Refuser</Text></View>
+	                    </TouchableOpacity>
+					
+						</View>
       
 
    
-      <ButtonKms  title='Valider'/>
+   
     
     
       </View>
@@ -51,6 +72,26 @@ const styles=StyleSheet.create({
         width:'90%',borderColor:'grey',borderWidth:1,padding:3,marginTop:5,
         
       },
+      addButton:{
+        width:80,
+            height:40,
+            borderRadius:14,
+            backgroundColor:COLORS.blueClair,
+            alignItems:'center',
+            justifyContent:'center',
+            flexDirection:'row',
+            marginHorizontal:12,
+      
+    
+      },
+      buttonContainer:{
+        flexDirection:'row',
+        width:'100%',
+        justifyContent:'center',
+        paddingHorizontal:15,
+        marginTop:20,
+       
+       },
     
      
 });

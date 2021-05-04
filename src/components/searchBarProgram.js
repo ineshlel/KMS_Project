@@ -47,6 +47,7 @@ const SearchBarProgram=props=>{
           setSearch(text);
         }
       };*/
+  
 
      
     return (
@@ -55,9 +56,12 @@ const SearchBarProgram=props=>{
          // placeholder={translate('search.searchPlaceholderText')}
          placeholder='Chercher..'
           placeholderTextColor= 'rgba(151, 151, 151, 0.4)'
-          onChangeText={(value) => setInput(value)}
-          value={input}
-         // onChangeText={(search) => searchFilterFunction(search)}
+          //onChangeText={(value) => setInput(value)}
+        
+
+         value={input}
+          onChangeText={text=>props.onSearchFunction(text)}
+          
          // value={search}
           containerStyle={styles.searchStyle}
           inputStyle={styles.inputStyle}
