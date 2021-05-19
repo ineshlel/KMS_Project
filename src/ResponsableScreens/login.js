@@ -9,7 +9,8 @@ import {
     Platform,
     StyleSheet,
     ScrollView,
-    StatusBar
+    StatusBar,
+    Alert
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 
@@ -17,7 +18,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import { COLORS } from '../constants';
-import AuthContext from '../contexts/authContext';
+import {AuthContext} from '../contexts/authContext';
+import Users from '../models/users';
+import Loader from '../components/loader';
+import AsyncStorage from '@react-native-community/async-storage';
+import apiConfig from '../api/config';
+//import Users from  '../models/users';
 //import ForgotPassword from './forgotPassw';
 //import I18n from "../I18n/i18n";
 //import Signin from '../Screens/Signin';
@@ -26,15 +32,38 @@ const Login = ({navigation}) => {
     const [data, setData] = React.useState({
         username: '',
         password: '',
-       
+        loading:false,
         check_textInputChange: false,
         secureTextEntry: true,
         confirm_secureTextEntry: true,
         isValidUser:true,
         isValidPassword:true,
     });
+    const Users = [
+        {
+            id: 1, 
+            email: 'user1@email.com',
+            username: 'Responsable', 
+            password: 'password', 
+            userToken: 'token123'
+        },
+        {
+            id: 2, 
+            email: 'user2@email.com',
+            username: 'Formateur', 
+            password: 'pass1234', 
+            userToken: 'token12345'
+        },
+        {
+            id: 3, 
+            email: 'testuser@email.com',
+            username: 'Participant', 
+            password: 'testpass', 
+            userToken: 'testtoken'
+        },
+    ];
 
-    const { signIn } = React.useContext(AuthContext);
+    //const { signIn } = React.useContext(AuthContext);
 
     const textInputChange = (val) => {
         if( val.trim().length >= 4  ) {
@@ -55,7 +84,7 @@ const Login = ({navigation}) => {
     }
 
     const handlePasswordChange = (val) => {
-        if( val.trim().length >= 8 ) {
+        if( val.trim().length >= 4 ) {
             setData({
                 ...data,
                 password: val,
@@ -99,9 +128,107 @@ const Login = ({navigation}) => {
             });
         }
     }
+    const loginHandle = () => {
+
+        //const foundUser = Users.filter( item => {
+          //  return userName == item.username && password == item.password;
+       // } );
+
+        if ( data.username.length == 0 || data.password.length == 0 ) {
+            Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
+                {text: 'Okay'}
+            ]);
+            return;
+        }
+
+       /* if ( foundUser.length == 0 ) {
+            Alert.alert('Invalid User!', 'Username or password is incorrect.', [
+                {text: 'Okay'}
+            ]);
+            return;
+        }*/
+        setData({
+            ...data,
+            loading: true,
+        });
+        let dataToSend = {username: data.username, password: data.password};
+        let formBody = [];
+        for (let key in dataToSend) {
+          let encodedKey = encodeURIComponent(key);
+          let encodedValue = encodeURIComponent(dataToSend[key]);
+          formBody.push(encodedKey + '=' + encodedValue);
+        }
+        formBody = formBody.join('&');
+    
+        fetch(apiConfig.url+'/auth/signin/', {
+          method: 'POST',
+          body:formBody,
+           //JSON.stringify({"username": userEmail, 
+          //"password": userPassword}),
+          headers: {
+            //Header Defination
+         
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+          },
+    })
+          .then((response) => response.json())
+          
+          .then((responseJson) => {
+            //Hide Loader
+            console.log("/////////");
+            setData({
+                ...data,
+                loading:false,
+            });
+            console.log(responseJson);
+            
+           
+           // Alert.alert("User register successfully \n userId: "+responseJson.token);
+            
+            // If server response message same as Data Matched
+            if (responseJson.status_code === 200) {
+                Alert.alert("User logged successfully \n userId: "+responseJson.token);
+              try {
+               AsyncStorage.setItem('userToken', responseJson.token);
+               logCurrentStorage();
+               console.log('++++++++');
+              } catch(e) {
+                console.log(e);
+              }
+              console.log(responseJson.token);
+              navigation.replace('TabNavigatorEmpl');
+              console.log("********************");
+              
+             
+            } else {
+              //setErrortext(responseJson.message);
+              console.log('Please check your email id or password');
+              Alert.alert("User not found ");
+            }
+          })
+          .catch((error) => {
+            //Hide Loader
+            setData({
+                ...data,
+                loading:false,
+            });
+            console.error(error);
+          });
+    }
+    function logCurrentStorage() {
+        AsyncStorage.getAllKeys((err, keys) => {
+          AsyncStorage.multiGet(keys, (error, stores) => {
+            stores.map((result, i, store) => {
+              console.log({ [store[i][0]]: store[i][1] });
+              return true;
+            });
+          });
+        });
+      }
 
     return (
       <View style={styles.container}>
+           <Loader loading={data.loading} />
           <StatusBar backgroundColor= {COLORS.grey}barStyle="light-content"/>
         <View style={styles.header}>
             <Text style={styles.text_header}>Connexion</Text>
@@ -153,7 +280,8 @@ const Login = ({navigation}) => {
                     secureTextEntry={data.secureTextEntry ? true : false}
                     style={styles.textInput}
                     autoCapitalize="none"
-                    onChangeText={(val) => handlePasswordChange(val)}
+                    onChangeText={(val) => handlePasswordChange(val)
+                    }
                 />
                 <TouchableOpacity
                     onPress={updateSecureTextEntry}
@@ -189,9 +317,10 @@ const Login = ({navigation}) => {
                 <View style={styles.button}>
                 <TouchableOpacity
                     style={styles.signIn}
-                   // onPress={() => navigation.navigate('InscriptionFormateur')}
-                   onPress={() => navigation.navigate('TabNavigatorEmpl')}
-                  
+                  // onPress={() => navigation.navigate('TabNavigator')}
+                   //onPress={() => navigation.navigate('TabNavigatorEmpl')}
+                   //{ ...Users.filter(userToken)  userToken !== null ? (
+                  onPress={loginHandle}
                     
                 >
                 <LinearGradient

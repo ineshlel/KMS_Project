@@ -9,7 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 const AddFixedButton=props=>{
   const navigation = useNavigation();
     return (
-        <TouchableOpacity  onPress={ props.onAdd}>
+        <TouchableOpacity  onPress={ () =>navigation.navigate("Planification")}>
           
           <View style={styles.addButtonStyle}>
             <Text style={styles.textStyle}>+</Text>

@@ -13,16 +13,6 @@ const MyComponent = () => {
       <RadioButton
         color={COLORS.blueClair}
         uncheckedColor={COLORS.purple}
-        value="Responsable"
-        status={ checked === 'Responsable' ? 'checked' : 'unchecked' }
-        onPress={() => setChecked('Responsable')}
-      />
-      <Text style={styles.textStyle}>Responsable</Text>
-      </View>
-      <View  style={styles.radioElement}>
-      <RadioButton
-        color={COLORS.blueClair}
-        uncheckedColor={COLORS.purple}
         value="Formateur"
         status={ checked === 'Formateur' ? 'checked' : 'unchecked' }
         onPress={() => setChecked('Formateur')}

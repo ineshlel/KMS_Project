@@ -1,9 +1,10 @@
 import React, { Component } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import App from '../components/checkBox';
+
 import { COLORS, FONTS } from '../constants';
 import InfoForma from './infoForma';
 import EvaluationForma from './evaluationForma';
+import CheckBoxApp from '../components/checkBox';
 
 
 
@@ -156,7 +157,7 @@ export default class HeaderTabsForma extends Component {
                 { translateY: -translateY}
               ]
             }}>
-            <App/>
+           <CheckBoxApp/>
             </Animated.View>
 
             {/* Tab 3 Content */}

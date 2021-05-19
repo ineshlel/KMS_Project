@@ -67,6 +67,7 @@ const FilePickerEmplRemises = () => {
       [...files,{id:Math.random().toString(),consigneName:fileName}]);
 
   }
+ 
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={styles.container}>
@@ -96,6 +97,7 @@ const FilePickerEmplRemises = () => {
       <ConsigneItem
       id ={itemData.item.id}
       name={itemData.item.consigneName}
+      URLFile={singleFile.uri}
       />
       }>
        

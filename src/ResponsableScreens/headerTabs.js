@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import App from '../components/checkBox';
+import CheckBoxApp from '../components/checkBox';
+
 import { COLORS, FONTS } from '../constants';
 
 import EvaluationScreen from './evaluationScreen';
@@ -161,7 +162,7 @@ export default class ThreeTabSelector extends Component {
                 { translateY: -translateY}
               ]
             }}>
-            <App/>
+           <CheckBoxApp/>
             </Animated.View>
 
             {/* Tab 3 Content */}

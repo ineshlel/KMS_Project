@@ -19,8 +19,9 @@ import MyComponent from '../components/radioButton';
 import ConsignesList from '../EmployeeScreens/consignesList';
 import TwoHeaderTabWork from '../EmployeeScreens/twoHeaderTabWork';
 import CurrentDate from '../components/currentDate';
-import App from '../components/checkBox';
+
 import ProgramList from '../ResponsableScreens/programList';
+import CheckBoxApp from '../components/checkBox';
 
 
 //import ProfileNavigator from './ProfileNavigator';
@@ -45,7 +46,7 @@ const TabNavigator = ({navigation}) => {
         name='Profile'
        //component={ConsignesList}
        //component={TwoHeaderTabWork}
-       component={App}
+       component={CheckBoxApp}
         initialParams={{ icon: 'profile' }}
       />
       

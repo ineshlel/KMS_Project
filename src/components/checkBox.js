@@ -49,7 +49,7 @@ const K_OPTIONS = [
 
 ]
 
-function App() {
+function CheckBoxApp() {
   const [selectedTeam, setSelectedTeam] = useState({})
   const [selectedTeams, setSelectedTeams] = useState([])
   return (
@@ -80,4 +80,4 @@ function App() {
   }
 }
 
-export default App
+export default CheckBoxApp;
