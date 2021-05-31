@@ -51,6 +51,10 @@ import TwoHeaderTabWork from './src/EmployeeScreens/twoHeaderTabWork';
 import CoursesScreenEmpl from './src/EmployeeScreens/coursesScreenEmpl';
 import RootStackScreen from './src/Routes/rootStackScreen';
 import EmplStackScreen from './src/Routes/emplStackScreen';
+import InfoFormAdded from './src/ResponsableScreens/infoFormAdded';
+import HeadersTabConsult from './src/ResponsableScreens/headersTabConsultation';
+import RequestDetailsForma from './src/ResponsableScreens/requestDetailsForma';
+import ThreeTabRegistration from './src/components/threeTabsRegistration';
 
 
 const Stack = createStackNavigator();
@@ -190,11 +194,14 @@ return (
       >
           <Stack.Screen name="Login" options= {{headerShown: false}} component={Login} />
           <Stack.Screen name="SignUp" options= {{headerShown: false}} component={SignUp} />
+          <Stack.Screen name="InfoFormAdded" options= {{headerShown: false}} component={InfoFormAdded} />
+          <Stack.Screen name="HeaderTabsConsultation" options= {{headerShown: false}} component={HeadersTabConsult} />
           <Stack.Screen name="PLayQuizForma" options={{...myOptions,title:'QCM'} }  component={PlayquizForma} />
           <Stack.Screen name="PLayQuiz" options={{...myOptions,title:'QCM'} }  component={Playquiz} />
           <Stack.Screen name="TabNavigator" component={TabNavigator}  options={{headerShown: false}} />
           <Stack.Screen name="TabNavigatorEmpl" component={TabNavigatorEmpl}  options={{headerShown: false}} />
           <Stack.Screen name="TabNavigatorForma" component={TabNavigatorForma}  options={{headerShown: false}} />
+          <Stack.Screen name="RequestDetailsForma" component={RequestDetailsForma}  options={{...myOptions,title:'Details'} }  />
           
           <Stack.Screen name="TwoHeaderTab" options={myOptions}    component={TwoHeaderTab} />
           <Stack.Screen name="TwoHeaderTabForma" options={myOptions}    component={TwoHeaderTabForma} />
@@ -213,7 +220,7 @@ return (
           <Stack.Screen name="ListOfWorksEmpl"   component={ListOfWorksEmpl}options={myOptions}/>
           <Stack.Screen name="QCMScreen"  options={{...myOptions,title:'QCM'} }   component={QCMScreen}/>
           <Stack.Screen name="QCMForma"  options={{...myOptions,title:'QCM'} }   component={QCMForma}/>
-          <Stack.Screen name="Inscription" options={{...myOptions,title:'Inscription'} }      component={RegistrationResponsable}/>
+          <Stack.Screen name="Inscription" options={{...myOptions,title:'Inscription'} }      component={ThreeTabRegistration}/>
           <Stack.Screen name="InscriptionFormateur" options={{...myOptions,title:'Inscription'} } component={InscriptionFormateur}/>
           <Stack.Screen name="RequestInfo" options={{...myOptions,title:'Détails'} } component={RequestInfo}/>
           <Stack.Screen name="List des cours"

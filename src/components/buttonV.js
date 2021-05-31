@@ -1,16 +1,18 @@
 import React ,{useState}from 'react';
 
-import {View,Text, StyleSheet ,TextInput,Button,Modal}from 'react-native';
+import {View,Text, StyleSheet ,TouchableOpacity}from 'react-native';
+
 import { COLORS } from '../constants';
 
 
 const ButtonKms=props=>{
     return (
-  
+        <TouchableOpacity onPress={props.onValidate}>
         <View  style={styles.button}>
             <Text style={styles.textStyle}>{props.title}</Text>
             
         </View>
+        </TouchableOpacity>
  );
 };
 const styles=StyleSheet.create({

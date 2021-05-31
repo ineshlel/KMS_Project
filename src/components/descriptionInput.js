@@ -13,7 +13,8 @@ const DescriptionInput=props=>{
     <Text  style={styles.textStyle}>{props.title}</Text>
     <TextInput    style={customStyle}
       onFocus={()=>setFocus(true)}
-   // onChangeText={}
+      onChangeText={props.onChange}
+      multiline={true}
     //value={}
     />
     </View>
@@ -32,6 +33,7 @@ const styles=StyleSheet.create({
         marginTop:5,
         borderRadius:14,
         elevation:1,
+        textAlignVertical: 'top',
 
          },
          input:{
@@ -41,6 +43,7 @@ const styles=StyleSheet.create({
           borderRadius:14,
           //borderWidth:1,
           elevation:2,
+          textAlignVertical: 'top',
         
     },
       textStyle:{

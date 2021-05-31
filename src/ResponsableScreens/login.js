@@ -13,6 +13,7 @@ import {
     Alert
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
+import jwt_decode from "jwt-decode";
 
 import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -39,29 +40,7 @@ const Login = ({navigation}) => {
         isValidUser:true,
         isValidPassword:true,
     });
-    const Users = [
-        {
-            id: 1, 
-            email: 'user1@email.com',
-            username: 'Responsable', 
-            password: 'password', 
-            userToken: 'token123'
-        },
-        {
-            id: 2, 
-            email: 'user2@email.com',
-            username: 'Formateur', 
-            password: 'pass1234', 
-            userToken: 'token12345'
-        },
-        {
-            id: 3, 
-            email: 'testuser@email.com',
-            username: 'Participant', 
-            password: 'testpass', 
-            userToken: 'testtoken'
-        },
-    ];
+  
 
     //const { signIn } = React.useContext(AuthContext);
 
@@ -190,14 +169,33 @@ const Login = ({navigation}) => {
                 Alert.alert("User logged successfully \n userId: "+responseJson.token);
               try {
                AsyncStorage.setItem('userToken', responseJson.token);
+              
+               var decoded = jwt_decode(responseJson.token);
+               console.log(decoded);
+               console.log(decoded.user_id);
+               AsyncStorage.setItem('userID', decoded.user_id);
+               AsyncStorage.setItem('userName', decoded.username);
+               console.log("********************");
                logCurrentStorage();
-               console.log('++++++++');
+               console.log("####################");
               } catch(e) {
                 console.log(e);
               }
-              console.log(responseJson.token);
-              navigation.replace('TabNavigatorEmpl');
-              console.log("********************");
+             // console.log(responseJson.token);
+             
+              
+              //
+             if(decoded.role="F"){
+                navigation.replace('TabNavigator');
+             }
+             else if (decoded.role="E"){
+                navigation.replace('TabNavigatorEmpl');
+             }
+             else{
+                navigation.replace('TabNavigatorForma');
+             }
+              
+             
               
              
             } else {
@@ -317,7 +315,7 @@ const Login = ({navigation}) => {
                 <View style={styles.button}>
                 <TouchableOpacity
                     style={styles.signIn}
-                  // onPress={() => navigation.navigate('TabNavigator')}
+                  //onPress={() => navigation.navigate('TabNavigator')}
                    //onPress={() => navigation.navigate('TabNavigatorEmpl')}
                    //{ ...Users.filter(userToken)  userToken !== null ? (
                   onPress={loginHandle}

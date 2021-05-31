@@ -177,7 +177,7 @@ const SignUp = ({navigation}) => {
             secureTextEntry: !data.secureTextEntry
         });
     };
-    const signupHandle =  async() => {
+    const signupHandle =async() => {
 
         if (data.username.length == 0) {
             Alert.alert('Wrong Input!', 'Please fill UserName.', [
@@ -265,7 +265,7 @@ const SignUp = ({navigation}) => {
           });
     
         if (fdata.role='F'){
-          await registerFormateur();
+           await  registerFormateur();
         }
         else{
             //registerParticipant();
@@ -342,6 +342,7 @@ const SignUp = ({navigation}) => {
             console.log("/////////");
     
             console.log(responseJson);
+        setTimeout(() => { signupHandle(), 5000});
        
             console.log(
               'Registration Formateur Successful.'

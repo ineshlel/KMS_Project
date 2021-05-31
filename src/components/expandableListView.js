@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { Alert, LayoutAnimation, StyleSheet, View, Text, ScrollView, UIManager, TouchableOpacity, Platform, Image } from 'react-native';
 import ProgramActions from './programActions';
 import ProgramItem from './programItem';
-import SearchBarProgram from './searchBarProgram';
-import SolutionInput from './solutionInput';
+
 
 
 export default class ExpandableListView extends Component {
@@ -59,8 +58,8 @@ export default class ExpandableListView extends Component {
          
         
             <ProgramItem
-              name={this.props.item.name}
-              country={this.props.item.country}
+              name={this.props.item.titre}
+              duration={this.props.item.duration}
             />
         
 
@@ -68,7 +67,7 @@ export default class ExpandableListView extends Component {
         </TouchableOpacity>
         <View style={{ height: this.state.layoutHeight, overflow: 'hidden' }}>
           <ProgramActions 
-          
+             idpg={this.props.item.id}
              />
         
         </View>

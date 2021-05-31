@@ -29,7 +29,7 @@ const ProgramItem=props=>{
     <View style={styles.itemContainer} >
         <View >
         <Text  style={styles.textName}>{props.name}</Text>
-        <Text  style={styles.textCountry}>{props.country}</Text>
+        <Text  style={styles.textCountry}>{props.duration}</Text>
         </View>
         <View style={styles.downArrow}>
           <FontAwesome5 

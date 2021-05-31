@@ -142,6 +142,7 @@ export default class ThreeTabSelector extends Component {
           <View>
 <ScrollView>
             {/* Tab 1 Content */}
+            
             <Animated.View 
               style={{ 
                
@@ -151,8 +152,11 @@ export default class ThreeTabSelector extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
+        
           <InfoForm/>
+        
             </Animated.View>
+      
 
             {/* Tab 2 Content */}
             <Animated.View style={{ 
@@ -168,7 +172,7 @@ export default class ThreeTabSelector extends Component {
             {/* Tab 3 Content */}
             <Animated.View style={{ 
             
-             marginTop:250,
+             marginTop:100,
               transform:[
                 { translateX: translateXTab3 },
                 { translateY: -2 * translateY}

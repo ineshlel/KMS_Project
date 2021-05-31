@@ -23,7 +23,9 @@ const RegistrationResponsable=props=>{
             
       </View>
       <View>
-        <ThreeTabRegistration/>
+        <ThreeTabRegistration
+         
+        />
      
         
       </View>

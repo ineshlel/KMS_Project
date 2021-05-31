@@ -3,6 +3,8 @@ import { Button, SafeAreaView, StyleSheet, Modal,
 		View, TextInput, Dimensions ,Text,TouchableOpacity} from "react-native"; 
 import { COLORS } from "../constants";
 import Entypo from 'react-native-vector-icons/Entypo';
+import AsyncStorage from '@react-native-community/async-storage';
+import apiConfig from '../api/config';
 
 const { width } = Dimensions.get("window"); 
 
@@ -14,6 +16,9 @@ const AddWork=props=> {
 	// This is to manage TextInput State 
 	
     const [inputValue2, setInputValue2] = useState(""); 
+	const [startDate, setStartDate] = useState(""); 
+	const [endDate, setEndDate] = useState(""); 
+
 	
 
 	// Create toggleModalVisibility function that will 
@@ -37,6 +42,51 @@ const AddWork=props=> {
         
         
 	}; 
+	const addWorkHandler=async()=>{
+	
+		var dataToSend = {
+		  titre: inputValue2,
+		  date_debut: "2021-05-10",
+		  date_limite:"2021-06-10",
+		  ponderation:2,
+		  partage_par:5,
+		  programme:3,
+		};
+		var formBody = [];
+		for (var key in dataToSend) {
+		  var encodedKey = encodeURIComponent(key);
+		  var encodedValue = encodeURIComponent(dataToSend[key]);
+		  formBody.push(encodedKey + '=' + encodedValue);
+		}
+		formBody = formBody.join('&');
+		const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+		console.log(DEMO_TOKEN);
+		//console.log(await AsyncStorage.getItem('userToken'));
+		console.log('****************');
+		//console.log(token);
+	  
+		fetch(apiConfig.url+'/api/travaux/', {
+			method: 'POST',
+			body: formBody,
+			headers: {
+		  
+			  'Authorization':'Bearer ' + DEMO_TOKEN,
+			  'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+		
+			},
+		  })
+			.then((response) => response.json())
+			.then((responseJson) => {
+		      console.log(responseJson);
+		      console.log('//////////////////////');
+			
+			})
+			.catch((error) => {
+			 console.error(error);
+			});
+			addFieldHandler();
+
+	}
 
 	return ( 
 		<SafeAreaView style={styles.screen}> 
@@ -67,7 +117,10 @@ const AddWork=props=> {
                                 style={styles.textInput} 
 								onChangeText={(value2) => setInputValue2(value2)} />
                         <View style={styles.buttonContainer}>
-						<TouchableOpacity onPress={addFieldHandler} >
+						<TouchableOpacity
+						 //onPress={addFieldHandler} 
+						 onPress={addWorkHandler} 
+						 >
 						   <View style={styles.addButton}>
                              <Text>Ajouter</Text></View>
 	                    </TouchableOpacity>

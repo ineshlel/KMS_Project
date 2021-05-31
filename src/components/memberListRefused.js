@@ -10,47 +10,47 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 //const navigation = useNavigation();
 
-export default class MemberList extends React.Component{
-constructor(props){
-super(props)
-  this.intervalID,
- this.state={
-   demandes:[]
+export default class MemberListRefused extends React.Component{
+  constructor(props){
+    super(props)
+      this.intervalID,
+     this.state={
+       demandes:[]
+        
+    }}
+    //json hiyya response data
+     async componentDidMount(){
+      
+         this.getDemandes();
+        
+       }
+       componentWillUnmount() {
+        clearTimeout(this.intervalID);
+      }
+    getDemandes=async()=>{
+        const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+        fetch(apiConfig.url+`/api/demandes_formateur?statut=R&programme=${this.props.id_pg}`, {
+          method: 'GET',
+          headers: {
+        
+            'Authorization':'Bearer '+ DEMO_TOKEN,
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      
+          },
+        })
+           .then((response)=>response.json())
+           .then((json)=>{
+               console.log('JSONDEMANDES',json)
+            this.setState({demandes:json})
+            this.intervalID = setTimeout(this.getDemandes.bind(this), 5000);
+           })
+           .catch((error)=>{
+               console.error(error)
+               this.setState({demandes:[]})
+              
+           });
     
-}}
-//json hiyya response data
- async componentDidMount(){
-  
-     this.getDemandes();
-    
-   }
-   componentWillUnmount() {
-    clearTimeout(this.intervalID);
-  }
-getDemandes=async()=>{
-    const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
-    fetch(apiConfig.url+`/api/demandes_formateur?statut=EA&programme=${this.props.id_pg}`, {
-      method: 'GET',
-      headers: {
-    
-        'Authorization':'Bearer '+ DEMO_TOKEN,
-        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-  
-      },
-    })
-       .then((response)=>response.json())
-       .then((json)=>{
-           console.log('JSONDEMANDES',json)
-        this.setState({demandes:json})
-        this.intervalID = setTimeout(this.getDemandes.bind(this), 5000);
-       })
-       .catch((error)=>{
-           console.error(error)
-           this.setState({demandes:[]})
-          
-       });
-
-}
+    }
  
 
     
@@ -111,5 +111,3 @@ const styles=StyleSheet.create({
      
  
 });
-
-//export default FlatListPC;

@@ -22,6 +22,8 @@ import DocumentPicker from 'react-native-document-picker';
 
 import { COLORS } from '../constants';
 import ConsigneItem from '../components/consigneItem';
+import apiConfig from '../api/config';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 
@@ -49,8 +51,38 @@ const FilePickerResp = () => {
       console.log('File Name : ' + res.name);
       console.log('File Size : ' + res.size);
       //Setting the state to show single file attributes
-      setSingleFile(res);
-      addFileHandler(res.name)
+      setSingleFile(res)
+      const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+      //Check if any file is selected or not
+      if (singleFile != null) {
+        //If file selected then create FormData
+        //const fileToUpload = singleFile;
+        const dataup = new FormData();
+        dataup.append('piece_jointe', res);
+        dataup.append('travail', 1);
+        dataup.append('remise_par', 27);
+        fetch(apiConfig.url+'/api/consigneUpload/', {
+          method: 'POST',
+          body: dataup,
+          headers: {
+        
+            'Authorization':'Bearer ' + DEMO_TOKEN,
+            'Content-Type': 'multipart/form-data; ',
+      
+          },
+        }).then((response) => response.json())
+        .then((responseJson) => {
+          //Hide Loader
+          console.log(responseJson);
+          //alert('Upload Successful');
+  
+         console.log('//////////////////////');
+        
+        });
+     
+      
+        } 
+     addFileHandler(res.name)
     } catch (err) {
       //Handling any exception (If any)
       if (DocumentPicker.isCancel(err)) {
@@ -63,10 +95,8 @@ const FilePickerResp = () => {
       }
     }
   };
-
- 
-  const addFileHandler= (fileName)=>{
-    setFiles(currentFiles=>
+    const addFileHandler= (fileName)=>{
+      setFiles(currentFiles=>
       [...files,{id:Math.random().toString(),consigneName:fileName}]);
 
   }

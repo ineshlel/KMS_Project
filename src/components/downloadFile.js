@@ -13,9 +13,11 @@ import {
  
 // Import RNFetchBlob for the file download
 import RNFetchBlob from 'rn-fetch-blob';
+import AsyncStorage from '@react-native-community/async-storage';
  
 const Dashboard = () => {
-  const fileUrl = 'https://www.techup.co.in/wp-content/uploads/2020/01/techup_logo_72-scaled.jpg';
+ //const fileUrl = 'https://www.techup.co.in/wp-content/uploads/2020/01/techup_logo_72-scaled.jpg';
+ const fileUrl='http://localhost:8000/media/consignes/CV-Ines_Hlel.pdf';
  
   const checkPermission = async () => {
     
@@ -49,7 +51,7 @@ const Dashboard = () => {
     }
   };
  
-  const downloadFile = () => {
+  const downloadFile = async() => {
    
     // Get today's date to add the time suffix in filename
     let date = new Date();
@@ -59,6 +61,7 @@ const Dashboard = () => {
     let file_ext = getFileExtention(FILE_URL);
    
     file_ext = '.' + file_ext[0];
+    const token = await AsyncStorage.getItem('userToken');
    
     // config: To get response by passing the downloading related options
     // fs: Root directory path to download
@@ -79,7 +82,10 @@ const Dashboard = () => {
       },
     };
     config(options)
-      .fetch('GET', FILE_URL)
+      .fetch('GET', FILE_URL, {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/pdf',
+      })
       .then(res => {
         // Alert after successful downloading
         console.log('res -> ', JSON.stringify(res));

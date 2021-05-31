@@ -22,6 +22,8 @@ import CurrentDate from '../components/currentDate';
 
 import ProgramList from '../ResponsableScreens/programList';
 import CheckBoxApp from '../components/checkBox';
+import Dashboard from '../components/downloadFile';
+import ListCause from '../components/swipeListe';
 
 
 //import ProfileNavigator from './ProfileNavigator';
@@ -44,9 +46,9 @@ const TabNavigator = ({navigation}) => {
         options={{headerShown: false}}  />
       <Tab.Screen
         name='Profile'
-       //component={ConsignesList}
-       //component={TwoHeaderTabWork}
-       component={CheckBoxApp}
+      //component={ListCause}
+       //component={Dashboard}
+      component={CheckBoxApp}
         initialParams={{ icon: 'profile' }}
       />
       

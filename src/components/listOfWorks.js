@@ -1,6 +1,6 @@
-import React ,{useState}from 'react';
+import React ,{useState,useEffect}from 'react';
 
-import {View,Text, StyleSheet ,TextInput,Button,Modal, ScrollView,Alert,FlatList}from 'react-native';
+import {View,Text, StyleSheet , ScrollView,Alert,FlatList}from 'react-native';
 import { COLORS } from '../constants';
 
 
@@ -23,6 +23,27 @@ const ListOfWorks=()=>{
          
         
       }
+      useEffect(async() => {
+        const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+        fetch(apiConfig.url+'/api/travaux/', {
+          method: 'GET',
+          headers: {
+        
+            'Authorization':'Bearer ' + DEMO_TOKEN,
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      
+          },
+        })
+          .then((response) => response.json())
+          .then((responseJson) => {
+            console.log('JSON',responseJson)
+            setaddInputs(responseJson)
+          })
+          .catch((error) => {
+            console.error(error);
+            setaddInputs([])
+          });
+      }, []);
   
   //<View><AddCircleOutline    /></View>
    //onPress={() => _changeIcon()}

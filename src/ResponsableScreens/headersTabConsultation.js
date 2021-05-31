@@ -1,19 +1,22 @@
 import React, { Component } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import { COLORS } from '../constants';
-import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+import CheckBoxApp from '../components/checkBox';
+
+import { COLORS, FONTS } from '../constants';
+
+import EvaluationScreen from './evaluationScreen';
+import InfoFormAdded from './infoFormAdded';
 
 
-import MemberList from './memberList';
-import MemberListAcc from './memberListAccp';
-import MemberListRefused from './memberListRefused';
 
 const { width } = Dimensions.get('window');
 
-export default class ThreeTabRegistration extends Component {
-  constructor(props){
-    super(props)
+export default class HeadersTabConsult extends Component {
+  constructor(props) {
+    super(props);
+ 
   this.state = {
+
     active: 0,
     xTab1: 0,
     xTab2: 0,
@@ -22,9 +25,10 @@ export default class ThreeTabRegistration extends Component {
     translateXTab1: new Animated.Value(0),
     translateXTab2: new Animated.Value(width),
     translateXTab3: new Animated.Value(2 * width),
-    translateY: -1000
-  }}
-
+    translateY: -1000,
+    
+  
+  } }
   handleSlide(xCordinate){
     let { active, xTab1, xTab2, xTab3, translateX, translateXTab1, translateXTab2, translateXTab3, translateY } = this.state;
     
@@ -86,15 +90,11 @@ export default class ThreeTabRegistration extends Component {
 
   
   render() {
+  
     let { active, xTab1, xTab2, xTab3, translateX, translateXTab1, translateXTab2, translateXTab3, translateY} = this.state;
     return (
       <View style={{flex: 1}}>
-        <View style={styles.container}>  
-        <View style={styles.input}>
-    
-        <Text style={styles.textStyle}>Liste des Formateurs</Text>
-            
-      </View>   
+        <View style={styles.container}>     
           
           {/* TAB BAR */}
           <View style={styles.tabContainer}>
@@ -109,14 +109,10 @@ export default class ThreeTabRegistration extends Component {
                                   this.setState({ active: 0 }, () =>
                                       this.handleSlide(xTab1)
                               )}>
-                    <View  style={styles.tabWithIcon}>
-                      <MaterialIcons
-                        name="person-remove"
-                        color={ active === 0? '#FFFFFF' : COLORS.purple}
-                        size={20}
-                      />
-                        <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple}}> En Attente</Text>
-                    </View> 
+              <Text 
+              style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontSize:18,fontFamily:"Cairo-Bold"}}>
+                Information
+                </Text>
             </TouchableOpacity>
 
             {/* Tab 2 */}
@@ -127,14 +123,7 @@ export default class ThreeTabRegistration extends Component {
                                       this.handleSlide(xTab2)
                               )}>
                               
-                              <View  style={styles.tabWithIcon}>
-                      <MaterialIcons
-                        name="person-add"
-                        color={ active === 1? '#FFFFFF' : COLORS.purple}
-                        size={20}
-                      />
-                        <Text style={{color: active === 1? '#FFFFFF' : COLORS.purple}}> Accepté</Text>
-                    </View> 
+              <Text style={{color: (active === 1)? '#FFFFFF' :COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>CMPV</Text>
             </TouchableOpacity>
 
             {/* Tab 3 */}
@@ -145,20 +134,14 @@ export default class ThreeTabRegistration extends Component {
                                       this.handleSlide(xTab3)
                               )}>
                               
-                              <View  style={styles.tabWithIcon}>
-                      <MaterialIcons
-                        name="person-add-disabled"
-                        color={ active === 2? '#FFFFFF' : COLORS.purple}
-                        size={20}
-                      />
-                        <Text style={{color: active === 2? '#FFFFFF' : COLORS.purple}}> Refusé</Text>
-                    </View>
+              <Text style={{color: (active === 2)? '#FFFFFF' : COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Evaluation</Text>
             </TouchableOpacity>
 
           </View>
 
           {/* CONTENT */}  
           <View>
+<ScrollView>
             {/* Tab 1 Content */}
             <Animated.View 
               style={{ 
@@ -169,38 +152,39 @@ export default class ThreeTabRegistration extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-              <MemberList
-              id_pg={this.props.route.params}
-              />
-                
+         <InfoFormAdded
+           id_pg={this.props.route.params} 
+         />
             </Animated.View>
 
             {/* Tab 2 Content */}
             <Animated.View style={{ 
-             
+                flex:1,
+           
+              
               transform:[
                 { translateX: translateXTab2 },
                 { translateY: -translateY}
               ]
             }}>
-              <MemberListAcc
-              id_pg={this.props.route.params}
-              />
+           <CheckBoxApp/>
             </Animated.View>
 
             {/* Tab 3 Content */}
             <Animated.View style={{ 
+            
+             marginTop:250,
               transform:[
                 { translateX: translateXTab3 },
                 { translateY: -2 * translateY}
               ]
             }}>
-            <MemberListRefused
-            id_pg={this.props.route.params}
-            />
+              <EvaluationScreen/>
+             
             </Animated.View>
-
+            </ScrollView>
           </View>
+        
 
         </View>
       </View>
@@ -210,34 +194,28 @@ export default class ThreeTabRegistration extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '85%',
-    marginLeft: 10,
-    marginRight: 10,
-    flexDirection:'column'
+    width: '90%',
+    marginLeft: 'auto',
+    marginRight: 'auto'
   },
 
   // Tab Selector Styles
   tabContainer:{
     flexDirection: 'row',
     height: 36,
-    marginTop: 30, 
+    marginTop: 10, 
     marginBottom: 10,
-     marginLeft:20,
-//position: 'relative',
-justifyContent: 'center',
-    alignItems: 'center',
- 
+    position: 'relative',
   },
 
   overlay:{
     position: 'absolute',
-    width: '34%',
+    width: '33.33%',
     height: '100%',
     top: 0,
     left: 0,
-    backgroundColor:COLORS.purple,
-    borderRadius:16,
-  
+    backgroundColor:COLORS.blueClair,
+    borderRadius: 4
   },
 
   tab:{
@@ -249,11 +227,9 @@ justifyContent: 'center',
   },
 
   tab1:{
- 
     borderRightWidth: 0,
     borderTopLeftRadius: 4,
     borderBottomLeftRadius: 4,
- 
   },
 
   tab2:{
@@ -261,7 +237,6 @@ justifyContent: 'center',
     borderRightWidth: 0,
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
- 
 
   },
 
@@ -273,31 +248,12 @@ justifyContent: 'center',
 
   // Content Styles
   contentContainter:{
-    //justifyContent: 'center',
-    //alignItems: 'center'
+    justifyContent: 'center',
+    alignItems: 'center'
   },
 
   contentText: {
     color: 'white',
-    fontSize: 20
-  } ,
-  tabWithIcon:{
-    flexDirection:'row',
-    
-  },
-  input:{
-    width:'50%',borderColor:COLORS.blueClair,borderWidth:1,
-    height:40,
-    margin:15,
-    borderRadius:14,
-    borderWidth:2,
-    alignItems:'center',
-    justifyContent:'center',
-    backgroundColor:COLORS.blueClair,
-    marginLeft:25,
-  },
-  textStyle:{
-    color:'#fff'
-   
-},
+    fontSize: 25
+  } 
 });

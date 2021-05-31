@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { LayoutAnimation, StyleSheet, View, Text, ScrollView, UIManager, TouchableOpacity, Platform, Image } from 'react-native';
 
 import ExpandableListView from './expandableListView';
+import apiConfig from '../api/config';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 export default class MyList extends Component {
@@ -13,29 +15,47 @@ export default class MyList extends Component {
     }
     
   
-   
+    this.intervalID,
     this.state = { 
       array:[],
       filteredArray:[],
       search:'',
       
       }
-  }
+  };
+
   
-    async componentDidMount(){
-      let url='https://api.openbrewerydb.org/breweries';
-      fetch(url)
-      .then((response)=>response.json())
-      .then((json)=>{
-          console.log('JSON',json)
-       this.setState({array:json})
-      })
-      .catch((error)=>{
-          console.error(error)
-          this.setState({array:[]})
-      });
-      
-  }
+  componentDidMount(){
+     this.getData();
+      }
+      componentWillUnmount() {
+        
+        //clearTimeout(this.intervalID);
+      }
+   getData=async()=>{
+    const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+    fetch(apiConfig.url+'/api/programmes/', {
+      method: 'GET',
+      headers: {
+    
+        'Authorization':'Bearer ' + DEMO_TOKEN,
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+  
+      },
+    })
+    .then((response)=>response.json())
+    .then((json)=>{
+        console.log('JSON',json)
+     this.setState({array:json})
+     //this.intervalID = setTimeout(this.getData.bind(this), 5000);
+    })
+    .catch((error)=>{
+        console.error(error)
+        this.setState({array:[]})
+    });
+
+   }
+ 
 
   // enable layout animation, toggle 'expanded' state for index and then update the layout
   updateLayout = (index) => {
@@ -89,7 +109,7 @@ export default class MyList extends Component {
             this.state.array.map((item, key) =>
               (
                 <ExpandableListView  style={styles.myList}
-                key={item.name} 
+                key={item.id} 
                 onClickFunction={this.updateLayout.bind(this, key)} 
                 item={item} />
               ))
