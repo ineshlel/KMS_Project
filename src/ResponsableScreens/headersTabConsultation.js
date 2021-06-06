@@ -3,6 +3,7 @@ import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, V
 import CheckBoxApp from '../components/checkBox';
 
 import { COLORS, FONTS } from '../constants';
+import ConsultationComp from './consultationComp';
 
 import EvaluationScreen from './evaluationScreen';
 import InfoFormAdded from './infoFormAdded';
@@ -167,19 +168,22 @@ export default class HeadersTabConsult extends Component {
                 { translateY: -translateY}
               ]
             }}>
-           <CheckBoxApp/>
+          <ConsultationComp
+          id_pg={this.props.route.params}/>
             </Animated.View>
 
             {/* Tab 3 Content */}
             <Animated.View style={{ 
             
-             marginTop:250,
+             //marginBottom:350,
               transform:[
                 { translateX: translateXTab3 },
                 { translateY: -2 * translateY}
               ]
             }}>
-              <EvaluationScreen/>
+              <EvaluationScreen
+              id_pg={this.props.route.params}
+              />
              
             </Animated.View>
             </ScrollView>

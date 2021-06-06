@@ -9,6 +9,8 @@ import HeaderTabsForma from '../FormateurScreens/headerTabsForma';
 
 
 import CheckBoxApp from '../components/checkBox';
+import DatePickerInput from '../components/datePicker';
+import DateNaissance from '../components/datenaiss';
 
 
 //import ProfileNavigator from './ProfileNavigator';
@@ -26,14 +28,14 @@ const TabNavigatorForma = ({navigation}) => {
       <Tab.Screen
         name='Create'
         //component={ThreeTabSelector}
-        component={HeaderTabsForma}
+        component={DateNaissance}
         initialParams={{ icon: 'plus' }}
         options={{headerShown: false}}  />
       <Tab.Screen
         name='Profile'
        //component={ConsignesList}
        //component={TwoHeaderTabWork}
-       component={CheckBoxApp}
+       component={DatePickerInput}
         initialParams={{ icon: 'profile' }}
       />
       

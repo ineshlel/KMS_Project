@@ -59,15 +59,17 @@ export default class ExpandableListViewForma extends Component {
          
         
             <ProgramItem
-              name={this.props.item.name}
-              country={this.props.item.country}
+              name={this.props.item.titre}
+              duration={this.props.item.duration}
             />
         
 
          
         </TouchableOpacity>
         <View style={{ height: this.state.layoutHeight, overflow: 'hidden' }}>
-        <ProgramActionsLimited/>
+        <ProgramActionsLimited
+         idpg={this.props.item.id}
+        />
         
         </View>
       </View>
@@ -81,5 +83,9 @@ const styles = StyleSheet.create({
       paddingTop: (Platform.OS === 'ios') ? 20 : 0,
       backgroundColor: '#F5FCFF',
     },
- 
+    myList:{
+      marginTop:40,
+      position:'relative',
+  
+    }
   });

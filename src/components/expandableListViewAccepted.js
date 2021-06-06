@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Alert, LayoutAnimation, StyleSheet, View, Text, ScrollView, UIManager, TouchableOpacity, Platform, Image } from 'react-native';
-import ProgramActions from './programActions';
+
 import ProgramActionsAccepted from './programActionsAccepted';
-import ProgramActionsLimited from './programActionsLimited';
-import ProgramItem from './programItem';
+
+import ProgramItemAccepted from './programItemAccepted';
 
 
 
@@ -59,16 +59,18 @@ export default class ExpandableListViewAccepted extends Component {
         <TouchableOpacity activeOpacity={0.8} onPress={this.props.onClickFunction}>
          
         
-            <ProgramItem
-              name={this.props.item.name}
-              country={this.props.item.country}
+            <ProgramItemAccepted
+              name={this.props.item.programme_name}
+              dd={this.props.item.date_debut}
+              df={this.props.item.date_fin}
             />
         
 
          
         </TouchableOpacity>
         <View style={{ height: this.state.layoutHeight, overflow: 'hidden' }}>
-        <ProgramActionsAccepted/>
+        <ProgramActionsAccepted
+        idpg={this.props.item.programme}/>
         
         </View>
       </View>

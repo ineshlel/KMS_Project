@@ -2,7 +2,7 @@ import React ,{useState}from 'react';
 
 import {View,Text, StyleSheet ,TextInput,Button,Modal}from 'react-native';
 import { COLORS } from '../constants';
-import { Keyboard } from 'react-native';
+
 
 
 const Input=props=>{

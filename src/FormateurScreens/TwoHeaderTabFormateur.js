@@ -110,7 +110,7 @@ export default class TwoHeaderTabFormateur extends Component {
                                   this.setState({ active: 0 }, () =>
                                       this.handleSlide(xTab1)
                               )}>
-              <Text style={{color: active === 0? COLORS.purple : COLORS.purple,fontSize:18}}>Inscription</Text>
+              <Text style={{color: active === 0? COLORS.purple : COLORS.purple,fontSize:20,fontFamily:"Cairo-SemiBold"}}>Inscription</Text>
             </TouchableOpacity>
 
             {/* Tab 2 */}
@@ -121,7 +121,7 @@ export default class TwoHeaderTabFormateur extends Component {
                                       this.handleSlide(xTab2)
                               )}>
                               
-              <Text style={{color: (active === 1)? COLORS.purple : COLORS.purple,fontSize:18}}>Demandes</Text>
+              <Text style={{color: (active === 1)? COLORS.purple : COLORS.purple,fontSize:20,fontFamily:"Cairo-SemiBold",}}>Demandes</Text>
             </TouchableOpacity>
 
             {/* Tab 3 */}
@@ -143,7 +143,9 @@ export default class TwoHeaderTabFormateur extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-              <InscriptionFormateur/>
+              <InscriptionFormateur
+              id_pg={this.props.route.params}
+              />
               
                 
             </Animated.View>
@@ -156,7 +158,8 @@ export default class TwoHeaderTabFormateur extends Component {
                 { translateY: -translateY}
               ]
             }}>
-            <ThreeTabRegistrationForma/>
+            <ThreeTabRegistrationForma
+            id_pgf={this.props.route.params}/>
             </Animated.View>
 
           

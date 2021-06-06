@@ -12,27 +12,24 @@ import StaticInput from '../components/staticInput';
 
 
 
-const RequestInfo=({props,navigation})=>{
+const RequestInfo=({props,route})=>{
+  const { nameF, ddd,dfd,id_dm,id_pg,id_f,st } = route.params;
 
-
-  const [time,setTime]=useState();
    
     return (
      <View  style={styles.formContainer}>
-    <StaticInput name='Titre :'
-    value='Programme Hancho'
+    <StaticInput name='Date Demande :'
+    //value='Programme Hancho'
     />
-    <StaticInput name='Durée :'
-    value='20H'
-    />
+
       <StaticInput name='Date Début:'
-    value='20/04/2021'
+    value={ddd}
     />
       <StaticInput name='Date Fin:'
-    value='20/04/2021'
+    value={dfd}
     />
-    <StaticInput name='Date Demande:'
-    value='20/04/2021'
+       <StaticInput name='Statut:'
+    value={st}
     />
      </View>
  );

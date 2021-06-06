@@ -2,8 +2,6 @@ import React ,{useState,useEffect}from 'react';
 
 import {View,Text, StyleSheet , ScrollView,Alert,FlatList}from 'react-native';
 import { COLORS } from '../constants';
-import apiConfig from '../api/config';
-import AsyncStorage from '@react-native-community/async-storage';
 
 
 
@@ -15,10 +13,9 @@ import ItemAdded from './itemAdded';
 
 
 
-const ListOfWorks=({route})=>{
+const WorksConsultation=()=>{
  
     const[addInputs,setaddInputs]=useState([]);
-    const[works,setWorks]=useState([]);
    
 
     const addInputHandler= (inputValue)=>{
@@ -27,7 +24,7 @@ const ListOfWorks=({route})=>{
          
         
       }
-      /*useEffect(async() => {
+      useEffect(async() => {
         const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
         fetch(apiConfig.url+'/api/travaux/', {
           method: 'GET',
@@ -47,28 +44,6 @@ const ListOfWorks=({route})=>{
             console.error(error);
             setaddInputs([])
           });
-      }, []);*/
-      useEffect(async() => {
-        const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
-        console.log(route.params);
-        fetch(apiConfig.url+`/api/travaux?programme=${route.params}`, {
-          method: 'GET',
-          headers: {
-        
-            'Authorization':'Bearer ' + DEMO_TOKEN,
-            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
-      
-          },
-        })
-          .then((response) => response.json())
-          .then((responseJson) => {
-            console.log('JSONWorks',responseJson)
-            setWorks(responseJson)
-          })
-          .catch((error) => {
-            console.error(error);
-            setWorks([])
-          });
       }, []);
   
   //<View><AddCircleOutline    /></View>
@@ -83,36 +58,16 @@ const ListOfWorks=({route})=>{
     
     
     <AddWork
-    id_pg={route.params}
     onAddField={addInputHandler}
     />
-    <View >
-    <FlatList
-      
-         style={{flexGrow: 0}}
-            data={works}
-            keyExtractor={(item,index)=>index.toString()}
-            renderItem={({item})=> 
-            <ItemAdded 
-           
-            id_tr={item.id}
-            value={item.titre}
-            />
-            
-        }
-        />
- 
-    </View>
     <View >
     <FlatList 
       keyExtractor={(item,index)=>item.id}
       data={addInputs} 
       renderItem={itemData=> 
       <ItemAdded 
-    
       id ={itemData.item.id}
       value={itemData.item.value2}
-      id_pg={route.params}
       />
       }>
        
@@ -160,4 +115,4 @@ const styles=StyleSheet.create({
      
 });
 
-export default ListOfWorks;
+export default WorksConsultation;

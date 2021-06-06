@@ -2,8 +2,9 @@
 // https://aboutreact.com/file-picker-in-react-native/
 
 // Import React
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+
 // Import required components
 /* */
 import {
@@ -24,13 +25,36 @@ import { COLORS } from '../constants';
 import ConsigneItem from '../components/consigneItem';
 import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';
+import jwt_decode from "jwt-decode";
 
 
 
-const FilePickerResp = () => {
+const FilePickerResp = props => {
   const [singleFile, setSingleFile] = useState('');
-
+  const[consignes,setConsignes]=useState([]);
   const[files,setFiles]=useState([]);
+  useEffect(async() => {
+    const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+    console.log(route.params);
+    fetch(apiConfig.url+`/api/consignes?travail=${props.idtr}`, {
+      method: 'GET',
+      headers: {
+    
+        'Authorization':'Bearer ' + DEMO_TOKEN,
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+  
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        console.log('JSONWorks',responseJson)
+        setConsignes(responseJson)
+      })
+      .catch((error) => {
+        console.error(error);
+        setConsignes([])
+      });
+  }, []);
 
   const selectOneFile = async () => {
     //Opening Document Picker for selection of one file
@@ -53,14 +77,19 @@ const FilePickerResp = () => {
       //Setting the state to show single file attributes
       setSingleFile(res)
       const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+  
+      var decoded = jwt_decode(DEMO_TOKEN);
+      const travailID=await AsyncStorage.getItem('travailID');
+      console.log("----------");
+    
       //Check if any file is selected or not
       if (singleFile != null) {
         //If file selected then create FormData
         //const fileToUpload = singleFile;
         const dataup = new FormData();
         dataup.append('piece_jointe', res);
-        dataup.append('travail', 1);
-        dataup.append('remise_par', 27);
+        dataup.append('travail', travailID);
+        dataup.append('remis_par',decoded.user_id);
         fetch(apiConfig.url+'/api/consigneUpload/', {
           method: 'POST',
           body: dataup,
@@ -74,9 +103,6 @@ const FilePickerResp = () => {
         .then((responseJson) => {
           //Hide Loader
           console.log(responseJson);
-          //alert('Upload Successful');
-  
-         console.log('//////////////////////');
         
         });
      
@@ -121,6 +147,22 @@ const FilePickerResp = () => {
         </TouchableOpacity>
      
       </View>
+      <View>
+      <FlatList
+      
+         style={{flexGrow: 0}}
+            data={consignes}
+            keyExtractor={(item,index)=>index.toString()}
+            renderItem={({item})=> 
+            <ConsigneItem
+            id ={item.id}
+            name={item.file_name}
+            />
+            
+        }
+        />
+ 
+    </View>
    
       <FlatList 
       keyExtractor={(item,index)=>item.id}

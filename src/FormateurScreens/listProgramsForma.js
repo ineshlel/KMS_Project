@@ -1,11 +1,22 @@
 import React, { Component } from 'react';
 import { Alert, LayoutAnimation, StyleSheet, View, Text, ScrollView, UIManager, TouchableOpacity, Platform, Image } from 'react-native';
 
-import ExpandableListViewAccepted from '../components/expandableListViewAccepted';
+import ExpandableListViewForma from '../components/expandableListViewForma';
 import SearchBarProgram from '../components/searchBarProgram';
+import apiConfig from '../api/config';
+import AsyncStorage from '@react-native-community/async-storage';
+import ExpandableListViewAccepted from '../components/expandableListViewAccepted';
 
 
-
+/* {
+            this.state.array.map((item, key) =>
+            (
+              <ExpandableListViewAccepted style={styles.myList}
+              key={item.id} 
+              onClickFunction={this.updateLayout2.bind(this, key)} 
+              item={item} />
+            ))
+          } */
 
 
 export default class MyListForma extends Component {
@@ -20,6 +31,7 @@ export default class MyListForma extends Component {
    
     this.state = { 
       array:[],
+      arrayAccepted:[],
       filteredArray:[],
       search:'',
       
@@ -27,16 +39,44 @@ export default class MyListForma extends Component {
   }
   
     async componentDidMount(){
-      let url='https://api.openbrewerydb.org/breweries';
-      fetch(url)
+      const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+      fetch(apiConfig.url+'/api/programmes/getprogs/?date_fin__lte=2021-06-05', {
+        method: 'GET',
+        headers: {
+      
+          'Authorization':'Bearer ' + DEMO_TOKEN,
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    
+        },
+      })
       .then((response)=>response.json())
       .then((json)=>{
           console.log('JSON',json)
        this.setState({array:json})
+       //this.intervalID = setTimeout(this.getData.bind(this), 5000);
       })
       .catch((error)=>{
           console.error(error)
           this.setState({array:[]})
+      });
+      fetch(apiConfig.url+'/api/demandes_formateur/?date_fin__gte=2021-06-05&formateur=11&statut=A', {
+        method: 'GET',
+        headers: {
+      
+          'Authorization':'Bearer ' + DEMO_TOKEN,
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+    
+        },
+      })
+      .then((response)=>response.json())
+      .then((json)=>{
+          console.log('JSONAccepted',json)
+       this.setState({arrayAccepted:json})
+       //this.intervalID = setTimeout(this.getData.bind(this), 5000);
+      })
+      .catch((error)=>{
+          console.error(error)
+          this.setState({arrayAccepted:[]})
       });
       
   }
@@ -52,33 +92,16 @@ export default class MyListForma extends Component {
       }
     });
   }
- /*searchFilterFunction = (text) => {
-    // Check if searched text is not blank
-    if (text) {
-      // Inserted text is not blank
-      // Filter the masterDataSource
-      // Update FilteredDataSource
-      const newData = array.filter(
-        function (item) {
-          const itemData = item.title
-            ? item.name.toUpperCase()
-            : ''.toUpperCase();
-          const textData = text.toUpperCase();
-          return itemData.indexOf(textData) ;
-      });
-      this.setState({filteredArray:[newData]})
-      //setFilteredDataSource(newData);
-      this.setState({search:text})
-     // setSearch(text);
-    } else {
-      // Inserted text is blank
-      // Update FilteredDataSource with masterDataSource
-      this.setState({filteredArray:[array]})
-      //setFilteredDataSource(masterDataSource);
-      this.setState({search:text})
-      //setSearch(text);
-    }
-  }*/
+  updateLayout2 = (index) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    const arrayAccepted = [...this.state.arrayAccepted];
+    arrayAccepted[index]['expanded'] = !arrayAccepted[index]['expanded'];
+    this.setState(() => {
+      return {
+      arrayAccepted
+      }
+    });
+  }
 
   render() {
     return (
@@ -92,15 +115,26 @@ export default class MyListForma extends Component {
         <ScrollView 
          
          contentContainerStyle={{ paddingHorizontal: 10}}>
+            {
+            this.state.arrayAccepted.map((item, key) =>
+            (
+              <ExpandableListViewAccepted style={styles.myList}
+              key={item.id} 
+              onClickFunction={this.updateLayout2.bind(this, key)} 
+              item={item} />
+            ))
+          }
           {
             this.state.array.map((item, key) =>
               (
-                <ExpandableListViewAccepted 
-                key={item.name} 
+                <ExpandableListViewForma style={styles.myList}
+                key={item.id} 
                 onClickFunction={this.updateLayout.bind(this, key)} 
                 item={item} />
               ))
           }
+          
+         
         </ScrollView>
        
       </View>

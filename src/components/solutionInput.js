@@ -2,23 +2,32 @@ import React ,{useState}from 'react';
 
 import {View,Text, StyleSheet ,TextInput,Button,Modal}from 'react-native';
 import { COLORS } from '../constants';
+import { RadioButton } from 'react-native-paper';
 
 
 const SolutionInput=props=>{
   const [focus, setFocus] = useState(false); 
+  const [checked, setChecked] = React.useState(false);
   const customStyle=focus?styles.inputFocus : styles.input
 
     return (
   
     <View  style={styles.inputContainer}>
-   
+   <View  style={styles.radioElement}>
     <TextInput  
       style={customStyle}
       onFocus={()=>setFocus(true)}
       placeholder={props.name}
    // onChangeText={}
-    //value={}
+    //value={}   
     />
+    <RadioButton
+        color={COLORS.orange}
+        uncheckedColor={COLORS.purple}
+        status={ checked === true ? 'checked' : 'unchecked' }
+        onPress={() => setChecked(true)}
+      />
+    </View>
     </View>
  );
 };
@@ -46,6 +55,10 @@ const styles=StyleSheet.create({
     height:40,
     marginTop:5,
     borderRadius:14,
+  },
+  radioElement:{
+    flexDirection:'row',
+    alignItems:'center'
   },
 
   

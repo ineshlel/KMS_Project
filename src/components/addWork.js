@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import apiConfig from '../api/config';
 
 const { width } = Dimensions.get("window"); 
+import jwt_decode from "jwt-decode";
 
 const AddWork=props=> { 
 	
@@ -18,7 +19,7 @@ const AddWork=props=> {
     const [inputValue2, setInputValue2] = useState(""); 
 	const [startDate, setStartDate] = useState(""); 
 	const [endDate, setEndDate] = useState(""); 
-
+ 
 	
 
 	// Create toggleModalVisibility function that will 
@@ -43,14 +44,21 @@ const AddWork=props=> {
         
 	}; 
 	const addWorkHandler=async()=>{
-	
+		const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+		//const programID=await AsyncStorage.getItem('programID');
+		//console.log(programID);
+		
+		//console.log('*************');
+		var decoded = jwt_decode(DEMO_TOKEN);
+		//console.log(decoded.user_id);
+		//console.log(DEMO_TOKEN);
 		var dataToSend = {
 		  titre: inputValue2,
 		  date_debut: "2021-05-10",
 		  date_limite:"2021-06-10",
 		  ponderation:2,
-		  partage_par:5,
-		  programme:3,
+		  partage_par:JSON.parse(decoded.user_id),
+		  programme:props.id_pg,
 		};
 		var formBody = [];
 		for (var key in dataToSend) {
@@ -59,10 +67,9 @@ const AddWork=props=> {
 		  formBody.push(encodedKey + '=' + encodedValue);
 		}
 		formBody = formBody.join('&');
-		const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
-		console.log(DEMO_TOKEN);
+	
 		//console.log(await AsyncStorage.getItem('userToken'));
-		console.log('****************');
+		//console.log('****************');
 		//console.log(token);
 	  
 		fetch(apiConfig.url+'/api/travaux/', {
@@ -78,6 +85,7 @@ const AddWork=props=> {
 			.then((response) => response.json())
 			.then((responseJson) => {
 		      console.log(responseJson);
+			  AsyncStorage.setItem('travailID',JSON.stringify(responseJson.id));
 		      console.log('//////////////////////');
 			
 			})

@@ -81,6 +81,7 @@ const InfoForm=props=>{
         //Hide Loader
         setLoading(false);
         console.log(responseJson);
+        AsyncStorage.setItem('programID',JSON.stringify(responseJson.id));
         Alert.alert("Le programme  "+responseJson.titre+" a été ajouté");
         //titrepgRef.current.clear();
         //descriptionpgRef.current.clear();

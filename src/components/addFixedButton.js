@@ -35,8 +35,7 @@ const styles=StyleSheet.create({
       },
       textStyle:{
         color:'#fff',
-      
-      }
+       }
     
 });
 export default AddFixedButton;

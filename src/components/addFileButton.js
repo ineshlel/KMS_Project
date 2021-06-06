@@ -8,8 +8,6 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const AddFileButton=props=>{
   
     return (
-  
-        
 						<View style={styles.addButton}>
                         <Ionicons
                         name="attach"
@@ -17,6 +15,7 @@ const AddFileButton=props=>{
                         size={20}
                       />
                      <Text>Ajouter</Text></View>
+                 
 
  );
 };

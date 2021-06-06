@@ -1,29 +1,33 @@
 import React ,{useState,useEffect}from 'react';
 
 import {View,Text, StyleSheet }from 'react-native';
-import DescriptionStaticInput from '../components/descriptionStaticInput';
-
+import ButtonKms from '../components/buttonV';
+import DescriptionInput from '../components/descriptionInput';
 import StaticInput from '../components/staticInput';
 import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';
+import DescriptionStaticInput from '../components/descriptionStaticInput';
 
 
 
 
 
-const InfoForma=props=>{
 
 
-  
+const ProgramConsultation=({route})=>{
+
+  //const {itemId} = route.params;
+
   const [title,setTitle]=useState('');
   const [duration,setDuration]=useState('');
   const [description,setDescription]=useState('');
-  const[ddebut,setDdebut]=useState();
-  const[dfin,setDatefin]=useState();
+  const [min,setMin]=useState('');
+  const [max,setMax]=useState('');
 
   useEffect( async() => {
+      console.log(route.params);
     const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
-    fetch(apiConfig.url+`/api/demandes_formateur/?date_fin__gte=2021-06-05&formateur=11&statut=A&programme=${props.id_pg}`, {
+    fetch(apiConfig.url+`/api/programmes/${route.params}`, {
       method: 'GET',
       headers: {
     
@@ -36,12 +40,11 @@ const InfoForma=props=>{
       .then((responseJson) => {
         //setFilteredDataSource(responseJson);
        console.log(responseJson);
-      setTitle(responseJson[0].programme_name);
-      setDuration(responseJson[0].programme_duree);
-      setDescription(responseJson[0].programme_desc);
-      setDdebut(responseJson[0].date_debut);
-      setDatefin(responseJson[0].date_fin);
-  
+      setTitle(responseJson.titre);
+      setDuration(responseJson.duration);
+      setDescription(responseJson.description);
+      setMin(responseJson.min);
+      setMax(responseJson.max);
       })
       .catch((error) => {
         console.error(error);
@@ -56,13 +59,13 @@ const InfoForma=props=>{
     <StaticInput name='Durée :'
     value={duration}
     />
-    <StaticInput  name='Date début :'
-    value={ddebut}
+    <StaticInput name='Min :'
+    value={min}
     />
-    <StaticInput
-    name='Date fin :'
-    value={dfin}
+    <StaticInput name='Max :'
+    value={max}
     />
+
     <DescriptionStaticInput  name='Description: '
     value={description}
     
@@ -102,4 +105,4 @@ const styles=StyleSheet.create({
     
      
 });
-export default InfoForma;
+export default ProgramConsultation;

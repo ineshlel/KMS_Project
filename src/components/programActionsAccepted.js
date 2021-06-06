@@ -20,7 +20,7 @@ const ProgramActionsAccepted=props=>{
         </View>
         </TouchableOpacity>
         <TouchableOpacity  
-        onPress={() => navigation.navigate('HeaderTabsForma')}
+        onPress={() => navigation.navigate('HeaderTabsForma',props.idpg)}
         >
         <View style={styles.input}>
           <Text style={styles.textStyle}>Consultation</Text>

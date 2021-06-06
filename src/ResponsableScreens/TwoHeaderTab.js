@@ -16,8 +16,9 @@ const { width } = Dimensions.get('window');
 
 
 export default class TwoHeaderTab extends Component {
-  
-  state = {
+  constructor(props){
+  super(props)
+  this.state = {
 
     active: 0,
     xTab1: 0,
@@ -30,7 +31,7 @@ export default class TwoHeaderTab extends Component {
     translateY: -1000,
     
   
-  }
+  }}
   //navigation=this.state;
 
   handleSlide(xCordinate){
@@ -141,7 +142,9 @@ export default class TwoHeaderTab extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-             <FilePickerResp/>
+             <FilePickerResp
+             idtr={this.props.route.params}
+            />
               
                 
             </Animated.View>

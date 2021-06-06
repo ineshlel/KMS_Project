@@ -63,7 +63,7 @@ const Login = ({navigation}) => {
     }
 
     const handlePasswordChange = (val) => {
-        if( val.trim().length >= 4 ) {
+        if( val.trim().length >= 3 ) {
             setData({
                 ...data,
                 password: val,
@@ -142,10 +142,7 @@ const Login = ({navigation}) => {
         fetch(apiConfig.url+'/auth/signin/', {
           method: 'POST',
           body:formBody,
-           //JSON.stringify({"username": userEmail, 
-          //"password": userPassword}),
           headers: {
-            //Header Defination
          
             'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
           },
@@ -186,13 +183,16 @@ const Login = ({navigation}) => {
               
               //
              if(decoded.role="F"){
-                navigation.replace('TabNavigator');
+              //navigation.replace('TabNavigatorForma');
+               navigation.replace('TabNavigator');
+                
              }
-             else if (decoded.role="E"){
+             else if (decoded.role="F"){
                 navigation.replace('TabNavigatorEmpl');
              }
              else{
-                navigation.replace('TabNavigatorForma');
+                navigation.replace('TabNavigator');
+               
              }
               
              
@@ -201,7 +201,7 @@ const Login = ({navigation}) => {
             } else {
               //setErrortext(responseJson.message);
               console.log('Please check your email id or password');
-              Alert.alert("User not found ");
+              Alert.alert("Utilistaeur non trouvé");
             }
           })
           .catch((error) => {

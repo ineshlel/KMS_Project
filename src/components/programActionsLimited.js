@@ -12,7 +12,12 @@ const ProgramActionsLimited=props=>{
   const navigation = useNavigation();
     return ( 
       <View  style={styles.actionsContainers}>
-        <TouchableOpacity  onPress={() => navigation.navigate('Inscription')}>
+        <TouchableOpacity  onPress={() => navigation.navigate('ProgramConsultation',props.idpg)}>
+        <View style={styles.input}>
+          <Text style={styles.textStyle}>Consultation</Text>
+        </View>
+        </TouchableOpacity>
+        <TouchableOpacity  onPress={() => navigation.navigate('TwoHeaderTabFormateur',props.idpg)}>
         <View style={styles.input}>
           <Text style={styles.textStyle}>Inscription</Text>
         </View>

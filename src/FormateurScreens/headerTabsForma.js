@@ -5,6 +5,8 @@ import { COLORS, FONTS } from '../constants';
 import InfoForma from './infoForma';
 import EvaluationForma from './evaluationForma';
 import CheckBoxApp from '../components/checkBox';
+import ConsultationComp from '../ResponsableScreens/consultationComp';
+import EvaluationScreen from '../ResponsableScreens/evaluationScreen';
 
 
 
@@ -12,8 +14,9 @@ import CheckBoxApp from '../components/checkBox';
 const { width } = Dimensions.get('window');
 
 export default class HeaderTabsForma extends Component {
-  
-  state = {
+  constructor(props){
+    super(props)
+  this.state = {
 
     active: 0,
     xTab1: 0,
@@ -25,7 +28,7 @@ export default class HeaderTabsForma extends Component {
     translateXTab3: new Animated.Value(2 * width),
     translateY: -1000,
   
-  }
+  }}
 
   handleSlide(xCordinate){
     let { active, xTab1, xTab2, xTab3, translateX, translateXTab1, translateXTab2, translateXTab3, translateY } = this.state;
@@ -146,7 +149,8 @@ export default class HeaderTabsForma extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-            <InfoForma/>
+            <InfoForma
+            id_pg={this.props.route.params}/>
             </Animated.View>
 
             {/* Tab 2 Content */}
@@ -157,19 +161,23 @@ export default class HeaderTabsForma extends Component {
                 { translateY: -translateY}
               ]
             }}>
-           <CheckBoxApp/>
+           <ConsultationComp
+          id_pg={this.props.route.params}/>
             </Animated.View>
 
             {/* Tab 3 Content */}
             <Animated.View style={{ 
             
-              marginTop:200,
+              marginTop:150,
+              
               transform:[
                 { translateX: translateXTab3 },
                 { translateY: -2 * translateY}
               ]
             }}>
-              <EvaluationForma/>
+              <EvaluationScreen
+               id_pg={this.props.route.params}
+              />
              
             </Animated.View>
             </ScrollView>

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 import CheckBoxApp from '../components/checkBox';
 
 import { COLORS, FONTS } from '../constants';
@@ -140,7 +141,7 @@ export default class ThreeTabSelector extends Component {
 
           {/* CONTENT */}  
           <View>
-<ScrollView>
+         <ScrollView>
             {/* Tab 1 Content */}
             
             <Animated.View 
@@ -155,30 +156,34 @@ export default class ThreeTabSelector extends Component {
         
           <InfoForm/>
         
+        
             </Animated.View>
       
-
+          
             {/* Tab 2 Content */}
             <Animated.View style={{ 
-             
+             flex:1,
               transform:[
                 { translateX: translateXTab2 },
                 { translateY: -translateY}
               ]
             }}>
+         
            <CheckBoxApp/>
+     
             </Animated.View>
-
+         
             {/* Tab 3 Content */}
             <Animated.View style={{ 
-            
-             marginTop:100,
+            flex:1,
+            marginTop:100,
               transform:[
                 { translateX: translateXTab3 },
                 { translateY: -2 * translateY}
               ]
             }}>
-              <EvaluationScreen/>
+              <EvaluationScreen
+              id_pg={this.props.route.params}/>
              
             </Animated.View>
             </ScrollView>

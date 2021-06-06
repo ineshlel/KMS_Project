@@ -4,14 +4,14 @@ import {View,Text, StyleSheet ,TextInput,TouchableOpacity}from 'react-native';
 import { COLORS } from '../constants';
 import { useNavigation } from '@react-navigation/native';
 
-const EvaluationScreen=({props})=>{
+const EvaluationScreen=props=>{
 
   const navigation = useNavigation();
 
      
     return (
         <View style={styles.container}>
-        <TouchableOpacity   onPress={() => navigation.navigate('ListOfWorks')}>
+        <TouchableOpacity   onPress={() => navigation.navigate('ListOfWorks',props.id_pg)}>
        
        <View  style={styles.input}>
        <Text style={styles.textStyle}>Travaux</Text>
@@ -30,7 +30,7 @@ const styles=StyleSheet.create({
     container:{
         flex:1,
         flexDirection:'column',
-        paddingTop:200,
+        //paddingTop:200,
        paddingHorizontal:20,
 
 

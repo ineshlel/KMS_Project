@@ -1,6 +1,6 @@
 import React ,{useState}from 'react';
 
-import {View,Text, StyleSheet ,TextInput,Button,Modal, TouchableOpacity}from 'react-native';
+import {View,Text, StyleSheet , TouchableOpacity}from 'react-native';
 import { COLORS } from '../constants';
 import { useNavigation } from '@react-navigation/native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
@@ -9,9 +9,10 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 //
 const ItemAdded= props=>{
     const navigation = useNavigation();
+    
     return (
   
-    <TouchableOpacity onPress={() => navigation.navigate('TwoHeaderTab')}  >
+    <TouchableOpacity onPress={() => navigation.navigate('TwoHeaderTab',props.id_tr)}  >
        
         <View  style={styles.input}>
         <View style={styles.textContainer}> 

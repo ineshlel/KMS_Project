@@ -2,7 +2,7 @@ import React ,{useState}from 'react';
 
 import {View,Text, StyleSheet ,TextInput,Button,Modal}from 'react-native';
 import { COLORS } from '../constants';
-import { Keyboard } from 'react-native';
+
 
 
 const CapacityInput=props=>{
@@ -18,6 +18,7 @@ const CapacityInput=props=>{
      keyboardType='numeric'
       style={customStyle}
       placeholder="min"
+      textAlign='center'
       onFocus={()=>setFocus(true)}
     onChangeText={props.onChange}
     autoCapitalize="sentences"
@@ -62,6 +63,7 @@ const styles=StyleSheet.create({
         borderRadius:10,
         //borderWidth:1,
         elevation:2,
+        textAlign: 'center',
   },
 
   inputFocus:{
@@ -72,6 +74,7 @@ const styles=StyleSheet.create({
     marginTop:5,
     marginRight:90,
     borderRadius:10,
+    textAlign: 'center',
   },
       textStyle:{
           fontSize:18,

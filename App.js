@@ -55,6 +55,7 @@ import InfoFormAdded from './src/ResponsableScreens/infoFormAdded';
 import HeadersTabConsult from './src/ResponsableScreens/headersTabConsultation';
 import RequestDetailsForma from './src/ResponsableScreens/requestDetailsForma';
 import ThreeTabRegistration from './src/components/threeTabsRegistration';
+import ProgramConsultation from './src/FormateurScreens/programConsultation';
 
 
 const Stack = createStackNavigator();
@@ -228,6 +229,11 @@ return (
            headerStyle:{
            backgroundColor:COLORS.purple
            }})}    component={CoursesFormaScreen}/>
+            <Stack.Screen name="ProgramConsultation"
+           options={({ route }) => ({ title: route.params , headerTintColor:'#fff',
+           headerStyle:{
+           backgroundColor:COLORS.purple
+           }})}    component={ProgramConsultation}/>
           
            <Stack.Screen name="CoursesScreenEmpl" options={({ route }) => ({ title: route.params , headerTintColor:'#fff',
            headerStyle:{

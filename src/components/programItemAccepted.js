@@ -15,12 +15,15 @@ const ProgramItemAccepted=props=>{
          <MaterialIcons
                     name="card-membership"
                     color={COLORS.orange}
-                    size={26}
+                    size={28}
                 />
         </View>
         <View >
-        <Text  style={styles.textName}>Programme Hancho</Text>
-        <Text  style={styles.textCountry}>24/01/2021-24/03/2021</Text>
+        <Text  style={styles.textName}>{props.name}</Text>
+        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+        <Text  style={styles.textCountry}>{props.dd}</Text>
+        <Text  style={styles.textCountry}>{props.df}</Text>
+        </View>
         </View>
         <View style={styles.downArrow}>
           <FontAwesome5 
@@ -66,9 +69,9 @@ const styles=StyleSheet.create({
           marginBottom:5,
       },
       textCountry:{
-          color:'grey',
+          color:COLORS.purple,
           //marginLeft:40,
-          fontSize:10,
+          fontSize:12,
       },
       downArrow:{
          // justifyContent:'center',

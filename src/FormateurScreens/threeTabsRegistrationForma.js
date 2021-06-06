@@ -4,6 +4,9 @@ import { COLORS } from '../constants';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import { ScrollView } from 'react-native';
 import RequestsList from './requestsList';
+import RequestsListEA from './requestsListEA';
+import RequestsListA from './requestsListA';
+import RequestsListR from './requestsListR';
 
 
 
@@ -164,7 +167,9 @@ export default class ThreeTabRegistrationForma extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-          <RequestsList/>
+              <RequestsListEA
+              id_pg={this.props.id_pgf}/>
+         
             </Animated.View>
 
             {/* Tab 2 Content */}
@@ -175,7 +180,9 @@ export default class ThreeTabRegistrationForma extends Component {
                 { translateY: -translateY}
               ]
             }}>
-              <RequestsList/>
+               <RequestsListA
+                id_pg={this.props.id_pgf}
+               />
             </Animated.View>
 
             {/* Tab 3 Content */}
@@ -185,7 +192,8 @@ export default class ThreeTabRegistrationForma extends Component {
                 { translateY: -2 * translateY}
               ]
             }}>
-              <RequestsList/>
+              <RequestsListR
+              id_pg={this.props.id_pgf}/>
             </Animated.View>
             </ScrollView>
           </View>

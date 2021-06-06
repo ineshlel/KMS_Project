@@ -68,33 +68,7 @@ export default class MyList extends Component {
       }
     });
   }
- /*searchFilterFunction = (text) => {
-    // Check if searched text is not blank
-    if (text) {
-      // Inserted text is not blank
-      // Filter the masterDataSource
-      // Update FilteredDataSource
-      const newData = array.filter(
-        function (item) {
-          const itemData = item.title
-            ? item.name.toUpperCase()
-            : ''.toUpperCase();
-          const textData = text.toUpperCase();
-          return itemData.indexOf(textData) ;
-      });
-      this.setState({filteredArray:[newData]})
-      //setFilteredDataSource(newData);
-      this.setState({search:text})
-     // setSearch(text);
-    } else {
-      // Inserted text is blank
-      // Update FilteredDataSource with masterDataSource
-      this.setState({filteredArray:[array]})
-      //setFilteredDataSource(masterDataSource);
-      this.setState({search:text})
-      //setSearch(text);
-    }
-  }*/
+
 
   render() {
     return (
