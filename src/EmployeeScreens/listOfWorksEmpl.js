@@ -1,62 +1,70 @@
-import React ,{useState}from 'react';
+import React ,{useState,useEffect}from 'react';
 
-import {View,Text, StyleSheet ,TextInput,Button,Modal, ScrollView,Alert,FlatList}from 'react-native';
+import {View,Text, StyleSheet ,FlatList}from 'react-native';
 import { COLORS } from '../constants';
-
-
-
-
-//import Icon from 'react-native-vector-icons/Ionicons';
-import AddWork from '../components/addWork';
+import apiConfig from '../api/config';
+import AsyncStorage from '@react-native-community/async-storage';
+import ItemAdded from '../components/itemAdded';
 import ItemAddedEmpl from '../components/itemAddedEmpl';
 
 
 
 
 
-const ListOfWorksEmpl=()=>{
+
+
+
+
+
+const ListOfWorksEmpl=({route})=>{
  
-    const[works,setworks]=useState([
-        {
-            id:1,
-            value:'travail 1'
-        },
-        {
-            id:2,
-            value:'travail 2'
-        },
-        {
-            id:3,
-            value:'travail 3'
-        },
-
-    ]);
-
-    
+ 
+    const[works,setWorks]=useState([]);
   
-  //<View><AddCircleOutline    /></View>
-   //onPress={() => _changeIcon()}
-   //<ItemAdded value='Travail 1 by Resp'/>
+      useEffect(async() => {
+        const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+        console.log(route.params);
+        fetch(apiConfig.url+`/api/travaux?programme=${route.params}`, {
+          method: 'GET',
+          headers: {
+        
+            'Authorization':'Bearer ' + DEMO_TOKEN,
+            'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+      
+          },
+        })
+          .then((response) => response.json())
+          .then((responseJson) => {
+            console.log('JSONWorks',responseJson)
+            setWorks(responseJson)
+          })
+          .catch((error) => {
+            console.error(error);
+            setWorks([])
+          });
+      }, []);
+  
     return (
-    <ScrollView>
+   
     <View  style={styles.formContainer}>
-    <View style={styles.titleStyle}>
-    </View>
+   
+   
+    <FlatList
+      
+         style={{flexGrow: 0}}
+            data={works}
+            keyExtractor={(item,index)=>index.toString()}
+            renderItem={({item})=> 
+            <ItemAddedEmpl
+           
+            id_tr={item.id}
+            value={item.titre}
+            />
+            
+        }
+        />
+ 
 
-    
-    <View >
-    <FlatList 
-      keyExtractor={(item,index)=>item.id}
-      data={works} 
-      renderItem={itemData=> 
-      <ItemAddedEmpl
-      id ={itemData.item.id}
-      value={itemData.item.value2}
-      />
-      }>
-       
-      </FlatList>
-    </View>
    
      
    
@@ -64,7 +72,7 @@ const ListOfWorksEmpl=()=>{
     
     
 </View>
-   </ScrollView> 
+  
  );
 };
 const styles=StyleSheet.create({

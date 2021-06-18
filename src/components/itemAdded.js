@@ -6,7 +6,14 @@ import { useNavigation } from '@react-navigation/native';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 
-//
+/*   <View>
+        <FontAwesome5
+         style={styles.downArrow}
+                    name="chevron-right"
+                    color={COLORS.purple}
+                    size={20}
+                />
+        </View>*/
 const ItemAdded= props=>{
     const navigation = useNavigation();
     
@@ -16,16 +23,9 @@ const ItemAdded= props=>{
        
         <View  style={styles.input}>
         <View style={styles.textContainer}> 
-        <Text>{props.value}</Text>
+        <Text style={{fontFamily:'Cairo-SemiBold'}}>{props.value}</Text>
         </View>
-        <View>
-        <FontAwesome5
-         style={styles.downArrow}
-                    name="chevron-right"
-                    color={COLORS.purple}
-                    size={20}
-                />
-        </View>
+     
         </View>
     </TouchableOpacity>
  );

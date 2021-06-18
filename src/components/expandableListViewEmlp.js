@@ -60,15 +60,17 @@ export default class ExpandableListViewEmpl extends Component {
          
         
             <ProgramItem
-              name={this.props.item.name}
-              country={this.props.item.country}
+              name={this.props.item.programme_name}
+              dd={this.props.item.date_debut}
+              df={this.props.item.date_fin}
             />
         
 
          
         </TouchableOpacity>
         <View style={{ height: this.state.layoutHeight, overflow: 'hidden' }}>
-       <ProgramActionsLimitedEmpl/>
+       <ProgramActionsLimitedEmpl
+       id_dm={this.props.item.id}/>
         
         </View>
       </View>

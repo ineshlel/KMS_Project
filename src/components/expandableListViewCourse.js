@@ -59,15 +59,16 @@ export default class ExpandableListViewCourse extends Component {
          
         
             <CourseItem
-              name={this.props.item.name}
-              country={this.props.item.country}
+              name={this.props.item.titre}
+              country={this.props.item.date}
             />
         
 
          
         </TouchableOpacity>
         <View style={{ height: this.state.layoutHeight, overflow: 'hidden' }}>
-          <CourseActions/>
+          <CourseActions
+            idc={this.props.item.id}/>
         
         </View>
       </View>

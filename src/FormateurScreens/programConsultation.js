@@ -1,8 +1,7 @@
 import React ,{useState,useEffect}from 'react';
 
 import {View,Text, StyleSheet }from 'react-native';
-import ButtonKms from '../components/buttonV';
-import DescriptionInput from '../components/descriptionInput';
+
 import StaticInput from '../components/staticInput';
 import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';

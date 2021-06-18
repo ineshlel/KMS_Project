@@ -91,6 +91,7 @@ export default class TwoHeaderTab extends Component {
 
   
   render() {
+    console.log('----------',this.props.route.params)
     let { active, xTab1, xTab2, translateX, translateXTab1, translateXTab2, translateY} = this.state;
     return (
       <View style={{flex: 1}}>
@@ -109,7 +110,7 @@ export default class TwoHeaderTab extends Component {
                                   this.setState({ active: 0 }, () =>
                                       this.handleSlide(xTab1)
                               )}>
-              <Text style={{color: active === 0? COLORS.purple : COLORS.purple}}>Consignes</Text>
+              <Text style={{color: active === 0? COLORS.purple : COLORS.purple,fontFamily:"Cairo-SemiBold",fontSize:18}}>Consignes</Text>
             </TouchableOpacity>
 
             {/* Tab 2 */}
@@ -120,7 +121,7 @@ export default class TwoHeaderTab extends Component {
                                       this.handleSlide(xTab2)
                               )}>
                               
-              <Text style={{color: (active === 1)? COLORS.purple : COLORS.purple}}>Remises</Text>
+              <Text style={{color: (active === 1)? COLORS.purple : COLORS.purple,fontFamily:"Cairo-SemiBold",fontSize:18}}>Remises</Text>
             </TouchableOpacity>
 
             {/* Tab 3 */}

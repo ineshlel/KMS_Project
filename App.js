@@ -17,13 +17,13 @@ import {AuthContext} from './src/contexts/authContext';
 import Login from './src/ResponsableScreens/login';
 import ForgotPassword from './src/ResponsableScreens/forgotPassw';
 import VerifPassword from './src/ResponsableScreens/verifPassw';
-import ProgramList from './src/ResponsableScreens/programList';
+
 import FlatListPC from './src/components/flatListPC';
-import ThreeTabSelector from './src/ResponsableScreens/headerTabs';
+
 import ListOfWorks from './src/components/listOfWorks';
 import TwoHeaderTab from './src/ResponsableScreens/TwoHeaderTab';
 import QCMScreen from './src/ResponsableScreens/qcmScreen';
-import RegistrationResponsable from './src/ResponsableScreens/registrationScree';
+
 import { COLORS } from './src/constants';
 import InscriptionFormateur from './src/FormateurScreens/inscriptionFormateur';
 import ListCourses from './src/FormateurScreens/coursesList';
@@ -31,12 +31,12 @@ import CoursePlanification from './src/FormateurScreens/coursePlanification';
 import ListOfWorksForma from './src/FormateurScreens/listOfWorksForma';
 import QCMForma from './src/FormateurScreens/qcmForma';
 import Playquiz from './src/MyQuiz/playQuiz';
-import CoursesFormaScreen from './src/FormateurScreens/CoursesFormaScreen';
+
 import AddNewCourse from './src/FormateurScreens/addNewCourse';
 import SignUp from './src/ResponsableScreens/signUp';
 import RequestInfo from './src/FormateurScreens/requestInfo';
 import ListOfWorksEmpl from './src/EmployeeScreens/listOfWorksEmpl';
-import TwoHeaderTabForma from './src/FormateurScreens/twoHeaderTabForma';
+import TwoHeaderTabForma from './src/FormateurScreens/twoHeaderTabFormaReunion';
 import HeaderTabsForma from './src/FormateurScreens/headerTabsForma';
 import TabNavigatorEmpl from './src/navigation/tabNavigatorEmpl';
 import TabNavigatorForma from './src/navigation/tabNavigatorForma';
@@ -48,14 +48,18 @@ import HeaderTabCourseEmpl from './src/EmployeeScreens/headerTabCourseEmpl';
 import InfoFormEmpl from './src/EmployeeScreens/InfoFormEmpl';
 import HeaderTabEmpl from './src/EmployeeScreens/headersTabEmpl';
 import TwoHeaderTabWork from './src/EmployeeScreens/twoHeaderTabWork';
-import CoursesScreenEmpl from './src/EmployeeScreens/coursesScreenEmpl';
-import RootStackScreen from './src/Routes/rootStackScreen';
-import EmplStackScreen from './src/Routes/emplStackScreen';
+
+
 import InfoFormAdded from './src/ResponsableScreens/infoFormAdded';
 import HeadersTabConsult from './src/ResponsableScreens/headersTabConsultation';
 import RequestDetailsForma from './src/ResponsableScreens/requestDetailsForma';
 import ThreeTabRegistration from './src/components/threeTabsRegistration';
 import ProgramConsultation from './src/FormateurScreens/programConsultation';
+import InscriptionEmployee from './src/EmployeeScreens/inscriptionEmployee';
+import ThreeTabRegistrationEmpl from './src/components/threeTabRegistrationEmpl';
+import ListCoursesEmpl from './src/EmployeeScreens/CoursesListEmpl';
+import EditProfileScreen from './src/components/editProfil';
+import RequestDetailsEmpl from './src/ResponsableScreens/requestDetailsEmpl';
 
 
 const Stack = createStackNavigator();
@@ -195,6 +199,7 @@ return (
       >
           <Stack.Screen name="Login" options= {{headerShown: false}} component={Login} />
           <Stack.Screen name="SignUp" options= {{headerShown: false}} component={SignUp} />
+          <Stack.Screen name="EditProfile"  options={{...myOptions,title:'Modifier profile'} } component={EditProfileScreen} />
           <Stack.Screen name="InfoFormAdded" options= {{headerShown: false}} component={InfoFormAdded} />
           <Stack.Screen name="HeaderTabsConsultation" options= {{headerShown: false}} component={HeadersTabConsult} />
           <Stack.Screen name="PLayQuizForma" options={{...myOptions,title:'QCM'} }  component={PlayquizForma} />
@@ -203,7 +208,7 @@ return (
           <Stack.Screen name="TabNavigatorEmpl" component={TabNavigatorEmpl}  options={{headerShown: false}} />
           <Stack.Screen name="TabNavigatorForma" component={TabNavigatorForma}  options={{headerShown: false}} />
           <Stack.Screen name="RequestDetailsForma" component={RequestDetailsForma}  options={{...myOptions,title:'Details'} }  />
-          
+          <Stack.Screen name="RequestDetailsEmpl" component={RequestDetailsEmpl}  options={{...myOptions,title:'Details'} }  />
           <Stack.Screen name="TwoHeaderTab" options={myOptions}    component={TwoHeaderTab} />
           <Stack.Screen name="TwoHeaderTabForma" options={myOptions}    component={TwoHeaderTabForma} />
           <Stack.Screen name="TwoHeaderTabFormateur" options={{...myOptions,title:'Inscription'} }   component={TwoHeaderTabFormateur} />
@@ -222,13 +227,15 @@ return (
           <Stack.Screen name="QCMScreen"  options={{...myOptions,title:'QCM'} }   component={QCMScreen}/>
           <Stack.Screen name="QCMForma"  options={{...myOptions,title:'QCM'} }   component={QCMForma}/>
           <Stack.Screen name="Inscription" options={{...myOptions,title:'Inscription'} }      component={ThreeTabRegistration}/>
+          <Stack.Screen name="liste des participants"  options={{...myOptions,title:'liste des participants'} }   component={ThreeTabRegistrationEmpl}/>
           <Stack.Screen name="InscriptionFormateur" options={{...myOptions,title:'Inscription'} } component={InscriptionFormateur}/>
+          <Stack.Screen name="InscriptionParticipant" options={{...myOptions,title:'Inscription'} } component={InscriptionEmployee}/>
           <Stack.Screen name="RequestInfo" options={{...myOptions,title:'Détails'} } component={RequestInfo}/>
           <Stack.Screen name="List des cours"
            options={({ route }) => ({ title: route.params , headerTintColor:'#fff',
            headerStyle:{
            backgroundColor:COLORS.purple
-           }})}    component={CoursesFormaScreen}/>
+           }})}    component={ListCourses}/>
             <Stack.Screen name="ProgramConsultation"
            options={({ route }) => ({ title: route.params , headerTintColor:'#fff',
            headerStyle:{
@@ -238,9 +245,9 @@ return (
            <Stack.Screen name="CoursesScreenEmpl" options={({ route }) => ({ title: route.params , headerTintColor:'#fff',
            headerStyle:{
            backgroundColor:COLORS.purple
-           }})} component={CoursesScreenEmpl}/>
+           }})} component={ListCoursesEmpl}/>
             <Stack.Screen name="Planification"   component={CoursePlanification}
-           options={{...myOptions,title:'Nom Programme'} } 
+           options={{...myOptions,title:'Nouveau cours'} } 
            />
            <Stack.Screen name="AddNewCourse"   component={AddNewCourse}
            options={{...myOptions,title:'Nouveau Cours'} } 

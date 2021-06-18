@@ -2,9 +2,11 @@ import { toHumanSize } from 'i18n-js';
 import React, { Component } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import App from '../components/checkBox';
+
 import { COLORS } from '../constants';
-import ConsignesForma from './consignesForma';
+
+import LinkReunionForma from './linkReunionForma';
+
 
 //import ConsignesScreen from './ConsignesScreen';
 
@@ -107,7 +109,7 @@ export default class TwoHeaderTabForma extends Component {
                                   this.setState({ active: 0 }, () =>
                                       this.handleSlide(xTab1)
                               )}>
-              <Text style={{color: active === 0? COLORS.purple : COLORS.purple,fontSize:18}}>Consignes</Text>
+              <Text style={{color: active === 0? COLORS.purple : COLORS.purple,fontSize:16,fontFamily:"Cairo-Bold"}}>Nouvelle Reunion</Text>
             </TouchableOpacity>
 
             {/* Tab 2 */}
@@ -118,7 +120,7 @@ export default class TwoHeaderTabForma extends Component {
                                       this.handleSlide(xTab2)
                               )}>
                               
-              <Text style={{color: (active === 1)? COLORS.purple : COLORS.purple,fontSize:18}}>Remises</Text>
+              <Text style={{color: (active === 1)? COLORS.purple : COLORS.purple,fontSize:16,fontFamily:"Cairo-Bold"}}>Enregistrement</Text>
             </TouchableOpacity>
 
             {/* Tab 3 */}
@@ -140,7 +142,7 @@ export default class TwoHeaderTabForma extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-               <ConsignesForma/>
+             <LinkReunionForma/>
               
                 
             </Animated.View>
@@ -178,7 +180,7 @@ const styles = StyleSheet.create({
   tabContainer:{
     flexDirection: 'row',
     height: 36,
-    marginTop: 10, 
+    //marginTop: 10, 
     marginBottom: 10,
     //position: 'relative',
     
@@ -186,10 +188,10 @@ const styles = StyleSheet.create({
 
   overlay:{
     position: 'absolute',
-    width: '32.5%',
+    width: '47.5%',
     height: '100%',
     top: 0,
-    left: 27,
+    left: 4,
     //backgroundColor:COLORS.purple,
     //borderRadius:12,
     borderBottomColor:COLORS.purple,
@@ -211,6 +213,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderTopLeftRadius: 4,
     borderBottomLeftRadius: 4,
+    marginRight:10,
   },
 
   tab2:{
@@ -218,6 +221,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderTopLeftRadius: 0,
     borderBottomLeftRadius: 0,
+  
 
   },
 

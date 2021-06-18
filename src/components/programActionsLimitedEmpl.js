@@ -1,6 +1,6 @@
 import React ,{useState}from 'react';
 
-import {View,Text, StyleSheet ,TextInput,Dimensions, TouchableOpacity}from 'react-native';
+import {View,Text, StyleSheet ,Dimensions, TouchableOpacity}from 'react-native';
 import { COLORS } from '../constants';
 const { width } = Dimensions.get('window');
 
@@ -10,19 +10,19 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-const ProgramActionsLimitedEmpl=({props})=>{
+const ProgramActionsLimitedEmpl=props=>{
   const navigation = useNavigation();
   
  // const route=props.program;
   //const [route,setRoute]=useState('programme');
     return ( 
       <View  style={styles.actionsContainers}>
-        <TouchableOpacity  onPress={() => navigation.navigate('InfoFormEmpl')}>
+        <TouchableOpacity  onPress={() => navigation.navigate('InfoFormEmpl',props.id_dm)}>
         <View style={styles.input}>
           <Text style={styles.textStyle}>Consultation</Text>
         </View>
         </TouchableOpacity>
-       <TouchableOpacity  onPress={() => navigation.navigate('TwoHeaderTabEmployee')}>
+       <TouchableOpacity  onPress={() => navigation.navigate('InscriptionParticipant',props.id_dm)}>
         <View style={styles.input}>
           <Text style={styles.textStyle}>Inscription</Text>
         </View>

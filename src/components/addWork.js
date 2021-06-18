@@ -105,10 +105,10 @@ const AddWork=props=> {
 						<View style={styles.addButton}>
                         <Entypo
                         name="plus"
-                        color="black"
+                        color="white"
                         size={20}
                       />
-                     <Text>Ajouter</Text></View>
+                     <Text style={{fontFamily:'Cairo-SemiBold',color:'white',fontSize:18}}>Ajouter</Text></View>
 	    </TouchableOpacity>
 
 			{/** This is our modal component containing textinput and a button */} 
@@ -190,7 +190,7 @@ const styles = StyleSheet.create({
 		
 	},
 	addButton:{
-		width:75,
+		width:85,
         height:35,
         borderRadius:14,
         backgroundColor:COLORS.blueClair,

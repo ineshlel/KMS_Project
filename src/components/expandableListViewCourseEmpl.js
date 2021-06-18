@@ -15,16 +15,7 @@ export default class ExpandableListViewCourseEmpl extends Component {
       layoutHeight: 0
     }
   }
-  /*   {
-            this.props.item.subCategory.map((item, key) => (
-              <TouchableOpacity key={key} style={styles.subCategoryText} onPress={this.showSelectedCategory.bind(this, item.name)}>
-                <Text> {item.name} </Text>
-                <View style={{ width: '80%', height: 1, backgroundColor: '#000',borderWidth:2 }} />
-              </TouchableOpacity>
-            ))
-          }*/
-
-  // https://reactjs.org/blog/2018/03/27/update-on-async-rendering.html
+ 
   UNSAFE_componentWillReceiveProps(nextProps) {
     if (nextProps.item.expanded) {
       this.setState(() => {
@@ -60,15 +51,16 @@ export default class ExpandableListViewCourseEmpl extends Component {
          
         
             <CourseItem
-              name={this.props.item.name}
-              country={this.props.item.country}
+              name={this.props.item.titre}
+              country={this.props.item.date}
             />
         
 
          
         </TouchableOpacity>
         <View style={{ height: this.state.layoutHeight, overflow: 'hidden' }}>
-          <CourseActionEmpl/>
+          <CourseActionEmpl
+          idc={this.props.item.id}/>
         
         </View>
       </View>

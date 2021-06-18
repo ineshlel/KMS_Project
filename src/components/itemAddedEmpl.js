@@ -4,28 +4,28 @@ import React ,{useState}from 'react';
 import {View,Text, StyleSheet ,TextInput,Button,Modal, TouchableOpacity}from 'react-native';
 import { COLORS } from '../constants';
 import { useNavigation } from '@react-navigation/native';
-import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 
 
-//
-const ItemAddedEmpl= props=>{
-    const navigation = useNavigation();
-    return (
-  
-    <TouchableOpacity onPress={() => navigation.navigate('TwoHeaderTabWork')}  >
-       
-        <View  style={styles.input}>
-        <View style={styles.textContainer}> 
-        <Text>{props.value}</Text>
-        </View>
-        <View>
+
+/*   <View>
         <FontAwesome5
          style={styles.downArrow}
                     name="chevron-right"
                     color={COLORS.purple}
                     size={20}
                 />
+        </View>*/
+const ItemAddedEmpl= props=>{
+    const navigation = useNavigation();
+    return (
+  
+    <TouchableOpacity onPress={() => navigation.navigate('TwoHeaderTabWork',props.id_tr)}  >
+       
+        <View  style={styles.input}>
+        <View style={styles.textContainer}> 
+        <Text>{props.value}</Text>
         </View>
+     
         </View>
     </TouchableOpacity>
  );

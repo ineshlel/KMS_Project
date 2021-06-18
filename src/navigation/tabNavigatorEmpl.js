@@ -12,6 +12,9 @@ import Loader from '../components/loader';
 import CheckBoxApp from '../components/checkBox';
 import Dashboard from '../components/downloadFile';
 import LoginScreen from '../ResponsableScreens/loginExample';
+import AgendaEv from '../components/calendar';
+import EditProfileScreen from '../components/editProfil';
+import ProfileScreen from '../components/profileScreen';
 
 
 const Tab = createBottomTabNavigator();
@@ -26,16 +29,16 @@ const TabNavigatorEmpl = ({navigation}) => {
         initialParams={{ icon: 'home' }}
       />
       <Tab.Screen
-        name='Create'
+        name='Agenda'
         //component={ThreeTabSelector}
-        component={ProgramListAcceptedEmpl}
+        component={AgendaEv}
         initialParams={{ icon: 'plus' }}
         options={{headerShown: false}}  />
       <Tab.Screen
         name='Profile'
-       //component={ConsignesList}
+      component={ProfileScreen}
        //component={Loader}
-      component={LoginScreen}
+     // component={EditProfileScreen}
         initialParams={{ icon: 'profile' }}
       />
       

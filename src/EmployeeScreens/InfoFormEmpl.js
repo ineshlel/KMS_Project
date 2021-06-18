@@ -1,35 +1,82 @@
-import React ,{useState,useCallback}from 'react';
+import React ,{useState,useEffect}from 'react';
 
 import {View,Text, StyleSheet ,}from 'react-native';
 import StaticInput from '../components/staticInput';
+import apiConfig from '../api/config';
+import AsyncStorage from '@react-native-community/async-storage';
+import Loader from '../components/loader';
 
-const InfoFormEmpl=props=>{
+const InfoFormEmpl=({route})=>{
+  const [title,setTitle]=useState('');
+  const [duration,setDuration]=useState('');
+  const [description,setDescription]=useState('');
+  const[ddebut,setDdebut]=useState();
+  const[dfin,setDatefin]=useState();
+  const [nomForm,setNomForm]=useState('');
+  const [loading, setLoading] = React.useState(false);
 
-
-  const [time,setTime]=useState();
+  useEffect( async() => {
+    setLoading(true);
+    const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+    fetch(apiConfig.url+`/api/demandes_formateur/${route.params}`, {
+      method: 'GET',
+      headers: {
+    
+        'Authorization':'Bearer ' + DEMO_TOKEN,
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+  
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        //setFilteredDataSource(responseJson);
+       console.log(responseJson);
+       setLoading(false);
+      setTitle(responseJson.programme_name);
+      setDuration(responseJson.programme_duree);
+      setDescription(responseJson.programme_desc);
+      setDdebut(responseJson.date_debut);
+      setDatefin(responseJson.date_fin);
+      setNomForm(responseJson.formateur_name);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
    
+
+  /*if (loading){
+     return ( <Loader loading={loading} /> );
+   } else {*/
+
     return (
+      
      <View  style={styles.formContainer}>
+        
+    
     <StaticInput name='Titre :'
-    value='Programme Hancho'
+    value={title}
     />
     <StaticInput name='Durée :'
-    value='20 Heures'
+    value={duration}
     />
       <StaticInput name='Date Début:'
-    value='20/04/2021'
+    value={ddebut}
     />
       <StaticInput name='Date Fin:'
-    value='20/04/2021'
+    value={dfin}
     />
     <StaticInput name='Nom Formateur:'
-    value='Bilel Karray'
+    value={nomForm}
     />
     <StaticInput name='Description:'
-    value='Ce programme vise à developper les compétances du management'
+    value={description}
     />
      </View>
+     
+    
  );
+//}
 };
 const styles=StyleSheet.create({
     formContainer:{

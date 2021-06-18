@@ -3,7 +3,8 @@ const{width,height}=Dimensions.get("window");
 
 export const COLORS={
     purple:'#014C78',
-    orange:'#F26E11',
+    //orange:'#F26E11',
+    orange:'#f6a150',
     blue:'#4592F2',
     green:'#008C80',
     grey:'#D9D9D9',

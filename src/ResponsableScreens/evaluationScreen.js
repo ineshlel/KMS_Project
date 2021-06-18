@@ -1,6 +1,6 @@
 import React ,{useState}from 'react';
 
-import {View,Text, StyleSheet ,TextInput,TouchableOpacity}from 'react-native';
+import {View,Text, StyleSheet ,TextInput,TouchableOpacity,Image}from 'react-native';
 import { COLORS } from '../constants';
 import { useNavigation } from '@react-navigation/native';
 
@@ -15,11 +15,27 @@ const EvaluationScreen=props=>{
        
        <View  style={styles.input}>
        <Text style={styles.textStyle}>Travaux</Text>
+       <Image
+              source={require('../assets/images/testing.png')}
+              style={{
+                height: 40,
+                resizeMode: 'contain',
+                alignSelf: 'center'
+              }}
+            />
         </View>
         </TouchableOpacity>
       <TouchableOpacity  onPress={() => navigation.navigate('QCMScreen')}>
       <View  style={styles.input}>
       <Text style={styles.textStyle}>QCM</Text>
+      <Image
+              source={require('../assets/images/exam.png')}
+              style={{
+                height: 40,
+                resizeMode: 'contain',
+                alignSelf: 'center'
+              }}
+            />
       </View>
        </TouchableOpacity>
         </View>
@@ -46,13 +62,15 @@ const styles=StyleSheet.create({
         justifyContent:'center',
         backgroundColor:COLORS.grey,
         elevation:4,
+        flexDirection:'column',
         
         
       },
       textStyle:{
-          fontSize:18,
+          fontSize:20,
           textAlign:'center',
-          color:COLORS.purple
+          color:COLORS.purple,
+          fontFamily:"Cairo-SemiBold"
          
       },
      

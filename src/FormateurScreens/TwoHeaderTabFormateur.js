@@ -2,12 +2,12 @@ import { toHumanSize } from 'i18n-js';
 import React, { Component } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-import App from '../components/checkBox';
+
 import { COLORS } from '../constants';
 
 import InscriptionFormateur from './inscriptionFormateur';
 import ThreeTabRegistrationForma from './threeTabsRegistrationForma';
-import ThreeTabRegistration from './threeTabsRegistrationForma';
+
 
 //import ConsignesScreen from './ConsignesScreen';
 

@@ -9,6 +9,7 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const ProgramActionsAccepted=props=>{
+  console.log('µµµµµµµµµµµµµ',props.idpg)
   const navigation = useNavigation();
     return ( 
       <View  style={styles.actionsContainers}>
@@ -27,7 +28,7 @@ const ProgramActionsAccepted=props=>{
         </View>
         </TouchableOpacity>
         <TouchableOpacity 
-         onPress={() => navigation.navigate('List des cours')}
+         onPress={() => navigation.navigate('List des cours',props.idpg)}
          >
         <View style={styles.input}>
           <Text style={styles.textStyle}>Cours</Text>

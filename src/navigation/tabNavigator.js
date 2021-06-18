@@ -24,6 +24,7 @@ import ProgramList from '../ResponsableScreens/programList';
 import CheckBoxApp from '../components/checkBox';
 import Dashboard from '../components/downloadFile';
 import ListCause from '../components/swipeListe';
+import MemberListAccResp from '../components/memberListAccResp';
 
 
 //import ProfileNavigator from './ProfileNavigator';
@@ -46,9 +47,9 @@ const TabNavigator = ({navigation}) => {
         options={{headerShown: false}}  />
       <Tab.Screen
         name='Profile'
-      //component={ListCause}
+      component={ListCause}
        //component={Dashboard}
-      component={CheckBoxApp}
+      //component={MemberListAccResp}
         initialParams={{ icon: 'profile' }}
       />
       

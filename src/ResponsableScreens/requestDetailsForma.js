@@ -9,12 +9,13 @@ import AsyncStorage from '@react-native-community/async-storage';
 import LinearGradient from 'react-native-linear-gradient';
 import { COLORS } from '../constants';
 import { useNavigation } from '@react-navigation/native';
+import MemberAction from '../components/memberAction';
 
 
 
 
 
-const RequestDetailsForma=({props,route})=>{
+const RequestDetailsForma=({route})=>{
     const { nameF, ddd,dfd,id_dm,id_pg,id_f,st } = route.params;
     const[acceptationSuccess,setAcceptationSuccess]=useState(false);
     const[initialStatut,setInitialStatut]=useState(st);
@@ -208,6 +209,8 @@ if(initialStatut=="EA")
           <Text style={styles.successTextStyle}>
             Formateur Accepté
           </Text>
+     <MemberAction
+     iddm={id_dm}/>
   </View>
   </View>
    );}

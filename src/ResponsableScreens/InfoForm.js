@@ -29,20 +29,7 @@ const InfoForm=props=>{
   const durationpgRef = createRef();
   const descriptionpgRef = createRef();
 
-  const  getToken= async() => {
-    try {
-        const resp = await AsyncStorage.getItem('userToken');
-        return resp;
-      // console.log(resp);
-       //console.log('%%%%%%%%%%%%%%%%%%%')
-       
-    }
-    catch (error) {
-        this.setState({ error })
-    }
-}
-  //var token = AsyncStorage.getItem('userToken');
-  var token=getToken();
+ 
 
   const handleValidateButton=async()=>{
     setLoading(true);

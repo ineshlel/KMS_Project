@@ -107,7 +107,7 @@ const ConsigneItem=props=>{
         <View style={styles.downArrow}>
           <FontAwesome5 
                     name="file-download"
-                    color={COLORS.blueClair}
+                    color={COLORS.orange}
                     size={26}
                 />
         </View>
@@ -148,8 +148,9 @@ const styles=StyleSheet.create({
            flexDirection:'row',
        },
       textName:{
-          fontSize:15,
-          fontWeight:'bold',
+          fontSize:16,
+          //fontWeight:'bold',
+          fontFamily:'Cairo-Regular',
           marginBottom:5,
       },
       textCountry:{

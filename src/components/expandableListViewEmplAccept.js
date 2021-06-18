@@ -5,6 +5,7 @@ import ProgramActionsAccepted from './programActionsAccepted';
 import ProgramActionsAcceptedEmpl from './programActionsAcceptedEmpl';
 import ProgramActionsLimited from './programActionsLimited';
 import ProgramItem from './programItem';
+import ProgramItemAcceptedEmpl from './programItemAcceptedEmpl';
 
 
 
@@ -60,9 +61,10 @@ export default class ExpandableListViewAcceptedEmpl extends Component {
         <TouchableOpacity activeOpacity={0.8} onPress={this.props.onClickFunction}>
          
         
-            <ProgramItem
-              name={this.props.item.name}
-              country={this.props.item.country}
+            <ProgramItemAcceptedEmpl
+           name={this.props.item.programme_name}
+           dd={this.props.item.date_debut}
+           df={this.props.item.date_fin}
             />
         
 
@@ -70,7 +72,8 @@ export default class ExpandableListViewAcceptedEmpl extends Component {
         </TouchableOpacity>
         <View style={{ height: this.state.layoutHeight, overflow: 'hidden' }}>
       <ProgramActionsAcceptedEmpl
-         title={this.props.item.name}/>
+        id_dm={this.props.item.id}
+        prgrm={this.props.item.programme}/>
         
         </View>
       </View>

@@ -10,7 +10,8 @@ import {
     StyleSheet,
     ScrollView,
     StatusBar,
-    Alert
+    Alert,
+    KeyboardAvoidingView
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
 import jwt_decode from "jwt-decode";
@@ -180,18 +181,20 @@ const Login = ({navigation}) => {
               }
              // console.log(responseJson.token);
              
-              
+             console.log('-----------role',decoded.role);
               //
-             if(decoded.role="F"){
-              //navigation.replace('TabNavigatorForma');
-               navigation.replace('TabNavigator');
-                
+             if(decoded.role=="P"){
+           
+              navigation.navigate('TabNavigatorEmpl');
+           
              }
-             else if (decoded.role="F"){
-                navigation.replace('TabNavigatorEmpl');
+             else if (decoded.role=="F"){
+                navigation.navigate('TabNavigatorForma');
+              
              }
              else{
-                navigation.replace('TabNavigator');
+                navigation.navigate('TabNavigator');
+            
                
              }
               
@@ -236,6 +239,7 @@ const Login = ({navigation}) => {
             style={styles.footer}
         >
             <ScrollView>
+            <KeyboardAvoidingView enabled>
             <Text style={styles.text_footer}>Username</Text>
             <View style={styles.action}>
                 <FontAwesome 
@@ -347,6 +351,7 @@ const Login = ({navigation}) => {
                     }]}>Sign Up</Text>
                 </TouchableOpacity>
             </View>
+            </KeyboardAvoidingView>
             </ScrollView>
         </Animatable.View>
       </View>

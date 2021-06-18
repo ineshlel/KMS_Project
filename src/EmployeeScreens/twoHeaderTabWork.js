@@ -143,7 +143,8 @@ export default class TwoHeaderTabWork extends Component {
                 }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-              <ConsignesList/>
+              <ConsignesList
+              idtr={this.props.route.params}/>
               
                 
             </Animated.View>
@@ -158,7 +159,9 @@ export default class TwoHeaderTabWork extends Component {
                 { translateY: -translateY}
               ]
             }}>
-           <FilePickerEmplRemises/>
+           <FilePickerEmplRemises
+           
+           />
             </Animated.View>
 
           

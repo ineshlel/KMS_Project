@@ -1,10 +1,13 @@
-import React ,{useState,useCallback}from 'react';
+import React ,{useState,useEffect}from 'react';
 
 import {View,Text, StyleSheet }from 'react-native';
 
-import DescriptionInput from '../components/descriptionInput';
+
+import DescriptionStaticInput from '../components/descriptionStaticInput';
 
 import StaticInput from '../components/staticInput';
+import AsyncStorage from '@react-native-community/async-storage';
+import apiConfig from '../api/config';
 
 
 
@@ -13,26 +16,56 @@ import StaticInput from '../components/staticInput';
 const InfoCourse=props=>{
 
 
-  const [time,setTime]=useState();
+  
+  const [title,setTitle]=useState('');
+  const [description,setDescription]=useState('');
+  const [startHour,setStartHour]=useState();
+  const [endHour,setEndHour]=useState();
+  const[date,setDate]=useState();
+  useEffect( async() => {
+    const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+    fetch(apiConfig.url+`/api/cours_programme/${props.id_c}`, {
+      method: 'GET',
+      headers: {
+    
+        'Authorization':'Bearer ' + DEMO_TOKEN,
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+  
+      },
+    })
+      .then((response) => response.json())
+      .then((responseJson) => {
+        //setFilteredDataSource(responseJson); substring(0,5)
+       console.log(responseJson);
+      setTitle(responseJson.titre);
+      setStartHour(responseJson.startHour);
+      setEndHour(responseJson.endHour);
+      setDate(responseJson.date);
+      setDescription(responseJson.description)
+
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }, []);
    
     return (
      <View  style={styles.formContainer}>
     <StaticInput name='Titre :'
-    value='Introduction'
+    value={title}
     />
-    <StaticInput name='Programme :'
-    value='Programme Hancho'
+    <StaticInput name='Jour :'
+    value={date}
     />
-    <StaticInput name='Séance :'
-    value='2H'
+   
+      <StaticInput name='Heure Début :'
+    value={startHour}
     />
-      <StaticInput name='Heure Début:'
-    value='8h '
+      <StaticInput name='Heure Fin :'
+    value={endHour}
     />
-      <StaticInput name='Heure Fin:'
-    value='10h '
-    />
- <DescriptionInput   title='Description: '/>
+ <DescriptionStaticInput name='Description:'
+ value={description}/>
      </View>
  );
 };

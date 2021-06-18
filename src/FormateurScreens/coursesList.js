@@ -2,21 +2,21 @@ import React, { Component } from 'react';
 import { Alert, LayoutAnimation, StyleSheet, View, Text, ScrollView, UIManager, TouchableOpacity, Platform, Image } from 'react-native';
 
 import ExpandableListViewCourse from '../components/expandableListViewCourse';
+import apiConfig from '../api/config';
+import AsyncStorage from '@react-native-community/async-storage';
+import SearchBarProgram from '../components/searchBarProgram';
+import AddFixedButton from '../components/addFixedButton';
+import { Button } from 'react-native';
 
 
 
 
 export default class ListCourses extends Component {
   
-  constructor() {
-    super();
-    if (Platform.OS === 'android') {
-      UIManager.setLayoutAnimationEnabledExperimental(true)
-    }
-    
-  
+  constructor(props) {
+    super(props);
    
-    this.state = { 
+      this.state = { 
       array:[],
       filteredArray:[],
       search:'',
@@ -25,20 +25,59 @@ export default class ListCourses extends Component {
       }
   }
   
-    async componentDidMount(){
-      let url='https://api.openbrewerydb.org/breweries';
-      fetch(url)
-      .then((response)=>response.json())
-      .then((json)=>{
-          console.log('JSON',json)
-       this.setState({array:json})
-      })
-      .catch((error)=>{
-          console.error(error)
-          this.setState({array:[]})
-      });
-      
-  }
+  async componentDidMount(){
+    //console.log('-----------',this.props.route.params)
+    //this.getData();
+    const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+    fetch(apiConfig.url+`/api/cours_programme?programme=${this.props.route.params}`, {
+      method: 'GET',
+      headers: {
+    
+        'Authorization':'Bearer ' + DEMO_TOKEN,
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+  
+      },
+    })
+    .then((response)=>response.json())
+    .then((json)=>{
+        console.log('JSON',json)
+     this.setState({array:json})
+     //this.intervalID = setTimeout(this.getData.bind(this), 5000);
+    })
+    .catch((error)=>{
+        console.error(error)
+        this.setState({array:[]})
+    });
+ 
+     }
+     componentWillUnmount() {
+       
+       //clearTimeout(this.intervalID);
+     }
+  /*getData=async()=>{
+    
+   const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+   fetch(apiConfig.url+`/api/cours_programme?programme=${this.props.route.params}`, {
+     method: 'GET',
+     headers: {
+   
+       'Authorization':'Bearer ' + DEMO_TOKEN,
+       'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+ 
+     },
+   })
+   .then((response)=>response.json())
+   .then((json)=>{
+       console.log('JSON',json)
+    this.setState({array:json})
+    //this.intervalID = setTimeout(this.getData.bind(this), 5000);
+   })
+   .catch((error)=>{
+       console.error(error)
+       this.setState({array:[]})
+   });
+
+  }*/
 
   // enable layout animation, toggle 'expanded' state for index and then update the layout
   updateLayout = (index) => {
@@ -51,40 +90,17 @@ export default class ListCourses extends Component {
       }
     });
   }
- /* onAddCourse=()=>{
-    navigation.navigate('QCMScreen');
-  }*/
- /*searchFilterFunction = (text) => {
-    // Check if searched text is not blank
-    if (text) {
-      // Inserted text is not blank
-      // Filter the masterDataSource
-      // Update FilteredDataSource
-      const newData = array.filter(
-        function (item) {
-          const itemData = item.title
-            ? item.name.toUpperCase()
-            : ''.toUpperCase();
-          const textData = text.toUpperCase();
-          return itemData.indexOf(textData) ;
-      });
-      this.setState({filteredArray:[newData]})
-      //setFilteredDataSource(newData);
-      this.setState({search:text})
-     // setSearch(text);
-    } else {
-      // Inserted text is blank
-      // Update FilteredDataSource with masterDataSource
-      this.setState({filteredArray:[array]})
-      //setFilteredDataSource(masterDataSource);
-      this.setState({search:text})
-      //setSearch(text);
-    }
-  }*/
+
   
   render() {
     return (
       <View style={styles.container}>
+          <View  >
+        <SearchBarProgram
+
+    
+          />
+        </View>
         <ScrollView 
          
          contentContainerStyle
@@ -94,12 +110,15 @@ export default class ListCourses extends Component {
             this.state.array.map((item, key) =>
               (
                 <ExpandableListViewCourse style={styles.myList}
-                key={item.name} 
+                key={item.id} 
                 onClickFunction={this.updateLayout.bind(this, key)} 
                 item={item} />
               ))
           }
+         
         </ScrollView>
+        <AddFixedButton
+        idcour={this.props.route.params}/>
       </View>
     );
   }

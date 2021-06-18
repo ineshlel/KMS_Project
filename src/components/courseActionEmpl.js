@@ -13,7 +13,7 @@ const CourseActionEmpl=props=>{
     return ( 
       <View  style={styles.actionsContainers}>
         <TouchableOpacity 
-        onPress={() => navigation.navigate('HeaderTabCourseEmpl')}
+        onPress={() => navigation.navigate('HeaderTabCourseEmpl',props.idc)}
          >
         <View style={styles.input}>
           <Text style={styles.textStyle}>Consultation</Text>

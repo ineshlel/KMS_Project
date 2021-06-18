@@ -3,6 +3,7 @@ import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, V
 
 import { COLORS, FONTS } from '../constants';
 import InfoCourse from '../FormateurScreens/infoCourse';
+import DocumentCourseEmpl from './documentEmpl';
 
 
 
@@ -106,7 +107,7 @@ export default class HeaderTabCourseEmpl extends Component {
                                   this.setState({ active: 0 }, () =>
                                       this.handleSlide(xTab1)
                               )}>
-              <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Information</Text>
+              <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Présentation</Text>
             </TouchableOpacity>
 
             {/* Tab 2 */}
@@ -117,7 +118,7 @@ export default class HeaderTabCourseEmpl extends Component {
                                       this.handleSlide(xTab2)
                               )}>
                               
-              <Text style={{color: (active === 1)? '#FFFFFF' :COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Matériel</Text>
+              <Text style={{color: (active === 1)? '#FFFFFF' :COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Documents</Text>
             </TouchableOpacity>
 
             {/* Tab 3 */}
@@ -146,7 +147,8 @@ export default class HeaderTabCourseEmpl extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-            <InfoCourse/>
+            <InfoCourse
+            id_c={this.props.route.params}/>
             </Animated.View>
 
             {/* Tab 2 Content */}
@@ -157,7 +159,8 @@ export default class HeaderTabCourseEmpl extends Component {
                 { translateY: -translateY}
               ]
             }}>
-            <Text>matériel</Text>
+            <DocumentCourseEmpl
+            id_c={this.props.route.params}/>
             </Animated.View>
 
             {/* Tab 3 Content */}

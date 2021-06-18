@@ -1,9 +1,12 @@
 import React, { Component } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import ProgramActions from '../components/programActions';
 
 import { COLORS, FONTS } from '../constants';
+import ConsultationComp from '../ResponsableScreens/consultationComp';
 import EvaluationEmpl from './evaluationScreenEmpl';
 import InfoFormEmpl from './InfoFormEmpl';
+import InfoFormAccepted from './informAccepted';
 
 
 
@@ -12,8 +15,10 @@ import InfoFormEmpl from './InfoFormEmpl';
 const { width } = Dimensions.get('window');
 
 export default class HeaderTabEmpl extends Component {
-  
-  state = {
+  constructor(props){
+   
+  super(props)
+  this.state = {
 
     active: 0,
     xTab1: 0,
@@ -24,8 +29,12 @@ export default class HeaderTabEmpl extends Component {
     translateXTab2: new Animated.Value(width),
     translateXTab3: new Animated.Value(2 * width),
     translateY: -1000,
+    idd :this.props.route.params.id_dm,
+    pg:this.props.route.params.prgrm,
   
-  }
+
+}}
+ 
 
   handleSlide(xCordinate){
     let { active, xTab1, xTab2, xTab3, translateX, translateXTab1, translateXTab2, translateXTab3, translateY } = this.state;
@@ -146,7 +155,8 @@ export default class HeaderTabEmpl extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-            <InfoFormEmpl/>
+            <InfoFormAccepted
+            iddm={this.state.idd}/>
             </Animated.View>
 
             {/* Tab 2 Content */}
@@ -157,19 +167,22 @@ export default class HeaderTabEmpl extends Component {
                 { translateY: -translateY}
               ]
             }}>
-           <Text>CMPV</Text>
+            <ConsultationComp
+          id_pg={this.state.pg}/>
             </Animated.View>
 
             {/* Tab 3 Content */}
             <Animated.View style={{ 
             
-              marginTop:200,
+             // marginTop:200,
               transform:[
                 { translateX: translateXTab3 },
                 { translateY: -2 * translateY}
               ]
             }}>
-              <EvaluationEmpl/>
+              <EvaluationEmpl
+              id_pg={this.state.pg}
+              />
              
             </Animated.View>
             </ScrollView>

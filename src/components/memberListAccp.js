@@ -40,7 +40,8 @@ export default class MemberListAcc extends React.Component{
         })
            .then((response)=>response.json())
            .then((json)=>{
-               console.log('JSONDEMANDES',json)
+               console.log('JSONDEMANDESACCEPTED',json)
+               //console.log('DEMANDES------------PARTCIPANT',json[0].demandes_participants)
             this.setState({demandes:json})
             this.intervalID = setTimeout(this.getDemandes.bind(this), 5000);
            })

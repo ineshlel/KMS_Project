@@ -1,10 +1,14 @@
 import React, { Component } from 'react'
 import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import App from '../components/checkBox';
+
 import { COLORS, FONTS } from '../constants';
 
-import EvaluationForma from './evaluationForma';
+import DocumentCourse from './documents';
+
+
 import InfoCourse from './infoCourse';
+import TwoHeaderTabForma from './twoHeaderTabFormaReunion';
+
 
 
 
@@ -106,7 +110,7 @@ export default class HeaderTabCourse extends Component {
                                   this.setState({ active: 0 }, () =>
                                       this.handleSlide(xTab1)
                               )}>
-              <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Information</Text>
+              <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Présentation</Text>
             </TouchableOpacity>
 
             {/* Tab 2 */}
@@ -117,7 +121,7 @@ export default class HeaderTabCourse extends Component {
                                       this.handleSlide(xTab2)
                               )}>
                               
-              <Text style={{color: (active === 1)? '#FFFFFF' :COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Matériel</Text>
+              <Text style={{color: (active === 1)? '#FFFFFF' :COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Documents</Text>
             </TouchableOpacity>
 
             {/* Tab 3 */}
@@ -128,7 +132,7 @@ export default class HeaderTabCourse extends Component {
                                       this.handleSlide(xTab3)
                               )}>
                               
-              <Text style={{color: (active === 2)? '#FFFFFF' : COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Réunion</Text>
+              <Text style={{color: (active === 2)? '#FFFFFF' : COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Réunions</Text>
             </TouchableOpacity>
 
           </View>
@@ -146,7 +150,8 @@ export default class HeaderTabCourse extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-            <InfoCourse/>
+            <InfoCourse
+              id_c={this.props.route.params}/>
             </Animated.View>
 
             {/* Tab 2 Content */}
@@ -157,20 +162,19 @@ export default class HeaderTabCourse extends Component {
                 { translateY: -translateY}
               ]
             }}>
-            <App/>
+            <DocumentCourse id_c={this.props.route.params}/>
             </Animated.View>
 
             {/* Tab 3 Content */}
             <Animated.View style={{ 
             
-              marginTop:200,
+              marginTop:50,
               transform:[
                 { translateX: translateXTab3 },
                 { translateY: -2 * translateY}
               ]
             }}>
-              <EvaluationForma/>
-             
+        <TwoHeaderTabForma/>
             </Animated.View>
             </ScrollView>
           </View>
@@ -193,7 +197,7 @@ const styles = StyleSheet.create({
   tabContainer:{
     flexDirection: 'row',
     height: 36,
-    marginTop: 10, 
+    marginTop: 20, 
     marginBottom: 10,
     position: 'relative',
   },

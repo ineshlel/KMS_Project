@@ -2,74 +2,53 @@ import React ,{useState,useEffect}from 'react';
 
 import {View,Text, StyleSheet ,TextInput,Button,FlatList}from 'react-native';
 
-import { NavigationContainer,useNavigation } from '@react-navigation/native';
 import ConsigneItem from '../components/consigneItem';
 import { COLORS } from '../constants';
+import apiConfig from '../api/config';
+import AsyncStorage from '@react-native-community/async-storage';
 
-//import axios from 'axios';
+const ConsignesList= props =>{
 
-//const navigation = useNavigation();
-
-//export default class FlatListPC extends React.Component{
-const ConsignesList= ({navigation,props}) =>{
-
- const[consignes,setConsignes]=useState([
-   {
-     id:1,
-     name:'consigne 1'
-   },
-   {
-     id:2,
-     name:'consigne 2'
-   },
-   {
-    id:3,
-    name:'consign 3'
-  },
-  {
-    id:3,
-    name:'consign 3'
-  },
-  {
-    id:3,
-    name:'consign 3'
-  },
-  {
-    id:3,
-    name:'consign 3'
-  },
+ const[consignes,setConsignes]=useState([]);
+ useEffect(async() => {
+  const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+ 
+  fetch(apiConfig.url+`/api/consignes?travail=${props.idtr}`, {
+    method: 'GET',
+    headers: {
   
+      'Authorization':'Bearer ' + DEMO_TOKEN,
+      'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
 
-  
- ]);
-/* state={
-   programs:[],
-  
-}*/
-/*useEffect(() => {
-  fetch('https://api.openbrewerydb.org/breweries')
+    },
+  })
     .then((response) => response.json())
     .then((responseJson) => {
-      setPrograms(responseJson);
-     
+      console.log('JSONWorks',responseJson)
+      setConsignes(responseJson)
     })
     .catch((error) => {
       console.error(error);
+      setConsignes([])
     });
-}, []);*/
+}, []);
 
  return (
   
     <View style={styles.Container} >
-        <FlatList
-            data={consignes}
-            keyExtractor={(item,index)=>index.toString()}
-            renderItem={({item})=> 
-            <ConsigneItem
-              name={item.name}
-             />
-             }
-          />
+       <FlatList
+      
+      style={{flexGrow: 0}}
+         data={consignes}
+         keyExtractor={(item,index)=>index.toString()}
+         renderItem={({item})=> 
+         <ConsigneItem
+         id ={item.id}
+         name={item.file_name}
+         />
+         
+     }
+     />
       
         
         

@@ -5,12 +5,12 @@ import TabBar from '../components/tabBar';
 
 import MyListForma from '../FormateurScreens/listProgramsForma';
 
-import HeaderTabsForma from '../FormateurScreens/headerTabsForma';
 
 
-import CheckBoxApp from '../components/checkBox';
-import DatePickerInput from '../components/datePicker';
-import DateNaissance from '../components/datenaiss';
+import timepicker from '../components/timepicker';
+import TimePickerInput from '../components/timepicker';
+import AddFixedButton from '../components/addFixedButton';
+
 
 
 //import ProfileNavigator from './ProfileNavigator';
@@ -28,14 +28,14 @@ const TabNavigatorForma = ({navigation}) => {
       <Tab.Screen
         name='Create'
         //component={ThreeTabSelector}
-        component={DateNaissance}
+        component={timepicker}
         initialParams={{ icon: 'plus' }}
         options={{headerShown: false}}  />
       <Tab.Screen
         name='Profile'
        //component={ConsignesList}
-       //component={TwoHeaderTabWork}
-       component={DatePickerInput}
+       component={AddFixedButton}
+      // component={timepicker}
         initialParams={{ icon: 'profile' }}
       />
       

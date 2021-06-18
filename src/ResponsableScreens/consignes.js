@@ -35,7 +35,7 @@ const FilePickerResp = props => {
   const[files,setFiles]=useState([]);
   useEffect(async() => {
     const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
-    console.log(route.params);
+   
     fetch(apiConfig.url+`/api/consignes?travail=${props.idtr}`, {
       method: 'GET',
       headers: {
@@ -140,10 +140,10 @@ const FilePickerResp = props => {
           <View style={styles.addButton}>
                         <Ionicons
                         name="attach"
-                        color="black"
+                        color="white"
                         size={24}
                       />
-                     <Text style={{fontSize:16,}}>Ajouter</Text></View>
+                     <Text style={{fontSize:16,fontFamily:'Cairo-SemiBold',color:'white'}}>Ajouter</Text></View>
         </TouchableOpacity>
      
       </View>

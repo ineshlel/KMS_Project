@@ -81,10 +81,10 @@ const FilePickerRespRemises = () => {
           <View style={styles.addButton}>
                         <Ionicons
                         name="attach"
-                        color="black"
+                        color="white"
                         size={24}
                       />
-                     <Text style={{fontSize:16,}}>Ajouter</Text></View>
+                     <Text style={{fontSize:16,fontFamily:'Cairo-SemiBold',color:'white'}}>Ajouter</Text></View>
         </TouchableOpacity>
      
       </View>
