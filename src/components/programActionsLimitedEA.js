@@ -1,6 +1,6 @@
 import React ,{useState}from 'react';
 
-import {View,Text, StyleSheet ,TextInput,Dimensions, TouchableOpacity}from 'react-native';
+import {View,Text, StyleSheet ,Dimensions, TouchableOpacity}from 'react-native';
 import { COLORS } from '../constants';
 const { width } = Dimensions.get('window');
 
@@ -8,38 +8,25 @@ import { useNavigation } from '@react-navigation/native';
 
 
 
-const ProgramActionsAccepted=props=>{
-  console.log('µµµµµµµµµµµµµ',props.idpg)
-  //HeaderTabsForma
+
+
+const ProgramActionsLimitedEmplEA=props=>{
   const navigation = useNavigation();
+  
+ // const route=props.program;
+  //const [route,setRoute]=useState('programme');
     return ( 
       <View  style={styles.actionsContainers}>
-        <TouchableOpacity  
-         onPress={() => navigation.navigate('HeaderTabsForma',props.idpg)}
-       
-        >
+        <TouchableOpacity  onPress={() => navigation.navigate('InfoFormEmpl',props.id_dm)}>
         <View style={styles.input}>
           <Text style={styles.textStyle}>Consultation</Text>
         </View>
         </TouchableOpacity>
-        <TouchableOpacity  
-       onPress={() => navigation.navigate('List des cours',props.idpg)}
-        >
-        <View style={styles.input}>
-          <Text style={styles.textStyle}>Cours</Text>
-        </View>
-        </TouchableOpacity>
-        <TouchableOpacity 
-         onPress={() => navigation.navigate('TwoHeaderTabFormateur',props.idpg)}
-         
-         >
-        <View style={styles.input}>
-          <Text style={styles.textStyle}>Inscription</Text>
-        </View>
-        </TouchableOpacity>
+     
 
       </View>
  );
+ 
 };
 const styles=StyleSheet.create({
     actionsContainer:{
@@ -67,4 +54,4 @@ const styles=StyleSheet.create({
        
 });
 
-export default ProgramActionsAccepted;
+export default ProgramActionsLimitedEmplEA;

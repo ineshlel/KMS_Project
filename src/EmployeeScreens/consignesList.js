@@ -6,6 +6,7 @@ import ConsigneItem from '../components/consigneItem';
 import { COLORS } from '../constants';
 import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';
+import ConsigneItemRem from './consigneItemRemise';
 
 const ConsignesList= props =>{
 
@@ -42,7 +43,7 @@ const ConsignesList= props =>{
          data={consignes}
          keyExtractor={(item,index)=>index.toString()}
          renderItem={({item})=> 
-         <ConsigneItem
+         <ConsigneItemRem
          id ={item.id}
          name={item.file_name}
          />

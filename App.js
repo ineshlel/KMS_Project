@@ -12,7 +12,7 @@ import TabNavigator from './src/navigation/tabNavigator';
 
 import 'react-native-gesture-handler';
 import AsyncStorage from '@react-native-community/async-storage';
-import {AuthContext} from './src/contexts/authContext';
+
 
 import Login from './src/ResponsableScreens/login';
 import ForgotPassword from './src/ResponsableScreens/forgotPassw';
@@ -60,16 +60,25 @@ import ThreeTabRegistrationEmpl from './src/components/threeTabRegistrationEmpl'
 import ListCoursesEmpl from './src/EmployeeScreens/CoursesListEmpl';
 import EditProfileScreen from './src/components/editProfil';
 import RequestDetailsEmpl from './src/ResponsableScreens/requestDetailsEmpl';
+import SplashScreen from './src/sharedScreens/splashScreen';
+import EditProfileFormaScreen from './src/FormateurScreens/editProfilForma';
+import CheckBoxApp from './src/components/checkBox';
 
 
 const Stack = createStackNavigator();
-const myOptions={
-  title:'Travaux',
+ const myOptions={
+ title:'Développement de tableaux de bord',
   headerTintColor:'#fff',
   headerStyle:{
-  backgroundColor:COLORS.purple
-  }
+  backgroundColor:COLORS.purple,
+  //fontSize:12,
+  
+  },
+  headerTitleStyle: {
+    fontSize: 16,
+  },
 }
+
 /* <Stack.Screen name="Planification"
        options={({ route }) => ({ title: route.params , headerTintColor:'#fff',
        headerStyle:{
@@ -188,22 +197,29 @@ return (
  
     
       <TabBarProvider>
+  
        <NavigationContainer>
       
          
-          <Stack.Navigator initialRouteName="Login" 
+          <Stack.Navigator initialRouteName="SplashScreen" 
           //"ProgramList"
           //"Login" 
          // "TabNavigator"
         headerShown=' false'
       >
           <Stack.Screen name="Login" options= {{headerShown: false}} component={Login} />
+          <Stack.Screen name="SplashScreen" options= {{headerShown: false}} component={SplashScreen}/>
           <Stack.Screen name="SignUp" options= {{headerShown: false}} component={SignUp} />
           <Stack.Screen name="EditProfile"  options={{...myOptions,title:'Modifier profile'} } component={EditProfileScreen} />
+          <Stack.Screen name="EditProfileForma"  options={{...myOptions,title:'Modifier profile'} } component={EditProfileFormaScreen} />
           <Stack.Screen name="InfoFormAdded" options= {{headerShown: false}} component={InfoFormAdded} />
-          <Stack.Screen name="HeaderTabsConsultation" options= {{headerShown: false}} component={HeadersTabConsult} />
+          <Stack.Screen name="HeaderTabsConsultation" options={({ route }) => ({ title: route.params.titre , headerTintColor:'#fff',
+           headerStyle:{
+           backgroundColor:COLORS.purple
+           }})}  component={HeadersTabConsult} />
           <Stack.Screen name="PLayQuizForma" options={{...myOptions,title:'QCM'} }  component={PlayquizForma} />
           <Stack.Screen name="PLayQuiz" options={{...myOptions,title:'QCM'} }  component={Playquiz} />
+          <Stack.Screen name="Competance" options={{...myOptions,title:'CMPV'} }  component={CheckBoxApp} />
           <Stack.Screen name="TabNavigator" component={TabNavigator}  options={{headerShown: false}} />
           <Stack.Screen name="TabNavigatorEmpl" component={TabNavigatorEmpl}  options={{headerShown: false}} />
           <Stack.Screen name="TabNavigatorForma" component={TabNavigatorForma}  options={{headerShown: false}} />
@@ -211,12 +227,12 @@ return (
           <Stack.Screen name="RequestDetailsEmpl" component={RequestDetailsEmpl}  options={{...myOptions,title:'Details'} }  />
           <Stack.Screen name="TwoHeaderTab" options={myOptions}    component={TwoHeaderTab} />
           <Stack.Screen name="TwoHeaderTabForma" options={myOptions}    component={TwoHeaderTabForma} />
-          <Stack.Screen name="TwoHeaderTabFormateur" options={{...myOptions,title:'Inscription'} }   component={TwoHeaderTabFormateur} />
+          <Stack.Screen name="TwoHeaderTabFormateur" options={{...myOptions,title:'Développement de tableaux de bord'} }   component={TwoHeaderTabFormateur} />
           <Stack.Screen name="TwoHeaderTabEmployee" options={{...myOptions,title:'Inscription'} }   component={TwoHeaderTabEmployee} />
-          <Stack.Screen name="TwoHeaderTabWork" options={{...myOptions,title:'Traveaux'} }   component={TwoHeaderTabWork} />
-          <Stack.Screen name="HeaderTabsForma" options={{...myOptions,title:'Programme'} }  component={HeaderTabsForma} />
+          <Stack.Screen name="TwoHeaderTabWork" options={{...myOptions,title:'Travaux'} }   component={TwoHeaderTabWork} />
+          <Stack.Screen name="HeaderTabsForma" options={{...myOptions,title:'Développement de tableaux de bord'} }  component={HeaderTabsForma} />
           <Stack.Screen name="HeaderTabEmpl" options={{...myOptions,title:'Programme'} }  component={HeaderTabEmpl} />
-          <Stack.Screen name="HeaderTabCourse" options={{...myOptions,title:'Cours'} }  component={HeaderTabCourse} />
+          <Stack.Screen name="HeaderTabCourse" options={{...myOptions,title:'Objectifs TB'} }  component={HeaderTabCourse} />
           <Stack.Screen name="HeaderTabCourseEmpl" options={{...myOptions,title:'Cours'} }  component={HeaderTabCourseEmpl} />
           <Stack.Screen name="ForgotPassword"options={myOptions}   component={ForgotPassword} />
           <Stack.Screen name="VerifPassword" options={myOptions}   component={VerifPassword} />
@@ -224,28 +240,19 @@ return (
           <Stack.Screen name="ListOfWorks"   component={ListOfWorks} options={myOptions} />
           <Stack.Screen name="ListOfWorksForma"   component={ListOfWorksForma}options={myOptions}/>
           <Stack.Screen name="ListOfWorksEmpl"   component={ListOfWorksEmpl}options={myOptions}/>
-          <Stack.Screen name="QCMScreen"  options={{...myOptions,title:'QCM'} }   component={QCMScreen}/>
+          <Stack.Screen name="QCMScreen"  options={{...myOptions,title:'Développement de tableaux de bord'} }   component={QCMScreen}/>
           <Stack.Screen name="QCMForma"  options={{...myOptions,title:'QCM'} }   component={QCMForma}/>
-          <Stack.Screen name="Inscription" options={{...myOptions,title:'Inscription'} }      component={ThreeTabRegistration}/>
+          <Stack.Screen name="Inscription" options={{...myOptions,title:'BPR'} }      component={ThreeTabRegistration}/>
           <Stack.Screen name="liste des participants"  options={{...myOptions,title:'liste des participants'} }   component={ThreeTabRegistrationEmpl}/>
           <Stack.Screen name="InscriptionFormateur" options={{...myOptions,title:'Inscription'} } component={InscriptionFormateur}/>
           <Stack.Screen name="InscriptionParticipant" options={{...myOptions,title:'Inscription'} } component={InscriptionEmployee}/>
           <Stack.Screen name="RequestInfo" options={{...myOptions,title:'Détails'} } component={RequestInfo}/>
           <Stack.Screen name="List des cours"
-           options={({ route }) => ({ title: route.params , headerTintColor:'#fff',
-           headerStyle:{
-           backgroundColor:COLORS.purple
-           }})}    component={ListCourses}/>
+           options={{...myOptions,title:'Développement de tableaux de bord'} }   component={ListCourses}/>
             <Stack.Screen name="ProgramConsultation"
-           options={({ route }) => ({ title: route.params , headerTintColor:'#fff',
-           headerStyle:{
-           backgroundColor:COLORS.purple
-           }})}    component={ProgramConsultation}/>
+           options={{...myOptions,title:'Développement de tableaux de bord'} }   component={ProgramConsultation}/>
           
-           <Stack.Screen name="CoursesScreenEmpl" options={({ route }) => ({ title: route.params , headerTintColor:'#fff',
-           headerStyle:{
-           backgroundColor:COLORS.purple
-           }})} component={ListCoursesEmpl}/>
+           <Stack.Screen name="CoursesScreenEmpl" options={{...myOptions,title:'BPR'} } component={ListCoursesEmpl}/>
             <Stack.Screen name="Planification"   component={CoursePlanification}
            options={{...myOptions,title:'Nouveau cours'} } 
            />

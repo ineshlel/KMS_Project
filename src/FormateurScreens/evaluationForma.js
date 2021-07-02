@@ -23,7 +23,7 @@ const EvaluationForma=({props})=>{
        onPress={() => navigation.navigate("PLayQuizForma")}
        >
       <View  style={styles.input}>
-      <Text style={styles.textStyle}>QCM</Text>
+      <Text style={styles.textStyle}>QUIZZ</Text>
       </View>
        </TouchableOpacity>
         </View>

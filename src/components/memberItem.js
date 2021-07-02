@@ -37,6 +37,10 @@ const MemberItem=props=>{
     <View style={styles.itemContainer} >
         <View >
         <Text  style={styles.textName}>{props.name}</Text>
+        <View  style={{flexDirection:'row',justifyContent:'space-between'}}>
+    <Text style={styles.textDate}>{props.ddd}</Text>
+    <Text style={styles.textDate}>{props.dfd}</Text>
+    </View>
         </View>
      </View>
      </TouchableOpacity>
@@ -67,8 +71,17 @@ const styles=StyleSheet.create({
       textName:{
           fontSize:15,
           //fontWeight:'bold',
-          marginBottom:5,
+          //marginBottom:5,
+          fontFamily:'Cairo-SemiBold'
       },
+      textDate:{
+        fontSize:12,
+        marginRight:8,
+        color:COLORS.orange,
+        //fontWeight:'bold',
+       // marginBottom:5,
+       fontFamily:'Cairo-Regular'
+    },
       textCountry:{
           color:'gray'
       },

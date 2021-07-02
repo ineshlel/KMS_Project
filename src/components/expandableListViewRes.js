@@ -1,15 +1,12 @@
 import React, { Component } from 'react';
 import { Alert, LayoutAnimation, StyleSheet, View, Text, ScrollView, UIManager, TouchableOpacity, Platform, Image } from 'react-native';
 import ProgramActions from './programActions';
-import ProgramActionsAccepted from './programActionsAccepted';
-import ProgramActionsAcceptedEmpl from './programActionsAcceptedEmpl';
-import ProgramActionsLimited from './programActionsLimited';
 import ProgramItem from './programItem';
-import ProgramItemAcceptedEmpl from './programItemAcceptedEmpl';
+import ProgramItemRes from './programItemRes';
 
 
 
-export default class ExpandableListViewAcceptedEmpl extends Component {
+export default class ExpandableListViewRes extends Component {
 
   constructor() {
     super();
@@ -61,22 +58,20 @@ export default class ExpandableListViewAcceptedEmpl extends Component {
         <TouchableOpacity activeOpacity={0.8} onPress={this.props.onClickFunction}>
          
         
-            <ProgramItemAcceptedEmpl
-           name={this.props.item.programme_name}
-           dd={this.props.item.date_debut}
-           df={this.props.item.date_fin}
-           //statut={this.props.item.demandes_participants[0].statut}
+            <ProgramItemRes
+              name={this.props.item.programme_name}
+              dd={this.props.item.date_debut}
+              df={this.props.item.date_debut}
+              nf={this.props.item.formateur_name}
             />
         
 
          
         </TouchableOpacity>
         <View style={{ height: this.state.layoutHeight, overflow: 'hidden' }}>
-      <ProgramActionsAcceptedEmpl
-        id_dm={this.props.item.id}
-        prgrm={this.props.item.programme}
-        name={this.props.item.programme_name}
-        />
+          <ProgramActions 
+             idpg={this.props.item.id}
+             />
         
         </View>
       </View>

@@ -11,6 +11,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 //import Icon from 'react-native-vector-icons/Ionicons';
 import AddWork from './addWork';
 import ItemAdded from './itemAdded';
+import Loader from './loader';
 
 
 
@@ -19,12 +20,17 @@ const ListOfWorks=({route})=>{
  
     const[addInputs,setaddInputs]=useState([]);
     const[works,setWorks]=useState([]);
+    const[loading,setLoading]=useState();
    
 
-    const addInputHandler= (inputValue)=>{
+    const addInputHandler= (inputValue,inputpond,inputdatd,inputdatf)=>{
+      
         setaddInputs(currentInputs=>[...addInputs,
-          {id:Math.random().toString(),value2:inputValue}]);
-         
+          
+          {id:Math.random().toString(),value2:inputValue,value3:inputpond,date:inputdatd,date2:inputdatf},
+   
+        ]);
+        
         
       }
       /*useEffect(async() => {
@@ -49,6 +55,7 @@ const ListOfWorks=({route})=>{
           });
       }, []);*/
       useEffect(async() => {
+        setLoading(true);
         const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
         console.log(route.params);
         fetch(apiConfig.url+`/api/travaux?programme=${route.params}`, {
@@ -62,8 +69,10 @@ const ListOfWorks=({route})=>{
         })
           .then((response) => response.json())
           .then((responseJson) => {
+           
             console.log('JSONWorks',responseJson)
             setWorks(responseJson)
+            setLoading(false);
           })
           .catch((error) => {
             console.error(error);
@@ -74,8 +83,9 @@ const ListOfWorks=({route})=>{
   //<View><AddCircleOutline    /></View>
    //onPress={() => _changeIcon()}
     return (
-    <ScrollView>
-    <View  style={styles.formContainer}>
+    <ScrollView style={styles.formContainer}>
+    <View  >
+    <Loader loading={loading} />
     <View style={styles.titleStyle}>
    
     </View>
@@ -97,7 +107,11 @@ const ListOfWorks=({route})=>{
            
             id_tr={item.id}
             value={item.titre}
+            valuepond={item.ponderation}
+            valuedd={item.date_debut}
+            valuedf={item.date_limite}
             />
+       
             
         }
         />
@@ -113,6 +127,10 @@ const ListOfWorks=({route})=>{
       id ={itemData.item.id}
       value={itemData.item.value2}
       id_pg={route.params}
+      valuepond={itemData.item.value3}
+      valuedd={itemData.item.date}
+      valuedf={itemData.item.date2}
+      
       />
       }>
        
@@ -132,7 +150,9 @@ const styles=StyleSheet.create({
     formContainer:{
         flexDirection:'column',
         padding:20,
-        marginBottom:10
+       // marginTop:10,
+        backgroundColor:"#fff"
+
     
       },
       button:{

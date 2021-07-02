@@ -20,8 +20,8 @@ const ProgramItemAccepted=props=>{
         </View>
         <View >
         <Text  style={styles.textName}>{props.name}</Text>
-        <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-        <Text  style={styles.textCountry}>{props.dd}</Text>
+        <View style={{flexDirection:'row'}}>
+        <View style={{marginRight:12}}><Text  style={styles.textCountry}>{props.dd}</Text></View>
         <Text  style={styles.textCountry}>{props.df}</Text>
         </View>
         </View>
@@ -42,7 +42,7 @@ const styles=StyleSheet.create({
 
       itemContainer:{
           flexDirection:'row',
-          marginHorizontal:20,
+          marginHorizontal:15,
          //
          marginVertical:5,
         // marginTop:40,
@@ -50,14 +50,15 @@ const styles=StyleSheet.create({
           borderRadius:10,
           borderColor:'#ddd',
           borderWidth:1,
+          //borderColor:COLORS.purple,
           padding:10,
-          width:'85%',
+          width:'90%',
          backgroundColor:'white',
           shadowColor:'black',
           shadowOffset:{width:0,height:2},
           shadowRadius:6,
           shadowOpacity:0.26,
-         elevation:12,
+         elevation:4,
          
           },
        itemStyle:{
@@ -77,7 +78,7 @@ const styles=StyleSheet.create({
          // justifyContent:'center',
           //alignItems:'center',
           marginLeft:'92%',
-          marginVertical:20,
+          marginVertical:26,
           position:'absolute'
          },
       membership:{

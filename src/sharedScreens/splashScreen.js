@@ -11,7 +11,10 @@ import {
 import * as Animatable from 'react-native-animatable';
 import LinearGradient from 'react-native-linear-gradient';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 import { useTheme } from '@react-navigation/native';
+import { COLORS } from '../constants';
+import LottieView from 'lottie-react-native';
 /*  <Animatable.Image 
                 animation="bounceIn"
                 duraton="1500"
@@ -26,27 +29,27 @@ const SplashScreen = ({navigation}) => {
 
     return (
       <View style={styles.container}>
-          <StatusBar backgroundColor='#009387' barStyle="light-content"/>
-        <View style={styles.header}>
           
+        <View style={styles.header}>
+        <LottieView source={require('../assets/14583-multi-tasking.json')} autoPlay loop />
         </View>
         <Animatable.View 
             style={[styles.footer, {
-                backgroundColor: colors.background
+                backgroundColor: COLORS.purple
             }]}
             animation="fadeInUpBig"
         >
             <Text style={[styles.title, {
-                color: colors.text
-            }]}>Stay connected with everyone!</Text>
-            <Text style={styles.text}>Sign in with account</Text>
+                color: "#fff"
+            }]}>" Quand la formation requise est en adéquation avec l'emploi obtenu, la compétence sera au service du progrès "</Text>
+            <Text style={styles.text}>Jacques Le Goff</Text>
             <View style={styles.button}>
             <TouchableOpacity onPress={()=>navigation.navigate('Login')}>
                 <LinearGradient
-                    colors={['#08d4c4', '#01ab9d']}
+                    colors={[COLORS.blueClair, '#57B8DF']}
                     style={styles.signIn}
                 >
-                    <Text style={styles.textSign}>Get Started</Text>
+                    <Text style={styles.textSign}>Commencer</Text>
                     <MaterialIcons 
                         name="navigate-next"
                         color="#fff"
@@ -68,7 +71,7 @@ const height_logo = height * 0.28;
 const styles = StyleSheet.create({
   container: {
     flex: 1, 
-    backgroundColor: '#009387'
+    backgroundColor: '#fff'
   },
   header: {
       flex: 2,
@@ -77,11 +80,13 @@ const styles = StyleSheet.create({
   },
   footer: {
       flex: 1,
-      backgroundColor: '#fff',
+      backgroundColor:COLORS.purple ,
       borderTopLeftRadius: 30,
       borderTopRightRadius: 30,
       paddingVertical: 50,
-      paddingHorizontal: 30
+      paddingHorizontal: 30,
+     // height:300,
+      
   },
   logo: {
       width: height_logo,
@@ -89,12 +94,15 @@ const styles = StyleSheet.create({
   },
   title: {
       color: '#05375a',
-      fontSize: 30,
-      fontWeight: 'bold'
+      fontSize: 16,
+      //fontWeight: 'bold'
+      fontFamily:"Cairo-Bold"
   },
   text: {
-      color: 'grey',
-      marginTop:5
+      color: "#fff",
+      marginTop:5,
+      marginLeft:200,
+      fontFamily:"Cairo-Regular"
   },
   button: {
       alignItems: 'flex-end',
@@ -110,6 +118,8 @@ const styles = StyleSheet.create({
   },
   textSign: {
       color: 'white',
-      fontWeight: 'bold'
+      fontFamily:"Cairo-SemiBold",
+      fontSize: 16,
+
   }
 });

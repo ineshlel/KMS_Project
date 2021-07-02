@@ -1,11 +1,12 @@
 import React ,{useState}from 'react';
 
-import {View,Text, StyleSheet,  TouchableOpacity,
+import {View,Text, StyleSheet,  TouchableOpacity,Linking,Clipboard
     }from 'react-native';
 
 import Feather from 'react-native-vector-icons/Feather';
 import { COLORS } from '../constants';
-
+//import Clipboard from '@react-native-community/clipboard';
+//onPress={() => Clipboard.setString(props.name)
 
 
 
@@ -19,10 +20,16 @@ const LinkItem=props=>{
       
         >
         <View style={styles.container}>
+
          <View >
-        <Text  style={styles.textName}>{props.name}</Text>
+        <Text 
+         style={styles.textName}
+         onPress={() => Linking.openURL(props.name)}
+         >
+
+             {props.name}</Text>
         </View>
-     
+      
         <View style={styles.downArrow}>
           <Feather 
                     name="copy"
@@ -30,7 +37,7 @@ const LinkItem=props=>{
                     size={26}
                 />
         </View>
-      
+       
         </View>
         </TouchableOpacity>
    
@@ -68,8 +75,11 @@ const styles=StyleSheet.create({
        },
       textName:{
           fontSize:15,
+          color:COLORS.purple,
           fontFamily:'Cairo Regular',
           marginBottom:5,
+          borderBottomWidth:1,
+          borderBottomColor:COLORS.purple,
       },
       textCountry:{
           color:COLORS.orange

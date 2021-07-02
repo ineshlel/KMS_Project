@@ -8,6 +8,7 @@ import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';
 import DescriptionStaticInput from '../components/descriptionStaticInput';
 import { TabRouter } from '@react-navigation/routers';
+import Loader from '../components/loader';
 
 
 
@@ -21,8 +22,10 @@ const InfoFormAdded=(props)=>{
   const [title,setTitle]=useState('');
   const [duration,setDuration]=useState('');
   const [description,setDescription]=useState('');
+  const[loading,setLoading]=useState(false);
 
   useEffect( async() => {
+    setLoading(true);
     const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
     fetch(apiConfig.url+`/api/programmes/${props.id_pg}`, {
       method: 'GET',
@@ -36,6 +39,7 @@ const InfoFormAdded=(props)=>{
       .then((response) => response.json())
       .then((responseJson) => {
         //setFilteredDataSource(responseJson);
+        setLoading(false);
        console.log(responseJson);
       setTitle(responseJson.titre);
       setDuration(responseJson.duration);
@@ -45,6 +49,11 @@ const InfoFormAdded=(props)=>{
         console.error(error);
       });
   }, []);
+  if (loading){
+    return ( <Loader loading={loading} /> );
+  } else {
+
+
    
     return (
      <View  style={styles.formContainer}>
@@ -66,7 +75,7 @@ const InfoFormAdded=(props)=>{
     
       </View>
  );
-};
+}};
 const styles=StyleSheet.create({
     formContainer:{
         flexDirection:'column',

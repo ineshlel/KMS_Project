@@ -32,6 +32,7 @@ super(props)
 getDemandes=async()=>{
     const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
     var decoded = jwt_decode(DEMO_TOKEN);
+    console.log('IDPRGRM',this.props.id_pg);
     fetch(apiConfig.url+`/api/demandes_formateur?statut=A&programme=${this.props.id_pg}&formateur=${decoded.user_id}`, {
       method: 'GET',
       headers: {

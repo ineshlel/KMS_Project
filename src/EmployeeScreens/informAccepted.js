@@ -45,9 +45,9 @@ const InfoFormAccepted=props=>{
   }, []);
    
 
-  /*if (loading){
+  if (loading){
      return ( <Loader loading={loading} /> );
-   } else {*/
+   } else {
 
     return (
       
@@ -76,7 +76,7 @@ const InfoFormAccepted=props=>{
      
     
  );
-//}
+}
 };
 const styles=StyleSheet.create({
     formContainer:{

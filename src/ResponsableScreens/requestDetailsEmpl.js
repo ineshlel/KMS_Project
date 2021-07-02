@@ -210,7 +210,7 @@ if(initialStatut=="EA")
       <View>
       <View  style={styles.formContainer}>
    <StaticInput name='Nom Formateur:'
-   value={nameF}
+   value={nameP}
    //value={JSON.stringify(nameF)}
    />
  

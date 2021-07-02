@@ -1,13 +1,12 @@
 import React ,{useState}from 'react';
 
 import {View,Text, StyleSheet ,TextInput}from 'react-native';
-
+import AntDesign from 'react-native-vector-icons/AntDesign';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-
 import { COLORS } from '../constants';
 
 
-const ProgramItem=props=>{
+const ProgramItemRes=props=>{
 
     const[icon,setIcon]=useState(<FontAwesome5 
         name="chevron-down"
@@ -26,11 +25,13 @@ const ProgramItem=props=>{
 
      
     return (
-    <View>
+  
     <View style={styles.itemContainer} >
         <View >
         <Text  style={styles.textName}>{props.name}</Text>
-        <Text  style={styles.textCountry}>{props.duration}</Text>
+        <Text  style={styles.textCountry}>{props.dd}</Text>
+        <Text  style={styles.textCountry}>{props.df}</Text>
+        <Text  style={styles.textCountry}>{props.nf}</Text>
         </View>
         <View style={styles.downArrow}>
           <FontAwesome5 
@@ -39,12 +40,10 @@ const ProgramItem=props=>{
                     size={22}
                 />
         </View>
-        </View>
-        <View style={styles.suppicon}>
-          
-        </View>
         
-        </View>   
+        
+   
+    </View>
  );
 };
 const styles=StyleSheet.create({
@@ -82,22 +81,13 @@ const styles=StyleSheet.create({
       downArrow:{
          // justifyContent:'center',
           //alignItems:'center',
-          marginLeft:'90%',
-         
+          marginLeft:'92%',
           marginVertical:20,
           position:'absolute'
 
 
       },
-      suppicon:{
-        top:6,
-
-        marginLeft:'92%',
-        marginVertical:20,
-        position:'absolute'
-
-      }
 
  
 });
-export default ProgramItem;
+export default ProgramItemRes;

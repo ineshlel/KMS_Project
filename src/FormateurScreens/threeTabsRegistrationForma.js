@@ -28,6 +28,8 @@ export default class ThreeTabRegistrationForma extends Component {
   }
 
   handleSlide(xCordinate){
+
+    console.log('IDFITHREETAB',this.props.id_pgf);
     let { active, xTab1, xTab2, xTab3, translateX, translateXTab1, translateXTab2, translateXTab3, translateY } = this.state;
     
     // Tab Bar
@@ -210,6 +212,7 @@ const styles = StyleSheet.create({
     //marginLeft: 5,
    // marginRight: 5,
    marginTop:15,
+ 
    
   },
 

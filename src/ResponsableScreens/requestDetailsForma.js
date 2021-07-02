@@ -1,6 +1,6 @@
 import React ,{useState,useCallback}from 'react';
 
-import {View,StyleSheet,Image,Text,TouchableOpacity }from 'react-native';
+import {View,StyleSheet,Image,Text,TouchableOpacity,SafeAreaView,ScrollView }from 'react-native';
 import ButtonKms from '../components/buttonV';
 
 import StaticInput from '../components/staticInput';
@@ -67,11 +67,12 @@ const RequestDetailsForma=({route})=>{
 
 if (acceptationSuccess) {
     return(
-        <View
+        <SafeAreaView
             style={{
               flex: 1,
-              //backgroundColor: COLORS.purple,
+              backgroundColor:'#fff',
               justifyContent: 'center',
+           
             }}>
             <Image
               source={require('../assets/images/user.png')}
@@ -101,7 +102,7 @@ if (acceptationSuccess) {
 
                
             </View>
-          </View>
+          </SafeAreaView>
     );}
 const handleRefus=async()=>{
     var dataToSend = {
@@ -144,7 +145,7 @@ const handleRefus=async()=>{
 if(initialStatut=="EA")
    
     {return (
-    
+    <ScrollView style={{  backgroundColor:'#fff',}}>
      <View  style={styles.formContainer}>
     <StaticInput name='Nom Formateur:'
     value={nameF}
@@ -173,11 +174,11 @@ if(initialStatut=="EA")
    />
    </View>
    </View>
-    
+   </ScrollView>
  );}
   else if (initialStatut=="A"){
    return (
-     <View>
+     <ScrollView style={{  backgroundColor:'#fff',}}>
        <View  style={styles.formContainer}>
     <StaticInput name='Nom Formateur:'
     value={nameF}
@@ -186,11 +187,11 @@ if(initialStatut=="EA")
   
       <StaticInput name='Date Début:'
     //value={props.ddebut}
-    value={JSON.stringify(ddd)}
+    value={ddd}
     />
       <StaticInput name='Date Fin:'
     //value={props.dfin}
-    value={JSON.stringify(dfd)}
+    value={dfd}
     />
     <StaticInput name='Statut:'
     value={st}
@@ -209,14 +210,15 @@ if(initialStatut=="EA")
           <Text style={styles.successTextStyle}>
             Formateur Accepté
           </Text>
+      
      <MemberAction
      iddm={id_dm}/>
   </View>
-  </View>
+  </ScrollView>
    );}
    else{
      return(
-      <View>
+      <ScrollView style={{  backgroundColor:'#fff',}}>
       <View  style={styles.formContainer}>
    <StaticInput name='Nom Formateur:'
    value={nameF}
@@ -249,17 +251,18 @@ if(initialStatut=="EA")
            Formateur Refusé
          </Text>
  </View>
- </View>
+ </ScrollView>
      );
    }
 };
 const styles=StyleSheet.create({
     formContainer:{
         flexDirection:'column',
-       
+        backgroundColor:'#fff',
          padding:30,
         //marginBottom:30
        // marginRight:20,
+    
     
       },
       inputContainer:{
@@ -278,7 +281,8 @@ const styles=StyleSheet.create({
       },
     buttonContainer:{
         flexDirection:'column',
-        marginTop:80,
+       // marginTop:80,
+    
     },
 
 
@@ -316,6 +320,8 @@ const styles=StyleSheet.create({
 
     acceptationContainer:{
       marginTop:60,
+  backgroundColor:'#fff',
+
     }    
      
 });

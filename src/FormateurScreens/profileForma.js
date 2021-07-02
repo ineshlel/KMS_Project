@@ -16,15 +16,16 @@ import { useNavigation } from '@react-navigation/native';
 import AsyncStorage from '@react-native-community/async-storage';
 import jwt_decode from "jwt-decode";
 import apiConfig from '../api/config';
-import StaticInput from './staticInput';
+
 import { COLORS } from '../constants';
+import StaticInput from '../components/staticInput';
 
 
 //import Share from 'react-native-share';
 
 //import files from '../assets/filesBase64';
 
-const ProfileScreen = () => {
+const ProfileFormaScreen = () => {
      
     const[pathimage,setPathimage]=useState();
     const[tdecoded,setTdecoded]=useState({});
@@ -46,7 +47,7 @@ const ProfileScreen = () => {
                setTdecoded( jwt_decode(DEMO_TOKEN));
                console.log(tdecoded.user_id);
               
-    fetch(apiConfig.url+`/auth/participants/${tdecoded.user_id}`, {
+    fetch(apiConfig.url+`/auth/formateurs/${tdecoded.user_id}`, {
       method: 'GET',
       headers: {
     
@@ -61,6 +62,7 @@ const ProfileScreen = () => {
        console.log(responseJson);
        setFullname(responseJson.fullname);
        setEntreprise(responseJson.entreprise);
+       console.log('-----------',responseJson.poste);
        setPoste(responseJson.poste);
        setSpecialite(responseJson.specialite);
    
@@ -84,7 +86,7 @@ const ProfileScreen = () => {
          console.log("USER",responseJson);
          setTel(responseJson.tel);
          setAvatar(responseJson.avatar);
-          
+        
      
     
         })
@@ -95,6 +97,53 @@ const ProfileScreen = () => {
   
    []);
 
+  /*   <View style={styles.infoBoxWrapper}>
+          <View style={[styles.infoBox, {
+            borderRightColor: '#dddddd',
+            borderRightWidth: 1
+          }]}>
+            <Title>Ma Liste</Title>
+            <Caption>Wallet</Caption>
+          </View>
+          <View style={styles.infoBox}>
+            <Title>Programmes</Title>
+            <Caption>Orders</Caption>
+          </View>
+      </View>
+  const myCustomShare = async() => {
+    const shareOptions = {
+      message: 'Order your next meal from FoodFinder App. I\'ve already ordered more than 10 meals on it.',
+     // url: files.appLogo,
+      // urls: [files.image1, files.image2]
+    }
+
+    try {
+      const ShareResponse = await Share.open(shareOptions);
+      console.log(JSON.stringify(ShareResponse));
+    } catch(error) {
+      console.log('Error => ', error);
+    }
+  };
+       <TouchableRipple onPress={() => {}}>
+          <View style={styles.menuItem}>
+            <Icon name="heart-outline" color="#FF6347" size={25}/>
+            <Text style={styles.menuItemText}>Your Favorites</Text>
+          </View>
+        </TouchableRipple>
+        <TouchableRipple onPress={() => {}}>
+          <View style={styles.menuItem}>
+            <Icon name="credit-card" color="#FF6347" size={25}/>
+            <Text style={styles.menuItemText}>Payment</Text>
+          </View>
+        </TouchableRipple>
+        <TouchableRipple 
+       // onPress={myCustomShare}
+        >
+          <View style={styles.menuItem}>
+            <Icon name="share-outline" color="#FF6347" size={25}/>
+            <Text style={styles.menuItemText}>Tell Your Friends</Text>
+          </View>
+        </TouchableRipple>*/
 
   return (
     <ScrollView style={styles.container}>
@@ -103,18 +152,18 @@ const ProfileScreen = () => {
         <View style={{flexDirection: 'row', marginTop: 15}}>
           <Avatar.Image 
             source={{
-              uri: avatar,
+              uri: "file:///storage/emulated/0/Android/data/com.kms_project/files/Pictures/f8e591bc-7c16-4011-ac6f-2c67b5e14860.jpg",
             }}
             size={80}
           />
-          <View style={{marginLeft: 20}}>
+          <View style={{marginLeft: 8}}>
             <Title style={[styles.title, {
               marginTop:15,
               marginBottom: 5,
             }]}>{fullname}</Title>
             <Caption style={styles.caption}>{tdecoded.username}</Caption>
           </View>
-          <TouchableOpacity  onPress={() => navigation.navigate('EditProfile',  {
+          <TouchableOpacity  onPress={() => navigation.navigate('EditProfileForma',  {
           username_:tdecoded.username,
           full_name:fullname,
           telephone:tel,
@@ -135,61 +184,47 @@ const ProfileScreen = () => {
 
       <View style={styles.userInfoSection}>
         <View style={styles.row}>
-          <Icon name="map-marker-radius" color={COLORS.orange}  size={20}/>
+          <Icon name="map-marker-radius" color={COLORS.blueClair}  size={20}/>
           <Text style={{color:"#777777", marginLeft: 20}}>Tunisia</Text>
         </View>
         <View style={styles.row}>
-          <Icon name="phone" color={COLORS.orange}  size={20}/>
+          <Icon name="phone" color={COLORS.blueClair}  size={20}/>
           <Text style={{color:"#777777", marginLeft: 20}}>{tel}</Text>
         </View>
         <View style={styles.row}>
-          <Icon name="email" color={COLORS.orange}  size={20}/>
+          <Icon name="email" color={COLORS.blueClair}  size={20}/>
           <Text style={{color:"#777777", marginLeft: 20}}>{tdecoded.email}</Text>
         </View>
-        <StaticInput name='Entreprise :'
+        <StaticInput  name='Entreprise :'
     value={entreprise}
     />
-    <StaticInput name='Poste :'
+    <StaticInput  name='Poste :'
    value={poste}
     />
-    <StaticInput name='Spécialité :'
+    <StaticInput  name='Spécialité :'
     value={specialite}
     />
-      </View>
+     </View>
      
 
    
 
       <View style={styles.menuWrapper}>
-        <TouchableRipple onPress={() => {}}>
+      <TouchableRipple onPress={() => navigation.navigate('SplashScreen')}>
           <View style={styles.menuItem}>
-            <Icon name="heart-outline" color="#FF6347" size={25}/>
-            <Text style={styles.menuItemText}>Your Favorites</Text>
+            <MaterialIcons name="file-download" color={COLORS.orange} size={25}/>
+            <Text style={styles.menuItemCV}>Cv_Moufid Karray.pdf</Text>
           </View>
         </TouchableRipple>
         <TouchableRipple onPress={() => {}}>
           <View style={styles.menuItem}>
-            <Icon name="credit-card" color="#FF6347" size={25}/>
-            <Text style={styles.menuItemText}>Payment</Text>
-          </View>
-        </TouchableRipple>
-        <TouchableRipple 
-       // onPress={myCustomShare}
-        >
-          <View style={styles.menuItem}>
-            <Icon name="share-outline" color="#FF6347" size={25}/>
-            <Text style={styles.menuItemText}>Tell Your Friends</Text>
-          </View>
-        </TouchableRipple>
-        <TouchableRipple onPress={() => {}}>
-          <View style={styles.menuItem}>
-            <Icon name="account-check-outline" color="#FF6347" size={25}/>
+            <Icon name="account-check-outline" color={COLORS.orange} size={25}/>
             <Text style={styles.menuItemText}>Support</Text>
           </View>
         </TouchableRipple>
         <TouchableRipple onPress={() => navigation.navigate('SplashScreen')}>
           <View style={styles.menuItem}>
-            <MaterialIcons name="logout" color="#FF6347" size={25}/>
+            <MaterialIcons name="logout" color={COLORS.orange} size={25}/>
             <Text style={styles.menuItemText}>Se déconnecter</Text>
           </View>
         </TouchableRipple>
@@ -198,18 +233,19 @@ const ProfileScreen = () => {
   );
 };
 
-export default ProfileScreen;
+export default ProfileFormaScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#F5FCFF',
   },
   userInfoSection: {
     paddingHorizontal: 30,
     marginBottom: 25,
   },
   title: {
-    fontSize: 24,
+    fontSize: 20,
    fontFamily:'Cairo-Bold',
    color:COLORS.purple,
   },
@@ -244,10 +280,26 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   menuItemText: {
-    color: '#777777',
+    color: 'black',
     marginLeft: 20,
     fontWeight: '600',
     fontSize: 16,
     lineHeight: 26,
+    fontFamily:'Cairo-SemiBold'
+  },
+  menuItemCV:{
+    color: COLORS.purple,
+    marginLeft: 20,
+    fontWeight: '600',
+    fontSize: 16,
+    lineHeight: 26,
+    borderBottomWidth:1,
+    borderBottomColor:COLORS.orange,
+    fontFamily:'Cairo-Regular',
+
+  },
+
+  containercv:{
+    marginTop:5,
   },
 });

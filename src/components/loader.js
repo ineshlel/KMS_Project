@@ -3,9 +3,17 @@
 
 // Import React and Component
 import React from 'react';
-import {StyleSheet, View, Modal, ActivityIndicator} from 'react-native';
+import {StyleSheet, View, Modal,Dimensions} from 'react-native';
 import { COLORS } from '../constants';
-
+const windowWidth = Dimensions.get('window').width;
+const windowHeight = Dimensions.get('window').height;
+import LottieView from 'lottie-react-native';
+/*<ActivityIndicator
+            animating={true}
+            color="#000000"
+            size="large"
+            style={styles.activityIndicator}
+          /> */
 const Loader = (props) => {
   const {loading, ...attributes} = props;
 
@@ -19,12 +27,8 @@ const Loader = (props) => {
       }}>
       <View style={styles.modalBackground}>
         <View style={styles.activityIndicatorWrapper}>
-          <ActivityIndicator
-            animating={true}
-            color="#000000"
-            size="large"
-            style={styles.activityIndicator}
-          />
+          
+          <LottieView source={require('../assets/14583-multi-tasking.json')} autoPlay loop />
         </View>
       </View>
     </Modal>
@@ -43,8 +47,8 @@ const styles = StyleSheet.create({
   },
   activityIndicatorWrapper: {
     backgroundColor: '#FFFFFF',
-    height: 100,
-    width: 100,
+    height: windowHeight,
+    width: windowWidth,
     borderRadius: 10,
     display: 'flex',
     alignItems: 'center',

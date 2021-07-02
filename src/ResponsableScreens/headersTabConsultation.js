@@ -112,7 +112,7 @@ export default class HeadersTabConsult extends Component {
                               )}>
               <Text 
               style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontSize:18,fontFamily:"Cairo-Bold"}}>
-                Information
+                Présentation
                 </Text>
             </TouchableOpacity>
 
@@ -154,7 +154,7 @@ export default class HeadersTabConsult extends Component {
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
          <InfoFormAdded
-           id_pg={this.props.route.params} 
+           id_pg={this.props.route.params.id} 
          />
             </Animated.View>
 
@@ -169,12 +169,12 @@ export default class HeadersTabConsult extends Component {
               ]
             }}>
           <ConsultationComp
-          id_pg={this.props.route.params}/>
+          id_pg={this.props.route.params.id}/>
             </Animated.View>
 
             {/* Tab 3 Content */}
             <Animated.View style={{ 
-            
+            flex:1,
              //marginBottom:350,
               transform:[
                 { translateX: translateXTab3 },
@@ -182,7 +182,7 @@ export default class HeadersTabConsult extends Component {
               ]
             }}>
               <EvaluationScreen
-              id_pg={this.props.route.params}
+              id_pg={this.props.route.params.id}
               />
              
             </Animated.View>
@@ -198,9 +198,11 @@ export default class HeadersTabConsult extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
+    width: '100%',
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
+    backgroundColor:"#fff",
+    padding:10,
   },
 
   // Tab Selector Styles

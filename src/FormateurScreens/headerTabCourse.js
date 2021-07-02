@@ -66,6 +66,7 @@ export default class HeaderTabCourse extends Component {
 
   
   handleContentSlide(tab1, tab2, tab3){
+   
     let {translateXTab1, translateXTab2, translateXTab3} = this.state;
 
     Animated.parallel([
@@ -168,13 +169,14 @@ export default class HeaderTabCourse extends Component {
             {/* Tab 3 Content */}
             <Animated.View style={{ 
             
-              marginTop:50,
+              marginTop:150,
               transform:[
                 { translateX: translateXTab3 },
                 { translateY: -2 * translateY}
               ]
             }}>
-        <TwoHeaderTabForma/>
+        <TwoHeaderTabForma
+        id_c={this.props.route.params}/>
             </Animated.View>
             </ScrollView>
           </View>
@@ -188,16 +190,18 @@ export default class HeaderTabCourse extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
+    width: '100%',
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
+    backgroundColor:"#fff",
+    padding:10,
   },
 
   // Tab Selector Styles
   tabContainer:{
     flexDirection: 'row',
     height: 36,
-    marginTop: 20, 
+    marginTop: 10, 
     marginBottom: 10,
     position: 'relative',
   },

@@ -96,7 +96,7 @@ export default class ThreeTabRegistrationEmpl extends Component {
         <View style={styles.container}>  
         <View style={styles.input}>
     
-        <Text style={styles.textStyle}>Liste des Participants</Text>
+        <Text style={styles.textStyle}>Liste des participants</Text>
             
       </View>   
           
@@ -119,7 +119,7 @@ export default class ThreeTabRegistrationEmpl extends Component {
                         color={ active === 0? '#FFFFFF' : COLORS.purple}
                         size={20}
                       />
-                        <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontSize:14,fontFamily:'Cairo-SemiBold'}}> En Attente</Text>
+                        <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontSize:14,fontFamily:'Cairo-Bold'}}> En Attente</Text>
                     </View> 
             </TouchableOpacity>
 
@@ -137,7 +137,7 @@ export default class ThreeTabRegistrationEmpl extends Component {
                         color={ active === 1? '#FFFFFF' : COLORS.purple}
                         size={20}
                       />
-                        <Text style={{color: active === 1? '#FFFFFF' : COLORS.purple,fontSize:14,fontFamily:'Cairo-SemiBold'}}> Accepté</Text>
+                        <Text style={{color: active === 1? '#FFFFFF' : COLORS.purple,fontSize:14,fontFamily:'Cairo-Bold'}}> Accepté</Text>
                     </View> 
             </TouchableOpacity>
 
@@ -155,7 +155,7 @@ export default class ThreeTabRegistrationEmpl extends Component {
                         color={ active === 2? '#FFFFFF' : COLORS.purple}
                         size={20}
                       />
-                        <Text style={{color: active === 2? '#FFFFFF' : COLORS.purple,fontSize:14,fontFamily:'Cairo-SemiBold'}}> Refusé</Text>
+                        <Text style={{color: active === 2? '#FFFFFF' : COLORS.purple,fontSize:14,fontFamily:'Cairo-Bold'}}> Refusé</Text>
                     </View>
             </TouchableOpacity>
 
@@ -214,10 +214,11 @@ export default class ThreeTabRegistrationEmpl extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '85%',
-    marginLeft: 10,
-    marginRight: 10,
-    flexDirection:'column'
+    width: '100%',
+    //marginHorizontal:20,
+    flexDirection:'column',
+    backgroundColor:'#fff',
+    padding:10,
   },
 
   // Tab Selector Styles
@@ -226,7 +227,7 @@ const styles = StyleSheet.create({
     height: 36,
     marginTop: 30, 
     marginBottom: 10,
-     marginLeft:20,
+    marginHorizontal:20,
 //position: 'relative',
 justifyContent: 'center',
     alignItems: 'center',

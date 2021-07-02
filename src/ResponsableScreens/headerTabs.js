@@ -111,7 +111,7 @@ export default class ThreeTabSelector extends Component {
                               )}>
               <Text 
               style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontSize:18,fontFamily:"Cairo-Bold"}}>
-                Information
+                Présentation
                 </Text>
             </TouchableOpacity>
 
@@ -175,8 +175,8 @@ export default class ThreeTabSelector extends Component {
          
             {/* Tab 3 Content */}
             <Animated.View style={{ 
-            flex:1,
-            marginTop:100,
+           // flex:1,
+             //marginTop:100,
               transform:[
                 { translateX: translateXTab3 },
                 { translateY: -2 * translateY}

@@ -27,7 +27,7 @@ const EvaluationEmpl=props=>{
         </TouchableOpacity>
       <TouchableOpacity  onPress={() => navigation.navigate('PLayQuiz')}>
       <View  style={styles.input}>
-      <Text style={styles.textStyle}>QCM</Text>
+      <Text style={styles.textStyle}>QUIZZ</Text>
       <Image
               source={require('../assets/images/exam.png')}
               style={{
@@ -48,7 +48,7 @@ const styles=StyleSheet.create({
         flexDirection:'column',
         //paddingTop:200,
        paddingHorizontal:20,
-       marginTop:150,
+      // marginTop:150,
 
 
     },
@@ -58,7 +58,7 @@ const styles=StyleSheet.create({
         height:100,
         marginLeft:30,
         borderRadius:15,
-        marginTop:30,
+        marginBottom:40,
         alignItems:'center',
         justifyContent:'center',
         backgroundColor:COLORS.grey,

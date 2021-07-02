@@ -27,7 +27,7 @@ const EvaluationScreen=props=>{
         </TouchableOpacity>
       <TouchableOpacity  onPress={() => navigation.navigate('QCMScreen')}>
       <View  style={styles.input}>
-      <Text style={styles.textStyle}>QCM</Text>
+      <Text style={styles.textStyle}>QUIZ</Text>
       <Image
               source={require('../assets/images/exam.png')}
               style={{
@@ -44,10 +44,10 @@ const EvaluationScreen=props=>{
 };
 const styles=StyleSheet.create({
     container:{
-        flex:1,
+        //flex:1,
         flexDirection:'column',
-        //paddingTop:200,
-       paddingHorizontal:20,
+       
+       paddingHorizontal:30,
 
 
     },
@@ -55,7 +55,7 @@ const styles=StyleSheet.create({
         width:'70%',
         //borderColor:COLORS.purple,borderWidth:2,
         height:100,
-        marginLeft:30,
+        marginLeft:40,
         borderRadius:15,
         marginTop:30,
         alignItems:'center',

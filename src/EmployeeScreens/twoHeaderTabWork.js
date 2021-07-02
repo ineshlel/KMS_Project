@@ -4,6 +4,7 @@ import { Animated, Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, V
 
 import { COLORS } from '../constants';
 import ConsignesList from './consignesList';
+import RemisesList from './remisesEmpl';
 import FilePickerEmplRemises from './remisesEmpl';
 
 //import Remises from './remises';
@@ -159,9 +160,7 @@ export default class TwoHeaderTabWork extends Component {
                 { translateY: -translateY}
               ]
             }}>
-           <FilePickerEmplRemises
-           
-           />
+           <RemisesList/>
             </Animated.View>
 
           

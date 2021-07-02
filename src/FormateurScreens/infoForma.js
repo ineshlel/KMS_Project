@@ -6,6 +6,10 @@ import DescriptionStaticInput from '../components/descriptionStaticInput';
 import StaticInput from '../components/staticInput';
 import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';
+import Loader from '../components/loader';
+import jwt_decode from "jwt-decode";
+  
+
 
 
 
@@ -20,11 +24,15 @@ const InfoForma=props=>{
   const [description,setDescription]=useState('');
   const[ddebut,setDdebut]=useState();
   const[dfin,setDatefin]=useState();
+  const[loading,setLoading]=useState(false);
  
 
   useEffect( async() => {
+    setLoading(true);
     const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
-    fetch(apiConfig.url+`/api/demandes_formateur/?date_fin__gte=2021-06-05&formateur=11&statut=A&programme=${props.id_pg}`, {
+    var decoded = jwt_decode(DEMO_TOKEN);
+var userId=decoded.user_id;
+    fetch(apiConfig.url+`/api/demandes_formateur/?date_fin__gte=2021-06-05&formateur=${userId}&statut=A&programme=${props.id_pg}`, {
       method: 'GET',
       headers: {
     
@@ -36,6 +44,7 @@ const InfoForma=props=>{
       .then((response) => response.json())
       .then((responseJson) => {
         //setFilteredDataSource(responseJson);
+        setLoading(false);
        console.log(responseJson);
       setTitle(responseJson[0].programme_name);
       setDuration(responseJson[0].programme_duree);
@@ -49,7 +58,11 @@ const InfoForma=props=>{
       });
   }, []);
    
-    return (
+  if (loading){
+    return ( <Loader loading={loading} /> );
+  } else {
+
+   return (
      <View  style={styles.formContainer}>
     <StaticInput name='Titre :'
     value={title}
@@ -76,14 +89,15 @@ const InfoForma=props=>{
     
       </View>
  );
-};
+};}
 const styles=StyleSheet.create({
     formContainer:{
         flexDirection:'column',
-       
-       padding:10,
+       backgroundColor:'#fff',
+       padding:20,
         //marginBottom:30
        // marginRight:20,
+      
     
       },
       inputContainer:{

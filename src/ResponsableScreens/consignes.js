@@ -103,7 +103,11 @@ const FilePickerResp = props => {
         .then((responseJson) => {
           //Hide Loader
           console.log(responseJson);
+         
+        }).catch((error) => {
+          //Hide Loader
         
+          console.error(error);
         });
      
       

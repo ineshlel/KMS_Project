@@ -1,11 +1,12 @@
 import React, { useState,useEffect } from 'react'
-import { Text, View ,ScrollView} from 'react-native'
+import { Text, View ,ScrollView,Alert} from 'react-native'
 import SelectBox from 'react-native-multi-selectbox'
 import { xorBy } from 'lodash'
 import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';
 
 import ButtonKms from './buttonV';
+import { COLORS } from '../constants';
 
 
 // Options data must contain 'item' & 'id' keys
@@ -35,44 +36,47 @@ const K_OPTIONS = [
     id: "2",
   },
   {
-    item: 'Comp 1',
+    item: 'Précision analytique',
     id: "3",
   },
   {
-    item: 'Comp 2',
+    item: 'Prospectivité',
     id:" 4",
   },
   {
-    item: 'Comp 3',
+    item: 'Professionnalisme',
     id: "5",
   },
- /* {
-    item: 'Comp 1',
+  {
+    item: 'intégrité',
     id: 6,
   },
+ 
   {
-    item: 'Comp 1',
+    item: 'responsabilité',
     id: 7,
   },
   {
-    item: 'Comp 1',
+    item: 'polyvalence',
     id: 8,
   },
+
   {
-    item: 'Comp 1',
+    item: 'Etude de faisabilité',
     id: 9,
   },
   {
-    item: 'Comp 1',
+    item: 'Fiabilité',
     id: 10,
-  }*/,
+  }
 
 ]
 
-const CheckBoxApp = () =>{
+const CheckBoxApp = ({route}) =>{
   const [selectedTeam, setSelectedTeam] = useState({})
   const [selectedTeams, setSelectedTeams] = useState([])
   const [selectedTeams2, setSelectedTeams2] = useState([])
+  console.log(route.params);
  // var jsonSelectedTeams ={};
  //const[K_OPTIONS,setK_OPTIONS]=useState([])
  //id: parseInt(team.id),
@@ -81,7 +85,7 @@ const CheckBoxApp = () =>{
 
   const handleValidate=async () => {
     const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
-    const programID=await AsyncStorage.getItem('programID');
+    //const programID=await AsyncStorage.getItem('programID');
     selectedTeams.forEach(team=> {
       console.log('****** TEAM',team);
       //jsonSelectedTeams.push({titre: team.item});
@@ -89,7 +93,7 @@ const CheckBoxApp = () =>{
     //console.log('---------- Json', jsonSelectedTeams);
     var dataToSend = {
 		  titre: team.item,
-      programme:programID,
+      programme:route.params,
 		};
 		var formBody = [];
 		for (var key in dataToSend) {
@@ -114,6 +118,7 @@ const CheckBoxApp = () =>{
         
         //setK_OPTIONS(responseJson);
         console.log(responseJson);
+        Alert.alert("Le programme Développement de tableaux de bord a été ajouté");
         console.log("////////////");
       })
       .catch((error) => {
@@ -127,10 +132,10 @@ const CheckBoxApp = () =>{
    
     <View 
     
-     style={{flex:1,flexDirection:'column',paddingTop:20}}>
+     style={{flex:1,flexDirection:'column',paddingTop:20,backgroundColor:'#fff'}}>
       
       <View style={{ marginBottom:50,marginHorizontal:10}} >
-      <Text style={{ fontSize: 20, paddingBottom: 10 }}>Compétances Techniques</Text>
+      <Text style={{ fontSize: 20, paddingBottom: 10,fontFamily:'Cairo-SemiBold',color:COLORS.purple }}>Compétances :</Text>
    
       <SelectBox 
         label="Choisir compétance"

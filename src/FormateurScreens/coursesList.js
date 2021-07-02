@@ -7,6 +7,7 @@ import AsyncStorage from '@react-native-community/async-storage';
 import SearchBarProgram from '../components/searchBarProgram';
 import AddFixedButton from '../components/addFixedButton';
 import { Button } from 'react-native';
+import Loader from '../components/loader';
 
 
 
@@ -20,12 +21,14 @@ export default class ListCourses extends Component {
       array:[],
       filteredArray:[],
       search:'',
+      isLoading:false,
 
       
       }
   }
   
   async componentDidMount(){
+    this.setState({ isLoading: true })
     //console.log('-----------',this.props.route.params)
     //this.getData();
     const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
@@ -40,6 +43,7 @@ export default class ListCourses extends Component {
     })
     .then((response)=>response.json())
     .then((json)=>{
+      this.setState({ isLoading:false })
         console.log('JSON',json)
      this.setState({array:json})
      //this.intervalID = setTimeout(this.getData.bind(this), 5000);
@@ -93,8 +97,12 @@ export default class ListCourses extends Component {
 
   
   render() {
+    if (this.state.isLoading){
+      return ( <Loader loading={this.state.isLoading}/> );
+    } else {
     return (
       <View style={styles.container}>
+        
           <View  >
         <SearchBarProgram
 
@@ -122,7 +130,7 @@ export default class ListCourses extends Component {
       </View>
     );
   }
-}
+}}
 //console.log(this.state.navigation.getParam('program'));
 const styles = StyleSheet.create({
   container: {

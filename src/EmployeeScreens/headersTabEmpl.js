@@ -173,8 +173,8 @@ export default class HeaderTabEmpl extends Component {
 
             {/* Tab 3 Content */}
             <Animated.View style={{ 
-            
-             // marginTop:200,
+              flex:1,
+              //marginBottom:400,
               transform:[
                 { translateX: translateXTab3 },
                 { translateY: -2 * translateY}

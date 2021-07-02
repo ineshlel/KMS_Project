@@ -5,6 +5,7 @@ import { COLORS } from "../constants";
 import Entypo from 'react-native-vector-icons/Entypo';
 import AsyncStorage from '@react-native-community/async-storage';
 import apiConfig from '../api/config';
+import DatePicker from 'react-native-datepicker';
 
 const { width } = Dimensions.get("window"); 
 import jwt_decode from "jwt-decode";
@@ -17,8 +18,9 @@ const AddWork=props=> {
 	// This is to manage TextInput State 
 	
     const [inputValue2, setInputValue2] = useState(""); 
-	const [startDate, setStartDate] = useState(""); 
-	const [endDate, setEndDate] = useState(""); 
+	const [inputValue3, setInputValue3] = useState(""); 
+	const [date, setDate] = useState('');
+	const [date2, setDate2] = useState('');
  
 	
 
@@ -26,10 +28,14 @@ const AddWork=props=> {
 	// Open and close modal upon button clicks. 
     const addFieldHandler=()=>{
         setModalVisible(!isModalVisible); 
-        props.onAddField(inputValue2);
+        props.onAddField(inputValue2,inputValue3,date,date2);
+		
         
 
         setInputValue2('');
+		setInputValue3('');
+		//setDate("");
+		//setDate2("");
         
        // setModalVisible(false);
        
@@ -54,9 +60,9 @@ const AddWork=props=> {
 		//console.log(DEMO_TOKEN);
 		var dataToSend = {
 		  titre: inputValue2,
-		  date_debut: "2021-05-10",
-		  date_limite:"2021-06-10",
-		  ponderation:2,
+		  date_debut: date,
+		  date_limite:date2,
+		  ponderation:inputValue3,
 		  partage_par:JSON.parse(decoded.user_id),
 		  programme:props.id_pg,
 		};
@@ -118,23 +124,123 @@ const AddWork=props=> {
 				onDismiss={toggleModalVisibility}> 
 				<View style={styles.viewWrapper}> 
 					<View style={styles.modalView}> 
-					<View style={styles.modalTitle}><Text>Créer un travail</Text></View>
+					<View ><Text style={styles.modalTitle}>Créer un travail</Text></View>
 					
                         <TextInput placeholder="Nom..."
 								value={inputValue2} 
                                 style={styles.textInput} 
 								onChangeText={(value2) => setInputValue2(value2)} />
+								<TextInput placeholder="Pondération..."
+							
+								value={inputValue3} 
+                                style={styles.textInput} 
+								onChangeText={(value3) => setInputValue3(value3)} />
+								 <View style={{flexDirection:'row',justifyContent:'space-between',marginTop:10}}>
+    
+        
+	<SafeAreaView style={styles.dateContainer}>
+	  
+	<DatePicker
+		date={date} //initial date from state
+		mode="date" //The enum of date, datetime and time
+		placeholder="Date Début"
+		format="YYYY-MM-DD"
+		minDate="1960-01-01"
+		maxDate="2040-01-01"
+		confirmBtnText="Confirm"
+		cancelBtnText="Cancel"
+	   // openToYearSelection={true}
+		customStyles={{
+		  dateIcon: {
+			//display: 'none',
+		   // position: 'absolute',
+			right: 0,
+			left:6,
+			top: 4,
+			marginLeft: 0,
+			tintColor:COLORS.blueClair,
+		   height:35,
+
+		   
+			
+			},
+		  dateInput: {
+		 
+			  //width:'90%',
+			  height:40,
+			  marginTop:5,
+			  borderRadius:10,
+			  //borderWidth:1,
+			  elevation:1,
+			  
+			
+			
+		  },
+		}}
+		onDateChange={(date) => {
+		  setDate(date);
+		  console.log(date);
+		}}
+	  />
+	  </SafeAreaView>
+	  <SafeAreaView style={styles.dateContainer}>
+	
+	<DatePicker
+		date={date2} //initial date from state
+		mode="date" //The enum of date, datetime and time
+		placeholder="Date Fin"
+		format="YYYY-MM-DD"
+		minDate="1960-01-01"
+		maxDate="2040-01-01"
+		confirmBtnText="Confirm"
+		cancelBtnText="Cancel"
+	   // openToYearSelection={true}
+		customStyles={{
+		  dateIcon: {
+			//display: 'none',
+		   // position: 'absolute',
+			right: 0,
+			left:6,
+			top: 4,
+			marginLeft: 0,
+			tintColor:COLORS.blueClair,
+		   height:35,
+
+		   
+			
+			},
+		  dateInput: {
+		 
+			  //width:'90%',
+			  height:40,
+			  marginTop:5,
+			  borderRadius:10,
+			  //borderWidth:1,
+			  elevation:1,
+			  
+			
+			
+		  },
+		}}
+		onDateChange={(date2) => {
+		  setDate2(date2);
+		  console.log(date2);
+		}}
+	  />
+	  </SafeAreaView>
+	  </View>
+
                         <View style={styles.buttonContainer}>
 						<TouchableOpacity
 						 //onPress={addFieldHandler} 
 						 onPress={addWorkHandler} 
 						 >
 						   <View style={styles.addButton}>
-                             <Text>Ajouter</Text></View>
+                             <Text style={{color:'white',fontFamily:'Cairo-SemiBold'}}>Ajouter</Text></View>
 	                    </TouchableOpacity>
 						<TouchableOpacity onPress={toggleModalVisibility} >
 						   <View style={styles.addButton}>
-                             <Text>Annuler</Text></View>
+                             <Text style={{color:'white',fontFamily:'Cairo-SemiBold'}}>Annuler</Text></View>
 	                    </TouchableOpacity>
 					
 						</View>
@@ -167,17 +273,17 @@ const styles = StyleSheet.create({
 		justifyContent: "center", 
 		position: "absolute", 
 		top: "50%", 
-		left: "50%", 
+		left: "45%", 
 		elevation: 8, 
 		transform: [{ translateX: -(width * 0.4) }, 
 					{ translateY: -90 }], 
-		height: 200, 
-		width: width * 0.8, 
+		height: 280, 
+		width: width * 0.9, 
 		backgroundColor: "#fff", 
 		borderRadius: 7, 
 	}, 
 	textInput: { 
-		width: "80%", 
+		width: "90%", 
 		borderRadius: 5, 
 		paddingVertical: 8, 
 		paddingHorizontal: 16, 
@@ -187,6 +293,8 @@ const styles = StyleSheet.create({
 	}, 
 	modalTitle:{
 		marginBottom:10,
+		fontFamily:'Cairo-SemiBold',
+		fontSize:16,
 		
 	},
 	addButton:{
@@ -198,6 +306,7 @@ const styles = StyleSheet.create({
         justifyContent:'center',
         flexDirection:'row',
 		marginHorizontal:12,
+		marginBottom:20
 	
 
 	},
@@ -209,5 +318,12 @@ const styles = StyleSheet.create({
 		marginTop:20,
    
    },
+   dateContainer:{
+	flexDirection:'column',
+  },
+  textStyle2:{
+	fontSize:18,
+	fontFamily:"Cairo-Regular",
+  }
 });
 export default AddWork;

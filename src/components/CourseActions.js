@@ -9,21 +9,22 @@ import { useNavigation } from '@react-navigation/native';
 
 
 const CourseActions=props=>{
+  console.log("idc fi courseAction",props.idc);
   const navigation = useNavigation();
     return ( 
       <View  style={styles.actionsContainers}>
+        <TouchableOpacity
+           onPress={() => navigation.navigate('HeaderTabCourse',props.idc)}>
+        <View style={styles.input}>
+          <Text style={styles.textStyle}>Consulter</Text>
+          
+        </View>
+        </TouchableOpacity>
         <TouchableOpacity 
         onPress={() => navigation.navigate('Planification')}
          >
         <View style={styles.input}>
-          <Text style={styles.textStyle}>Planification</Text>
-        </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-           onPress={() => navigation.navigate('HeaderTabCourse',props.idc)}>
-        <View style={styles.input}>
-          <Text style={styles.textStyle}>Consultation</Text>
-          
+          <Text style={styles.textStyle}>Supprimer</Text>
         </View>
         </TouchableOpacity>
 

@@ -7,11 +7,6 @@ import TabBar from '../components/tabBar';
 
 import MyListEmpl from '../EmployeeScreens/listProgramsEmpl';
 
-import ProgramListAcceptedEmpl from '../EmployeeScreens/programListAccepted';
-import Loader from '../components/loader';
-import CheckBoxApp from '../components/checkBox';
-import Dashboard from '../components/downloadFile';
-import LoginScreen from '../ResponsableScreens/loginExample';
 import AgendaEv from '../components/calendar';
 import EditProfileScreen from '../components/editProfil';
 import ProfileScreen from '../components/profileScreen';
@@ -23,19 +18,19 @@ const TabNavigatorEmpl = ({navigation}) => {
 
     <Tab.Navigator tabBar={props => <TabBar {...props} />}>
       <Tab.Screen
-        name='Home'
+        name='Accueil'
         component={MyListEmpl}
         options={{ tabBarBadge:3 }}
         initialParams={{ icon: 'home' }}
       />
       <Tab.Screen
-        name='Agenda'
+        name='Calendrier'
         //component={ThreeTabSelector}
         component={AgendaEv}
-        initialParams={{ icon: 'plus' }}
+        initialParams={{ icon: 'calendar' }}
         options={{headerShown: false}}  />
       <Tab.Screen
-        name='Profile'
+        name='Profil'
       component={ProfileScreen}
        //component={Loader}
      // component={EditProfileScreen}

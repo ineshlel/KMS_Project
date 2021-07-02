@@ -26,7 +26,7 @@ export default class ListCoursesEmpl extends Component {
   }
   
   async componentDidMount(){
-    //console.log('-----------',this.props.route.params)
+    console.log('-----------',this.props.route.params.id)
     //this.getData();
     const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
     fetch(apiConfig.url+`/api/cours_programme?programme=${this.props.route.params}`, {

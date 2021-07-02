@@ -4,7 +4,9 @@ import {View,Text, StyleSheet ,TextInput,SafeAreaView,TouchableOpacity, ScrollVi
 
 
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
-import LinkItem from '../components/linkItem';
+import apiConfig from '../api/config';
+import AsyncStorage from '@react-native-community/async-storage';
+
 import { COLORS } from '../constants';
 const { width } = Dimensions.get("window"); 
 
@@ -42,6 +44,52 @@ const toggleModalVisibility = () => {
       
       
 };
+const addLinkHandler=async()=>{
+	const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+	//const programID=await AsyncStorage.getItem('programID');
+	//console.log(programID);
+	
+	//console.log('*************');
+	
+	//console.log(decoded.user_id);
+	console.log('COURSE ID',props.id_c);
+	var dataToSend = {
+	  lien: inputValue2,
+	  coursreunion:props.id_c,
+	};
+	var formBody = [];
+	for (var key in dataToSend) {
+	  var encodedKey = encodeURIComponent(key);
+	  var encodedValue = encodeURIComponent(dataToSend[key]);
+	  formBody.push(encodedKey + '=' + encodedValue);
+	}
+	formBody = formBody.join('&');
+
+
+  
+	fetch(apiConfig.url+'/api/reunionsCour/', {
+		method: 'POST',
+		body: formBody,
+		headers: {
+	  
+		  'Authorization':'Bearer ' + DEMO_TOKEN,
+		  'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+	
+		},
+	  })
+		.then((response) => response.json())
+		.then((responseJson) => {
+		  console.log(responseJson);
+		
+		  console.log('///////////LINK WAS POSTED');
+		
+		})
+		.catch((error) => {
+		 console.error(error);
+		});
+		addFieldHandler();
+
+}
     return (
       <SafeAreaView style={styles.screen}> 
 			
@@ -76,7 +124,7 @@ const toggleModalVisibility = () => {
                         <View style={styles.buttonContainer}>
 						<TouchableOpacity
 						 //onPress={addFieldHandler} 
-						 onPress={addFieldHandler} 
+						 onPress={addLinkHandler} 
 						 >
 						   <View style={styles.addButton}>
                              <Text style={{color:'white'}}>Ajouter</Text></View>
@@ -146,7 +194,7 @@ const styles=StyleSheet.create({
         justifyContent:'center',
         flexDirection:'row',
 		marginHorizontal:12,
-    marginTop:5
+    marginTop:8
 	
 
 	},

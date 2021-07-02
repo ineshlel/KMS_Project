@@ -68,6 +68,7 @@ export default class ExpandableListView extends Component {
         <View style={{ height: this.state.layoutHeight, overflow: 'hidden' }}>
           <ProgramActions 
              idpg={this.props.item.id}
+             name={this.props.item.titre}
              />
         
         </View>

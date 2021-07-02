@@ -7,6 +7,7 @@ import { COLORS } from '../constants';
 
 
 const ProgramItemAcceptedEmpl=props=>{
+   
 
      return (
   
@@ -21,8 +22,13 @@ const ProgramItemAcceptedEmpl=props=>{
         <View >
         <Text  style={styles.textName}>{props.name}</Text>
         <View style={{flexDirection:'row',justifyContent:'space-between'}}>
+
         <Text  style={styles.textCountry}>{props.dd}</Text>
         <Text  style={styles.textCountry}>{props.df}</Text>
+        </View>
+        <View style={{flexDirection:'row'}}>
+        <Text  style={styles.textCountry1}>Statut:</Text>
+        <Text  style={styles.textCountry2}>Accepté</Text>
         </View>
         </View>
         <View style={styles.downArrow}>
@@ -42,7 +48,7 @@ const styles=StyleSheet.create({
 
       itemContainer:{
           flexDirection:'row',
-          marginHorizontal:20,
+          marginHorizontal:15,
          //
          marginVertical:5,
         // marginTop:40,
@@ -51,13 +57,13 @@ const styles=StyleSheet.create({
           borderColor:'#ddd',
           borderWidth:1,
           padding:10,
-          width:'85%',
+          width:'90%',
          backgroundColor:'white',
           shadowColor:'black',
           shadowOffset:{width:0,height:2},
           shadowRadius:6,
           shadowOpacity:0.26,
-         elevation:12,
+         elevation:4,
          
           },
        itemStyle:{
@@ -68,11 +74,24 @@ const styles=StyleSheet.create({
           fontWeight:'bold',
           marginBottom:5,
       },
-      textCountry:{
+      textCountry1:{
           color:COLORS.purple,
-          //marginLeft:40,
+          marginRight:10,
           fontSize:12,
+
       },
+      textCountry:{
+        color:COLORS.purple,
+        marginRight:10,
+        fontSize:12,
+
+    },
+      textCountry2:{
+        color:COLORS.orange,
+        marginRight:10,
+        fontSize:12,
+
+    },
       downArrow:{
          // justifyContent:'center',
           //alignItems:'center',

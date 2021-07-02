@@ -131,7 +131,7 @@ export default class TwoHeaderTab extends Component {
 
           {/* CONTENT */}  
           <View>
-<ScrollView>
+<ScrollView  style={{backgroundColor:'#fff'}}>
             {/* Tab 1 Content */}
             <Animated.View 
 
@@ -174,9 +174,10 @@ export default class TwoHeaderTab extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
+    width: '100%',
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
+    backgroundColor:'#fff'
   },
 
   // Tab Selector Styles
@@ -216,6 +217,7 @@ const styles = StyleSheet.create({
     borderRightWidth: 0,
     borderTopLeftRadius: 4,
     borderBottomLeftRadius: 4,
+   
   },
 
   tab2:{
@@ -230,7 +232,8 @@ const styles = StyleSheet.create({
   // Content Styles
   contentContainter:{
   //  justifyContent: 'center',
-   // alignItems: 'center'
+   // alignItems: 'center',
+  // backgroundColor:'#fff'
   },
 
   contentText: {

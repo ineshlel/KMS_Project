@@ -10,7 +10,7 @@ import {
     StyleSheet,
     ScrollView,
     StatusBar,
-    Alert,
+    Alert,Image,
     KeyboardAvoidingView
 } from 'react-native';
 import * as Animatable from 'react-native-animatable';
@@ -20,11 +20,12 @@ import LinearGradient from 'react-native-linear-gradient';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Feather from 'react-native-vector-icons/Feather';
 import { COLORS } from '../constants';
-import {AuthContext} from '../contexts/authContext';
-import Users from '../models/users';
+
 import Loader from '../components/loader';
 import AsyncStorage from '@react-native-community/async-storage';
+
 import apiConfig from '../api/config';
+
 //import Users from  '../models/users';
 //import ForgotPassword from './forgotPassw';
 //import I18n from "../I18n/i18n";
@@ -115,8 +116,8 @@ const Login = ({navigation}) => {
        // } );
 
         if ( data.username.length == 0 || data.password.length == 0 ) {
-            Alert.alert('Wrong Input!', 'Username or password field cannot be empty.', [
-                {text: 'Okay'}
+            Alert.alert('Champs Invalide!', 'Nom utilisateur ou mot de passe est vide.', [
+                {text: 'Ok'}
             ]);
             return;
         }
@@ -171,8 +172,8 @@ const Login = ({navigation}) => {
                var decoded = jwt_decode(responseJson.token);
                console.log(decoded);
                console.log(decoded.user_id);
-               AsyncStorage.setItem('userID', decoded.user_id);
-               AsyncStorage.setItem('userName', decoded.username);
+               //AsyncStorage.setItem('userID', decoded.user_id);
+               //AsyncStorage.setItem('userName', decoded.username);
                console.log("********************");
                logCurrentStorage();
                console.log("####################");
@@ -204,7 +205,7 @@ const Login = ({navigation}) => {
             } else {
               //setErrortext(responseJson.message);
               console.log('Please check your email id or password');
-              Alert.alert("Utilistaeur non trouvé");
+              Alert.alert("Utilistaeur non trouvé ", "Veuillez vérifier vos données ou créer un compte");
             }
           })
           .catch((error) => {
@@ -226,13 +227,22 @@ const Login = ({navigation}) => {
           });
         });
       }
-
+//<Text style={styles.text_header}>Connexion</Text>
     return (
       <View style={styles.container}>
            <Loader loading={data.loading} />
           <StatusBar backgroundColor= {COLORS.grey}barStyle="light-content"/>
         <View style={styles.header}>
-            <Text style={styles.text_header}>Connexion</Text>
+           <View style={{width:90,height:90,backgroundColor:'white',borderRadius:50}}>
+            <Image
+           source={require('../assets/images/logokms.png')}
+           style={{
+             height: 80,
+             resizeMode: 'contain',
+             alignSelf: 'center'
+           }}
+         />
+         </View> 
         </View>
         <Animatable.View 
             animation="fadeInUpBig"
@@ -240,7 +250,7 @@ const Login = ({navigation}) => {
         >
             <ScrollView>
             <KeyboardAvoidingView enabled>
-            <Text style={styles.text_footer}>Username</Text>
+            <Text style={styles.text_footer}>Nom utilisateur</Text>
             <View style={styles.action}>
                 <FontAwesome 
                     name="user-o"
@@ -274,7 +284,7 @@ const Login = ({navigation}) => {
 
             <Text style={[styles.text_footer, {
                 marginTop: 35
-            }]}>Password</Text>
+            }]}>Mot de passe</Text>
             <View style={styles.action}>
                 <Feather name="lock"color="#05375a"size={20}/>
                 <TextInput 
@@ -311,7 +321,7 @@ const Login = ({navigation}) => {
             
             <View>
            <TouchableOpacity   onPress={() => navigation.navigate('ForgotPassword')}>
-           <Text style={styles.Fpsswd}>Forgot Password?</Text>
+           <Text style={styles.Fpsswd}>Mot de passe oublié?</Text>
            </TouchableOpacity>
                 
                 
@@ -331,7 +341,7 @@ const Login = ({navigation}) => {
                 >
                     <Text style={[styles.textSign, {
                         color:'#fff'
-                    }]}>Sign In</Text>
+                    }]}>Se connecter</Text>
                 </LinearGradient>
                 </TouchableOpacity>
 
@@ -348,7 +358,7 @@ const Login = ({navigation}) => {
                 >
                     <Text style={[styles.textSign, {
                         color: COLORS.blueClair
-                    }]}>Sign Up</Text>
+                    }]}>S'inscrire</Text>
                 </TouchableOpacity>
             </View>
             </KeyboardAvoidingView>
@@ -367,10 +377,10 @@ const styles = StyleSheet.create({
     },
     header: {
         flex: 1,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         paddingHorizontal: 20,
-        paddingBottom: 50,
-       marginLeft:60,
+        paddingVertical: 45,
+       marginHorizontal:120,
         
     },
     footer: {
@@ -432,7 +442,7 @@ const styles = StyleSheet.create({
     Fpsswd:{
         fontSize:12,
         color:COLORS.blueClair,
-        marginStart:200,
+        marginStart:185,
         marginTop:10,
         borderBottomWidth: 1,
         borderBottomColor: COLORS.blueClair,

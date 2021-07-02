@@ -91,6 +91,7 @@ export default class TwoHeaderTabForma extends Component {
 
   
   render() {
+    console.log('/////////',this.props.id_c);
     let { active, xTab1, xTab2, translateX, translateXTab1, translateXTab2, translateY} = this.state;
     return (
       <View style={{flex: 1}}>
@@ -142,7 +143,8 @@ export default class TwoHeaderTabForma extends Component {
               }}
               onLayout={event => this.setState({translateY: event.nativeEvent.layout.height})}
             >
-             <LinkReunionForma/>
+             <LinkReunionForma 
+             id_c={this.props.id_c}/>
               
                 
             </Animated.View>
@@ -155,7 +157,8 @@ export default class TwoHeaderTabForma extends Component {
                 { translateY: -translateY}
               ]
             }}>
-            <Text>Remises</Text>
+            <LinkReunionForma 
+             id_c={this.props.id_c}/>
             </Animated.View>
 
           
@@ -194,7 +197,7 @@ const styles = StyleSheet.create({
     left: 4,
     //backgroundColor:COLORS.purple,
     //borderRadius:12,
-    borderBottomColor:COLORS.purple,
+    borderBottomColor:COLORS.orange,
     borderBottomWidth:2,
     justifyContent: 'center',
     alignItems: 'center',

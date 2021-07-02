@@ -6,9 +6,14 @@ const { width } = Dimensions.get('window');
 
 import { useNavigation } from '@react-navigation/native';
 
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
-
+/*<TouchableOpacity  onPress={() => navigation.navigate('CoursesScreenEmpl',props.idpg)}>
+       <View style={styles.input}>
+          <Text style={styles.textStyle}>Cours</Text>
+        </View>
+      </TouchableOpacity>  */
 
 const ProgramActions=props=>{
   const navigation = useNavigation();
@@ -24,15 +29,23 @@ const ProgramActions=props=>{
         </TouchableOpacity>
         <TouchableOpacity  
         //onPress={() => navigation.navigate('InfoFormAdded',props.idpg)}
-        onPress={() => navigation.navigate('HeaderTabsConsultation',props.idpg)}
+        onPress={() => navigation.navigate('HeaderTabsConsultation',{id:props.idpg,titre:props.name})}
         >
         <View style={styles.input}>
           <Text style={styles.textStyle}>Consultation</Text>
         </View>
         </TouchableOpacity>
-       <TouchableOpacity  onPress={() => navigation.navigate('List des cours','Nom du programme')}>
-       <View style={styles.input}>
-          <Text style={styles.textStyle}>Cours</Text>
+       
+      <TouchableOpacity  >
+       <View style={styles.inputSup}>
+          <Text style={styles.textStyle}>Supprimer</Text>
+          <View style={{marginLeft:10}}>
+          <AntDesign 
+                    name="delete"
+                    color="white"
+                    size={20}
+                />
+          </View>
         </View>
       </TouchableOpacity> 
 
@@ -48,6 +61,7 @@ const styles=StyleSheet.create({
         //marginBottom:10
       },
       input:{
+     
         width:'60%',
         height:40,
         marginTop:5,
@@ -59,6 +73,19 @@ const styles=StyleSheet.create({
         alignItems:'center',
         marginLeft:100,
          },
+         inputSup:{
+          flexDirection:'row',
+          width:'60%',
+          height:40,
+          marginTop:5,
+          borderRadius:14,
+          //borderWidth:1,
+          elevation:2,
+          backgroundColor:COLORS.orange,
+          justifyContent:'center',
+          alignItems:'center',
+          marginLeft:100,
+           },
       textStyle:{
         fontSize:18,
         color:'#fff'

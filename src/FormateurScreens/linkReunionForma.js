@@ -1,11 +1,13 @@
+
 import React ,{useState,useEffect}from 'react';
 
 import {View,Text, StyleSheet , ScrollView,Alert,FlatList}from 'react-native';
+
 import LinkItem from '../components/linkItem';
 import { COLORS } from '../constants';
 import ReunionForma from './addLinkForma';
-//import apiConfig from '../api/config';
-//import AsyncStorage from '@react-native-community/async-storage';
+import apiConfig from '../api/config';
+import AsyncStorage from '@react-native-community/async-storage';
 
 
 
@@ -17,10 +19,10 @@ import ReunionForma from './addLinkForma';
 
 
 
-const LinkReunionForma=({})=>{
+const LinkReunionForma=props=>{
  
     const[addInputs,setaddInputs]=useState([]);
-    //const[works,setWorks]=useState([]);
+    const[links,setLinks]=useState([]);
    
 
     const addInputHandler= (inputValue)=>{
@@ -30,28 +32,9 @@ const LinkReunionForma=({})=>{
         
       }
 
-     /* 
-       <View >
-    <FlatList
-      
-         style={{flexGrow: 0}}
-            data={works}
-            keyExtractor={(item,index)=>index.toString()}
-            renderItem={({item})=> 
-            <ItemAdded 
-           
-            id_tr={item.id}
-            value={item.titre}
-            />
-            
-        }
-        />
- 
-    </View>
-     useEffect(async() => {
+      useEffect(async() => {
         const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
-        console.log(route.params);
-        fetch(apiConfig.url+`/api/travaux?programme=${route.params}`, {
+        fetch(apiConfig.url+`/api/reunionsCour?coursreunion=${props.id_c}`, {
           method: 'GET',
           headers: {
         
@@ -62,14 +45,17 @@ const LinkReunionForma=({})=>{
         })
           .then((response) => response.json())
           .then((responseJson) => {
-            console.log('JSONWorks',responseJson)
-            setWorks(responseJson)
+            console.log('JSONLinks',responseJson)
+            setLinks(responseJson)
           })
           .catch((error) => {
             console.error(error);
-            setWorks([])
+            setLinks([])
           });
-      }, []);*/
+      }, []);
+
+   
+    
   
   //<View><AddCircleOutline    /></View>
    //onPress={() => _changeIcon()}
@@ -83,7 +69,26 @@ const LinkReunionForma=({})=>{
     
     <ReunionForma
     onAddField={addInputHandler}
+    id_c={props.id_c}
     />
+     
+     <View >
+    <FlatList
+      
+         style={{flexGrow: 0}}
+            data={links}
+            keyExtractor={(item,index)=>index.toString()}
+            renderItem={({item})=> 
+            <LinkItem
+           
+           
+            name={item.lien}
+            />
+            
+        }
+        />
+ 
+    </View>
   
     <View >
     <FlatList 

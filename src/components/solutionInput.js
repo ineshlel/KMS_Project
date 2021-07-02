@@ -3,6 +3,7 @@ import React ,{useState}from 'react';
 import {View,Text, StyleSheet ,TextInput,Button,Modal}from 'react-native';
 import { COLORS } from '../constants';
 import { RadioButton } from 'react-native-paper';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 
 const SolutionInput=props=>{
@@ -27,6 +28,16 @@ const SolutionInput=props=>{
         status={ checked === true ? 'checked' : 'unchecked' }
         onPress={() => setChecked(true)}
       />
+
+      
+    <View  style={{marginLeft:5}}>
+    
+   <AntDesign 
+     name="delete"
+     color={COLORS.orange}
+      size={24}
+     />
+      </View>
     </View>
     </View>
  );

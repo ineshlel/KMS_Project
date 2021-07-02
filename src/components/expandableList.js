@@ -4,6 +4,7 @@ import { LayoutAnimation, StyleSheet, View, Text, ScrollView, UIManager, Touchab
 import ExpandableListView from './expandableListView';
 import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';
+import ExpandableListViewRes from './expandableListViewRes';
 
 
 export default class MyList extends Component {
@@ -18,6 +19,7 @@ export default class MyList extends Component {
     this.intervalID,
     this.state = { 
       array:[],
+      //arrayForma:[],
       filteredArray:[],
       search:'',
       
@@ -27,6 +29,7 @@ export default class MyList extends Component {
   
   componentDidMount(){
      this.getData();
+    // this.getData1();
       }
       componentWillUnmount() {
         
@@ -55,7 +58,48 @@ export default class MyList extends Component {
     });
 
    }
- 
+   /*getData1=async()=>{
+     console.log('ineeeeeeeeees');
+    const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+    fetch(apiConfig.url+'/api/demandes_formateur?statut=A', {
+      method: 'GET',
+      headers: {
+    
+        'Authorization':'Bearer ' + DEMO_TOKEN,
+        'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8',
+  
+      },
+    })
+    .then((response)=>response.json())
+    .then((json)=>{
+        console.log('JSONFORMATEURPROGRAMMES',json)
+     this.setState({arrayForma:json})
+     //this.intervalID = setTimeout(this.getData.bind(this), 5000);
+    })
+    .catch((error)=>{
+        console.error(error)
+        this.setState({arrayForma:[]})
+    });
+
+   }  updateLayout1 = (index) => {
+    LayoutAnimation.configureNext(LayoutAnimation.Presets.easeInEaseOut);
+    const arrayForma = [...this.state.arrayForma];
+    arrayForma[index]['expanded'] = !arrayForma[index]['expanded'];
+    this.setState(() => {
+      return {
+      arrayForma
+      }
+    });
+  }
+  {
+    this.state.arrayForma.map((item, key) =>
+      (
+        <ExpandableListViewRes style={styles.myList}
+        key={item.id} 
+        onClickFunction={this.updateLayout1.bind(this, key)} 
+        item={item} />
+      ))
+  }*/
 
   // enable layout animation, toggle 'expanded' state for index and then update the layout
   updateLayout = (index) => {
@@ -70,6 +114,7 @@ export default class MyList extends Component {
   }
 
 
+
   render() {
     return (
       <View style={styles.container}>
@@ -79,6 +124,7 @@ export default class MyList extends Component {
          contentContainerStyle
          ={{ paddingHorizontal: 10,}}
          >
+        
           {
             this.state.array.map((item, key) =>
               (

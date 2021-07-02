@@ -10,6 +10,8 @@ import MyListForma from '../FormateurScreens/listProgramsForma';
 import timepicker from '../components/timepicker';
 import TimePickerInput from '../components/timepicker';
 import AddFixedButton from '../components/addFixedButton';
+import ProfileFormaScreen from '../FormateurScreens/profileForma';
+import FilecvPicker from '../components/pickerCV';
 
 
 
@@ -21,20 +23,20 @@ const TabNavigatorForma = ({navigation}) => {
 
     <Tab.Navigator tabBar={props => <TabBar {...props} />}>
       <Tab.Screen
-        name='Home'
+        name='Accueil'
         component={MyListForma}
         initialParams={{ icon: 'home' }}
       />
       <Tab.Screen
-        name='Create'
+        name='Calendrier'
         //component={ThreeTabSelector}
         component={timepicker}
-        initialParams={{ icon: 'plus' }}
+        initialParams={{ icon: 'calendar' }}
         options={{headerShown: false}}  />
       <Tab.Screen
-        name='Profile'
-       //component={ConsignesList}
-       component={AddFixedButton}
+        name='Profil'
+       //component={FilecvPicker}
+      component={ProfileFormaScreen}
       // component={timepicker}
         initialParams={{ icon: 'profile' }}
       />

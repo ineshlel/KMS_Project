@@ -12,7 +12,7 @@ import SkillItem from '../components/skillItem';
 const ConsultationComp=props=>{
  
     const[skills,setSkills]=useState([]);
-   
+    console.log('ID--PGCOMPETANCES',props.id_pg)
       useEffect(async() => {
         const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
         fetch(apiConfig.url+`/api/compétences_programmes?programme=${props.id_pg}`, {

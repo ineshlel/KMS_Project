@@ -1,6 +1,6 @@
 import React ,{useState,useEffect}from 'react';
 
-import {View,Text, StyleSheet }from 'react-native';
+import {View,Text, StyleSheet,ScrollView }from 'react-native';
 
 import StaticInput from '../components/staticInput';
 import apiConfig from '../api/config';
@@ -25,6 +25,7 @@ const ProgramConsultation=({route})=>{
 
   useEffect( async() => {
       console.log(route.params);
+      console.log("SSSSSSSSSSSSSSSSSSSSSS");
     const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
     fetch(apiConfig.url+`/api/programmes/${route.params}`, {
       method: 'GET',
@@ -51,7 +52,7 @@ const ProgramConsultation=({route})=>{
   }, []);
    
     return (
-     <View  style={styles.formContainer}>
+     <ScrollView style={styles.formContainer}>
     <StaticInput name='Titre :'
     value={title}
     />
@@ -75,7 +76,7 @@ const ProgramConsultation=({route})=>{
   
     
     
-      </View>
+      </ScrollView>
  );
 };
 const styles=StyleSheet.create({
@@ -83,6 +84,7 @@ const styles=StyleSheet.create({
         flexDirection:'column',
        
        padding:10,
+       backgroundColor:'#fff',
         //marginBottom:30
        // marginRight:20,
     

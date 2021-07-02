@@ -4,49 +4,47 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import TabBar from '../components/tabBar';
 
 import ThreeTabSelector from '../ResponsableScreens/headerTabs';
-import MyList from '../components/expandableList';
-import SearchBarProgram from '../components/searchBarProgram';
-import InscriptionFormateur from '../FormateurScreens/inscriptionFormateur';
-import TwoHeaderTabFormateur from '../FormateurScreens/TwoHeaderTabFormateur';
-import ProgramListAccepted from '../FormateurScreens/listProgramAccepted';
-import ListCourses from '../FormateurScreens/coursesList';
-import MyListForma from '../FormateurScreens/listProgramsForma';
-import SliderApp from '../components/slider';
-import DoubleSlider from '../components/slider';
-import HeaderTabsForma from '../FormateurScreens/headerTabsForma';
-import Playquiz from '../MyQuiz/playQuiz';
-import MyComponent from '../components/radioButton';
-import ConsignesList from '../EmployeeScreens/consignesList';
-import TwoHeaderTabWork from '../EmployeeScreens/twoHeaderTabWork';
-import CurrentDate from '../components/currentDate';
+
 
 import ProgramList from '../ResponsableScreens/programList';
 import CheckBoxApp from '../components/checkBox';
 import Dashboard from '../components/downloadFile';
 import ListCause from '../components/swipeListe';
-import MemberListAccResp from '../components/memberListAccResp';
+import InfoForm from '../ResponsableScreens/InfoForm';
+import { COLORS } from '../constants';
 
 
 //import ProfileNavigator from './ProfileNavigator';
 
 const Tab = createBottomTabNavigator();
+const myOptions={
+  title:'Nouveau programme',
+  headerTintColor:'#fff',
+  headerStyle:{
+  backgroundColor:COLORS.purple
+  }
+}
 const TabNavigator = ({navigation}) => {
   return (
 
-    <Tab.Navigator tabBar={props => <TabBar {...props} />}>
+    <Tab.Navigator 
+   
+    tabBar={props => <TabBar {...props} />}>
+   
       <Tab.Screen
-        name='Home'
+        name='Accueil'
         component={ProgramList}
         initialParams={{ icon: 'home' }}
       />
       <Tab.Screen
+  
         name='Create'
-        component={ThreeTabSelector}
+        component={InfoForm}
         //component={HeaderTabsForma}
         initialParams={{ icon: 'plus' }}
-        options={{headerShown: false}}  />
+        options={myOptions}  />
       <Tab.Screen
-        name='Profile'
+        name='Profil'
       component={ListCause}
        //component={Dashboard}
       //component={MemberListAccResp}

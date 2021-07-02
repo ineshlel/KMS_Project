@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Alert, LayoutAnimation, StyleSheet, View, Text, ScrollView, UIManager, TouchableOpacity, Platform, Image } from 'react-native';
+import {LayoutAnimation, StyleSheet, View,  ScrollView, UIManager,Platform} from 'react-native';
 
 
 import SearchBarProgram from '../components/searchBarProgram';
@@ -7,17 +7,10 @@ import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';
 import ExpandableListViewAcceptedEmpl from '../components/expandableListViewEmplAccept';
 import ExpandableListViewEmpl from '../components/expandableListViewEmlp';
+import jwt_decode from "jwt-decode";
 
 
-/* {
-            this.state.array.map((item, key) =>
-            (
-              <ExpandableListViewAccepted style={styles.myList}
-              key={item.id} 
-              onClickFunction={this.updateLayout2.bind(this, key)} 
-              item={item} />
-            ))
-          } */
+
 
 
 export default class MyListForma extends Component {
@@ -35,13 +28,23 @@ export default class MyListForma extends Component {
       arrayAccepted:[],
       filteredArray:[],
       search:'',
+      currentDate:'',
       
       }
   }
   
     async componentDidMount(){
       const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
-      fetch(apiConfig.url+'/api/demandes_formateur/getdemandes_participant/?date_debut__gte=2021-06-05&participant=19', {
+      
+      var decoded = jwt_decode(DEMO_TOKEN);
+      var userId=decoded.user_id;
+      console.log('USEEEEEER',userId);
+      var date = new Date().getDate(); //Current Date
+      var month = new Date().getMonth()+1; //Current Month
+      var year = new Date().getFullYear();
+      this.setState({currentDate: year + '-' + month + '-' + date} );
+      console.log('DATEAUJOURDHUI',this.state.currentDate);
+      fetch(apiConfig.url+`/api/demandes_formateur/getdemandes_participant/?date_debut__gte=2021-06-29&participant=${userId}`, {
         method: 'GET',
         headers: {
       
@@ -60,7 +63,7 @@ export default class MyListForma extends Component {
           console.error(error)
           this.setState({array:[]})
       });
-      fetch(apiConfig.url+'/api/demandes_formateur/getmesdemandes_participant?date_fin__gte=2021-06-18&participant=19', {
+      fetch(apiConfig.url+`/api/demandes_formateur/getmesdemandes_participant?date_fin__gte=2021-06-29&participant=${userId}`, {
         method: 'GET',
         headers: {
       
@@ -72,6 +75,7 @@ export default class MyListForma extends Component {
       .then((response)=>response.json())
       .then((json)=>{
           console.log('JSONAccepted',json)
+          console.log('JSONAcceptedSTATUT',json[0].demandes_participants[0].statut);
        this.setState({arrayAccepted:json})
        //this.intervalID = setTimeout(this.getData.bind(this), 5000);
       })

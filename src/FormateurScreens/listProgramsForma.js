@@ -6,17 +6,9 @@ import SearchBarProgram from '../components/searchBarProgram';
 import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';
 import ExpandableListViewAccepted from '../components/expandableListViewAccepted';
+import jwt_decode from "jwt-decode";
 
 
-/* {
-            this.state.array.map((item, key) =>
-            (
-              <ExpandableListViewAccepted style={styles.myList}
-              key={item.id} 
-              onClickFunction={this.updateLayout2.bind(this, key)} 
-              item={item} />
-            ))
-          } */
 
 
 export default class MyListForma extends Component {
@@ -40,6 +32,10 @@ export default class MyListForma extends Component {
   
     async componentDidMount(){
       const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
+   
+   var decoded = jwt_decode(DEMO_TOKEN);
+   var userId=decoded.user_id;
+   console.log('USEEEEEER',userId);
       fetch(apiConfig.url+'/api/programmes/getprogs/?date_fin__lte=2021-06-05', {
         method: 'GET',
         headers: {
@@ -59,7 +55,7 @@ export default class MyListForma extends Component {
           console.error(error)
           this.setState({array:[]})
       });
-      fetch(apiConfig.url+'/api/demandes_formateur/?date_fin__gte=2021-06-05&formateur=11&statut=A', {
+      fetch(apiConfig.url+`/api/demandes_formateur/?date_fin__gte=2021-06-28&formateur=${userId}&statut=A`, {
         method: 'GET',
         headers: {
       

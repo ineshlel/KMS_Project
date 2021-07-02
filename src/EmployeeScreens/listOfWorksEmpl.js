@@ -6,6 +6,7 @@ import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';
 import ItemAdded from '../components/itemAdded';
 import ItemAddedEmpl from '../components/itemAddedEmpl';
+import Loader from '../components/loader';
 
 
 
@@ -20,8 +21,10 @@ const ListOfWorksEmpl=({route})=>{
  
  
     const[works,setWorks]=useState([]);
+    const [loading, setLoading] = React.useState(false);
   
       useEffect(async() => {
+        setLoading(true);
         const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
         console.log(route.params);
         fetch(apiConfig.url+`/api/travaux?programme=${route.params}`, {
@@ -35,6 +38,7 @@ const ListOfWorksEmpl=({route})=>{
         })
           .then((response) => response.json())
           .then((responseJson) => {
+            setLoading(false);
             console.log('JSONWorks',responseJson)
             setWorks(responseJson)
           })
@@ -43,6 +47,10 @@ const ListOfWorksEmpl=({route})=>{
             setWorks([])
           });
       }, []);
+
+      if (loading){
+        return ( <Loader loading={loading} /> );
+      } else {
   
     return (
    
@@ -74,7 +82,7 @@ const ListOfWorksEmpl=({route})=>{
 </View>
   
  );
-};
+}};
 const styles=StyleSheet.create({
     formContainer:{
         flexDirection:'column',

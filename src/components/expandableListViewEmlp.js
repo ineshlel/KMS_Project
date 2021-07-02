@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Alert, StyleSheet, View, TouchableOpacity, Platform} from 'react-native';
+import ProgramActionsLimitedEmplEA from './programActionsLimitedEA';
 
 
 import ProgramActionsLimitedEmpl from './programActionsLimitedEmpl';
-import ProgramItem from './programItem';
+
+import ProgramItemLimitedEmpl from './programItemLimtedEmpl';
 
 
 
@@ -53,13 +55,14 @@ export default class ExpandableListViewEmpl extends Component {
     Alert.alert(item);
   }
   render() {
+    if(this.props.item.statut=='EA'){
     return (
       <View style={styles.panelContainer}>
         
         <TouchableOpacity activeOpacity={0.8} onPress={this.props.onClickFunction}>
          
         
-            <ProgramItem
+            <ProgramItemLimitedEmpl
               name={this.props.item.programme_name}
               dd={this.props.item.date_debut}
               df={this.props.item.date_fin}
@@ -74,6 +77,29 @@ export default class ExpandableListViewEmpl extends Component {
         
         </View>
       </View>
+    );}
+    else return(
+      <View style={styles.panelContainer}>
+        
+        <TouchableOpacity activeOpacity={0.8} onPress={this.props.onClickFunction}>
+         
+        
+            <ProgramItemLimitedEmpl
+              name={this.props.item.programme_name}
+              dd={this.props.item.date_debut}
+              df={this.props.item.date_fin}
+            />
+        
+
+         
+        </TouchableOpacity>
+        <View style={{ height: this.state.layoutHeight, overflow: 'hidden' }}>
+       <ProgramActionsLimitedEmplEA
+       id_dm={this.props.item.id}/>
+        
+        </View>
+      </View>
+      
     );
   }
 }

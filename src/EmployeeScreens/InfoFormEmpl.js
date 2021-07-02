@@ -45,14 +45,14 @@ const InfoFormEmpl=({route})=>{
   }, []);
    
 
-  /*if (loading){
+  if (loading){
      return ( <Loader loading={loading} /> );
-   } else {*/
+   } else {
 
     return (
       
      <View  style={styles.formContainer}>
-        
+  
     
     <StaticInput name='Titre :'
     value={title}
@@ -76,7 +76,7 @@ const InfoFormEmpl=({route})=>{
      
     
  );
-//}
+}
 };
 const styles=StyleSheet.create({
     formContainer:{

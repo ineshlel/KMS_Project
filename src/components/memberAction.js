@@ -5,6 +5,8 @@ import { COLORS } from '../constants';
 const { width } = Dimensions.get('window');
 
 import { useNavigation } from '@react-navigation/native';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
+
 
 
 
@@ -19,7 +21,13 @@ const MemberAction=props=>{
       <View  style={styles.actionsContainers}>
         <TouchableOpacity  onPress={() => navigation.navigate('liste des participants',props.iddm)}>
         <View style={styles.input}>
-          <Text style={styles.textStyle}>liste des participants</Text>
+          <Text style={styles.textStyle}>Liste des participants</Text>
+         
+                   <MaterialIcons 
+                        name="navigate-next"
+                        color="#fff"
+                        size={24}
+                    />
         </View>
         </TouchableOpacity>
    
@@ -33,9 +41,10 @@ const styles=StyleSheet.create({
         justifyContent:'center',
         alignItems:'center',
         //marginBottom:10
+     
       },
       input:{
-        width:'50%',borderColor:COLORS.orange,borderWidth:1,
+        width:'60%',borderColor:COLORS.orange,borderWidth:1,
         height:40,
         marginTop:5,
         borderRadius:14,
@@ -44,7 +53,8 @@ const styles=StyleSheet.create({
         backgroundColor:COLORS.orange,
         justifyContent:'center',
         alignItems:'center',
-        marginLeft:100,
+        marginLeft:70,
+        flexDirection:'row',
          },
       
       textStyle:{

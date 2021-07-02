@@ -1,7 +1,7 @@
 import React ,{useState}from 'react';
 
 import {View,Text, StyleSheet ,TextInput,Button,FlatList}from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
+import { ScrollView, TouchableOpacity, Alert} from 'react-native-gesture-handler';
 import AddFileButton from '../components/addFileButton';
 import ButtonKms from '../components/buttonV';
 import DescriptionInput from '../components/descriptionInput';
@@ -112,6 +112,7 @@ const QCMScreen=props=>{
                 //setK_OPTIONS(responseJson);
                 console.log(responseJson);
                 console.log("--------------------");
+                Alert.alert("Le question 1 a été ajouté");
               })
               .catch((error) => {
                 console.error(error);
@@ -162,16 +163,19 @@ const QCMScreen=props=>{
     
  
      </View>
+     <View style={{marginTop:20}}>
      <ButtonKms title='Ajouter'
      onValidate= {handleReponse}/>
-    
+    </View>
     </ScrollView>
  );
 };
 const styles=StyleSheet.create({
     inputContainer:{
         flexDirection:'column',
-        margin:10,
+       // margin:10,
+       padding:15,
+        backgroundColor:'#fff'
     },
     solutionContainer:{
    //  marginHorizontal:40,

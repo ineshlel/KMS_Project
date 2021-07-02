@@ -180,8 +180,8 @@ const SignUp = ({navigation}) => {
     const signupHandle =async() => {
 
         if (data.username.length == 0) {
-            Alert.alert('Wrong Input!', 'Please fill UserName.', [
-                {text: 'Okay'}
+            Alert.alert('Champ Invalide !', 'Veuillez entrer vos données.', [
+                {text: 'Ok'}
             ]);
             return;
           }
@@ -284,13 +284,13 @@ const SignUp = ({navigation}) => {
             <Image
               source={require('../assets/images/check.png')}
               style={{
-                height: 180,
+                height: 120,
                 resizeMode: 'contain',
                 alignSelf: 'center'
               }}
             />
             <Text style={styles.successTextStyle}>
-              Registration Successful
+              Inscription avec succés 
             </Text>
             <View style={styles.button}>
                 <TouchableOpacity
@@ -402,7 +402,16 @@ const SignUp = ({navigation}) => {
       <View style={styles.container}>
          <Loader loading={loading} />
         <View style={styles.header}>
-            <Text style={styles.text_header}> Inscrivez-vous !</Text>
+        <View style={{width:90,height:90,backgroundColor:'white',borderRadius:50}}>
+            <Image
+           source={require('../assets/images/logokms.png')}
+           style={{
+             height: 80,
+             resizeMode: 'contain',
+             alignSelf: 'center'
+           }}
+         />
+         </View> 
         </View>
         <Animatable.View 
             animation="fadeInUpBig"
@@ -709,11 +718,10 @@ const styles = StyleSheet.create({
     },
     header: {
         flex: 1,
-        justifyContent: 'flex-end',
+        justifyContent: 'center',
         paddingHorizontal: 20,
-        paddingBottom: 50,
-        marginLeft:50,
-        
+        paddingVertical:25,
+       marginHorizontal:120,
     },
     footer: {
         flex: Platform.OS === 'ios' ? 3 : 5,

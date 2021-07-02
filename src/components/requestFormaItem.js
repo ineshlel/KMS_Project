@@ -38,8 +38,12 @@ const RequestItem=props=>{
     <View style={styles.itemContainer} >
         <View >
         <Text  style={styles.textName}>{props.name}</Text>
+        <View  style={{flexDirection:'row'}}>
+    <Text style={styles.textDate}>{props.ddd}</Text>
+    <Text style={styles.textDate}>{props.dfd}</Text>
+    </View>
+      
         </View>
-    <Text style={styles.textContainer}>10/06/2021</Text>
     
         
         
@@ -89,7 +93,15 @@ const styles=StyleSheet.create({
         textContainer:{
             marginLeft:'60%',
             color:COLORS.orange,
-        }
+        },
+        textDate:{
+            fontSize:12,
+            marginRight:8,
+            color:COLORS.orange,
+            //fontWeight:'bold',
+           // marginBottom:5,
+           fontFamily:'Cairo-Regular'
+        },
 
  
 });

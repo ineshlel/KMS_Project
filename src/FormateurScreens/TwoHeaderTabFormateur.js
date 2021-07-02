@@ -175,9 +175,12 @@ export default class TwoHeaderTabFormateur extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
+    width: '100%',
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
+    paddingHorizontal:20,
+    backgroundColor:"#fff",
+
   },
 
   // Tab Selector Styles
@@ -185,7 +188,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     height: 36,
     marginTop: 10, 
-    marginBottom: 10,
+    //marginBottom: 10,
     //position: 'relative',
     
   },

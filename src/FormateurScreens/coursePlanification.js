@@ -12,6 +12,7 @@ import TimePickerInput from '../components/timepicker';
 import { ScrollView } from 'react-native';
 import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';
+import moment from 'moment'
 
 import DatePicker from 'react-native-date-picker'
 /* <SafeAreaView style={styles.dateContainer}>
@@ -64,18 +65,22 @@ const CoursePlanification=props=>{
   const[dateC,setDateC]=useState();
   const [time1, setTime1] = useState(new Date())
   const [time2, setTime2] = useState(new Date())
+  const [res1, setRes1] = useState()
+  const [res2, setRes2] = useState()
+  const [res3, setRes3] = useState()
 
-  var res1,res2,res3;
+ 
   const handleAddCourseteButton=async()=>{
     //setLoading(true);
+   
   var dataToSend = {
     titre: course,
-    date:"2021-06-27",
+    date:res3,
     description:desc,
-    startHour:"08:00:00",
-    endHour:"12:00:00",
+    startHour:res1,
+    endHour:res2,
     programme:props.route.params,
-    partage_par:11,
+    partage_par:11
   };
   var formBody = [];
   for (var key in dataToSend) {
@@ -88,10 +93,10 @@ const CoursePlanification=props=>{
   console.log(DEMO_TOKEN);
   //console.log(await AsyncStorage.getItem('userToken'));
   console.log("-------------routeparams",props.route.params);
-  console.log('****************');
+  console.log('****************',desc);
 
 
-  fetch(apiConfig.url+`/api/cours_programme?programme=${props.route.params}`, {
+  fetch(apiConfig.url+`/api/cours_programme/`, {
       method: 'POST',
       body: formBody,
       headers: {
@@ -105,7 +110,8 @@ const CoursePlanification=props=>{
       .then((responseJson) => {
         //Hide Loader
         //setLoading(false);
-        
+        console.log('****############################***');
+        console.log('time1',time1);
         console.log('newCourse',responseJson);
        // AsyncStorage.setItem('programID',JSON.stringify(responseJson.id));
         Alert.alert("Le cours  "+responseJson.titre+" a été ajouté");
@@ -150,11 +156,14 @@ const CoursePlanification=props=>{
    locale='fr'
    onDateChange=
    {(time1) => {
+    
      setTime1(time1);
     console.log('*********',time1);
-    res3 = time1.toString().substring(0,15)
+  
+setRes3(moment(time1).format('YYYY-MM-DD'));
+   // res3 = time1.toString().substring(0,15)
      console.log('---res3----',res3);
-     res1 = time1.toString().substring(15, 25)
+    setRes1(time1.toString().substring(16, 21)); 
      console.log('-------',res1);
    
    }}
@@ -171,9 +180,10 @@ const CoursePlanification=props=>{
        locale='fr'
        onDateChange=
       {(time2) => {
+      
          setTime2(time2);
       
-       res2 = time2.toString().substring(15, 25)
+        setRes2 (time2.toString().substring(16, 21)),
          console.log('-------',res2);
        }}
        //onDateChange={setDate}
@@ -199,8 +209,10 @@ const styles=StyleSheet.create({
     container:{
         flex:1,
         flexDirection:'column',
-        marginTop:10,
-        marginHorizontal:10,
+       // marginTop:10,
+       // marginHorizontal:10,
+        backgroundColor:"#fff",
+        padding:10,
     },
     sliderContainer:{
        flex:1,

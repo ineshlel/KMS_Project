@@ -8,6 +8,7 @@ import DescriptionStaticInput from '../components/descriptionStaticInput';
 import StaticInput from '../components/staticInput';
 import AsyncStorage from '@react-native-community/async-storage';
 import apiConfig from '../api/config';
+import Loader from '../components/loader';
 
 
 
@@ -22,7 +23,9 @@ const InfoCourse=props=>{
   const [startHour,setStartHour]=useState();
   const [endHour,setEndHour]=useState();
   const[date,setDate]=useState();
+  const[loading,setLoading]=useState(false);
   useEffect( async() => {
+    setLoading(true);
     const DEMO_TOKEN = await AsyncStorage.getItem('userToken');
     fetch(apiConfig.url+`/api/cours_programme/${props.id_c}`, {
       method: 'GET',
@@ -36,6 +39,7 @@ const InfoCourse=props=>{
       .then((response) => response.json())
       .then((responseJson) => {
         //setFilteredDataSource(responseJson); substring(0,5)
+        setLoading(false);
        console.log(responseJson);
       setTitle(responseJson.titre);
       setStartHour(responseJson.startHour);
@@ -48,7 +52,9 @@ const InfoCourse=props=>{
         console.error(error);
       });
   }, []);
-   
+  if (loading){
+    return ( <Loader loading={loading} /> );
+  } else {
     return (
      <View  style={styles.formContainer}>
     <StaticInput name='Titre :'
@@ -68,7 +74,7 @@ const InfoCourse=props=>{
  value={description}/>
      </View>
  );
-};
+};}
 const styles=StyleSheet.create({
     formContainer:{
         flexDirection:'column',

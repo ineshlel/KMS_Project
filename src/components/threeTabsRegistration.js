@@ -116,7 +116,7 @@ export default class ThreeTabRegistration extends Component {
                         color={ active === 0? '#FFFFFF' : COLORS.purple}
                         size={20}
                       />
-                        <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple}}> En Attente</Text>
+                        <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontFamily:'Cairo-Bold'}}> En Attente</Text>
                     </View> 
             </TouchableOpacity>
 
@@ -134,7 +134,7 @@ export default class ThreeTabRegistration extends Component {
                         color={ active === 1? '#FFFFFF' : COLORS.purple}
                         size={20}
                       />
-                        <Text style={{color: active === 1? '#FFFFFF' : COLORS.purple}}> Accepté</Text>
+                        <Text style={{color: active === 1? '#FFFFFF' : COLORS.purple,fontFamily:'Cairo-Bold'}}> Accepté</Text>
                     </View> 
             </TouchableOpacity>
 
@@ -152,7 +152,7 @@ export default class ThreeTabRegistration extends Component {
                         color={ active === 2? '#FFFFFF' : COLORS.purple}
                         size={20}
                       />
-                        <Text style={{color: active === 2? '#FFFFFF' : COLORS.purple}}> Refusé</Text>
+                        <Text style={{color: active === 2? '#FFFFFF' : COLORS.purple,fontFamily:'Cairo-Bold'}}> Refusé</Text>
                     </View>
             </TouchableOpacity>
 
@@ -211,10 +211,12 @@ export default class ThreeTabRegistration extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '85%',
-    marginLeft: 10,
-    marginRight: 10,
-    flexDirection:'column'
+    width: '100%',
+    
+    //marginLeft: 10,
+    //marginRight: 10,
+    flexDirection:'column',
+    backgroundColor:'#fff'
   },
 
   // Tab Selector Styles
@@ -223,7 +225,7 @@ const styles = StyleSheet.create({
     height: 36,
     marginTop: 30, 
     marginBottom: 10,
-     marginLeft:20,
+     marginHorizontal:20,
 //position: 'relative',
 justifyContent: 'center',
     alignItems: 'center',
@@ -298,7 +300,9 @@ justifyContent: 'center',
     marginLeft:25,
   },
   textStyle:{
-    color:'#fff'
+    color:'#fff',
+    fontFamily:'Cairo-Bold',
+    fontSize:15,
    
 },
 });

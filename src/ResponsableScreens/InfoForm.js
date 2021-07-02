@@ -1,6 +1,6 @@
 import React ,{useState,createRef}from 'react';
 
-import {View,Text, StyleSheet ,Alert}from 'react-native';
+import {View,Text, StyleSheet ,Alert,TouchableOpacity}from 'react-native';
 import ButtonKms from '../components/buttonV';
 import DescriptionInput from '../components/descriptionInput';
 import Input from '../components/Input';
@@ -8,7 +8,9 @@ import apiConfig from '../api/config';
 import AsyncStorage from '@react-native-community/async-storage';
 import Loader from '../components/loader';
 import CapacityInput from '../components/capacityInput';
-
+import { useNavigation } from '@react-navigation/native';
+import { COLORS } from '../constants';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 
@@ -18,6 +20,10 @@ import CapacityInput from '../components/capacityInput';
 const InfoForm=props=>{
   
 
+const navigation = useNavigation();
+
+  
+
   const[titrepg,setTitrepg]=useState('');
   const[durationpg,setDurationpg]=useState('');
   const[minpg,setMinpg]=useState();
@@ -25,14 +31,11 @@ const InfoForm=props=>{
   const[descriptionpg,setDescriptionpg]=useState('');
   const[loading,setLoading]=useState(false);
 
-  const titrepgRef = createRef();
-  const durationpgRef = createRef();
-  const descriptionpgRef = createRef();
 
  
 
   const handleValidateButton=async()=>{
-    setLoading(true);
+    //setLoading(true);
   var dataToSend = {
     titre: titrepg,
     duration: durationpg,
@@ -66,38 +69,34 @@ const InfoForm=props=>{
       .then((response) => response.json())
       .then((responseJson) => {
         //Hide Loader
-        setLoading(false);
+       // setLoading(false);
         console.log(responseJson);
-        AsyncStorage.setItem('programID',JSON.stringify(responseJson.id));
-        Alert.alert("Le programme  "+responseJson.titre+" a été ajouté");
-        //titrepgRef.current.clear();
-        //descriptionpgRef.current.clear();
-       // durationpgRef.current.clear();
-      setTitrepg("");
+        navigation.navigate('Competance',responseJson.id)
+        //AsyncStorage.setItem('programID',JSON.stringify(responseJson.id));
+        //Alert.alert("Le programme  "+responseJson.titre+" a été ajouté");
+      
        console.log('//////////////////////');
       
       })
       .catch((error) => {
         //Hide Loader
-        setLoading(false);
+        //setLoading(false);
         console.error(error);
+        Alert.alert(error);
       });
   
 
 
 }
-const submitHandler = () => { //runs on submit and sets the state to nothing.
-  setTitrepg('')
- }
+
 
    
     return (
-     <View  style={styles.formContainer}>
-        <Loader loading={loading} />
+     <ScrollView style={styles.formContainer}>
+      
       <Input title='Titre :'
        onChange={(titrepg) => setTitrepg(titrepg)}
-       onsubmit={ titrepgRef.current &&
-        titrepgRef.current.focus()}
+     
       />
       <Input title='Durée :'
       onChange={(durationpg) => setDurationpg(durationpg)}
@@ -110,19 +109,20 @@ const submitHandler = () => { //runs on submit and sets the state to nothing.
       />
       <DescriptionInput   title='Description: '
        onChange={(descriptionpg) => setDescriptionpg(descriptionpg)}
-       onsubmit={ descriptionpgRef.current &&
-        descriptionpgRef.current.focus()}
+     
       />
       
-
+      <TouchableOpacity onPress={handleValidateButton}>
+        <View  style={styles.button}>
+            <Text style={styles.textStyle}>Suivant</Text>
+            
+        </View>
+        </TouchableOpacity>
    
-      <ButtonKms  title='Valider'
-      onValidate={handleValidateButton}
-      
-      />
     
     
-      </View>
+    
+      </ScrollView>
  );
 };
 const styles=StyleSheet.create({
@@ -131,6 +131,7 @@ const styles=StyleSheet.create({
        
         padding:20,
         //marginBottom:30
+        backgroundColor:'white'
     
       },
       inputContainer:{
@@ -147,6 +148,28 @@ const styles=StyleSheet.create({
         width:'90%',borderColor:'grey',borderWidth:1,padding:3,marginTop:5,
         
       },
+      button:{
+        width:'90%',
+        height:40,
+         borderRadius:15,
+        //marginLeft:60,
+        marginTop:60,
+        marginLeft:6,
+        backgroundColor:COLORS.orange,
+        justifyContent:'center',
+        alignItems:'center',
+        //position: 'absolute',
+        //top: 100,
+        //paddingTop: 5,
+        
+    },
+    textStyle:{
+        fontSize:18,
+        color:'#fff',
+        fontFamily:"Cairo-Bold",
+        
+
+    },
     
      
 });

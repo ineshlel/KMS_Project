@@ -109,7 +109,7 @@ export default class HeaderTabsForma extends Component {
                                   this.setState({ active: 0 }, () =>
                                       this.handleSlide(xTab1)
                               )}>
-              <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Information</Text>
+              <Text style={{color: active === 0? '#FFFFFF' : COLORS.purple,fontFamily:"Cairo-Bold",fontSize:18}}>Présentation</Text>
             </TouchableOpacity>
 
             {/* Tab 2 */}
@@ -192,9 +192,11 @@ export default class HeaderTabsForma extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    width: '90%',
+    width: '100%',
     marginLeft: 'auto',
-    marginRight: 'auto'
+    marginRight: 'auto',
+    backgroundColor:"#fff",
+    padding:10,
   },
 
   // Tab Selector Styles

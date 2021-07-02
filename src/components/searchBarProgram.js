@@ -60,7 +60,7 @@ const SearchBarProgram=props=>{
         
 
          value={input}
-          onChangeText={text=>props.onSearchFunction(text)}
+         // onChangeText={text=>props.onSearchFunction(text)}
           
          // value={search}
           containerStyle={styles.searchStyle}

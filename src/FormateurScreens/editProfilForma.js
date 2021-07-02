@@ -29,7 +29,7 @@ import apiConfig from '../api/config';
 
 const bs = React.createRef();
 const fall = new Animated.Value(1);
-const EditProfileScreen = ({route}) => {
+const EditProfileFormaScreen = ({route}) => {
  
  //const participant=route.params;
  const {   username_,full_name, telephone, eamil_, poste_, entreprise_, specialite_,avatar_} = route.params;
@@ -70,7 +70,7 @@ console.log(route.params);
      cropping: true,
       compressImageQuality: 0.7
     }).then(image => {
-      console.log("HHHHHHHHHH",image);
+      console.log("HHHHHHHHHH",image.path);
       setImage(image.path);
       setAvatar(image.path);
     
@@ -98,7 +98,7 @@ console.log(route.params);
     "first_name": "ilef",
     "last_name": "hlel",
     "email": email,
-    "avatar":image,
+    //"avatar":avatar,
     "tel":tel,
   };
   var formBody = [];
@@ -305,7 +305,7 @@ console.log(route.params);
   );
 };
 
-export default EditProfileScreen;
+export default EditProfileFormaScreen;
 
 const styles = StyleSheet.create({
   container: {

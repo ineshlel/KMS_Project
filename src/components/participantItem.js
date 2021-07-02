@@ -39,6 +39,7 @@ const ParticipantItem=props=>{
     <View style={styles.itemContainer} >
         <View >
         <Text  style={styles.textName}>{props.name}</Text>
+      
         </View>
      </View>
      </TouchableOpacity>
